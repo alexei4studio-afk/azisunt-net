@@ -108,6 +108,7 @@ function Navbar() {
   const links = [
     { href: "#problema", label: "Problema" },
     { href: "#succes", label: "Rezultate" },
+    { href: "#portofoliu", label: "Portofoliu" },
     { href: "#plan", label: "Cum funcționează" },
     { href: "#incredere", label: "Clienți" },
     { href: "#contact", label: "Contact" },
@@ -492,6 +493,120 @@ function Succes() {
               className="group-hover:translate-x-1 transition-transform"
             />
           </a>
+        </AnimatedSection>
+      </div>
+    </section>
+  );
+}
+
+/* ─── PORTOFOLIU ─── */
+const portfolioProjects = [
+  {
+    slug: "azisunt.biz",
+    tag: "E-commerce Specialist",
+    desc: "Platformă optimizată pentru conversie și viteză.",
+    image: "/p1.png",
+    span: "md:col-span-2",
+  },
+  {
+    slug: "napoletano.ro",
+    tag: "HoReCa Design",
+    desc: "Identitate digitală pentru experiențe culinare autentice.",
+    image: "/p2.png",
+    span: "",
+  },
+  {
+    slug: "azisunt.com",
+    tag: "Corporate Branding",
+    desc: "Hub de soluții digitale pentru afaceri scalabile.",
+    image: "/p3.png",
+    span: "",
+  },
+];
+
+function Portofoliu() {
+  return (
+    <section id="portofoliu" className="py-28 relative">
+      <div className="absolute top-1/2 right-0 w-[400px] h-[500px] bg-accent/4 rounded-full blur-[120px] pointer-events-none -translate-y-1/2" />
+
+      <div className="max-w-6xl mx-auto px-6 relative">
+        <AnimatedSection className="mb-14">
+          <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
+            <div>
+              <Badge>Portofoliu</Badge>
+              <h2 className="font-display font-800 text-4xl sm:text-5xl leading-tight tracking-tight">
+                Proiecte reale.
+                <br />
+                <span className="text-accent">Rezultate vizibile.</span>
+              </h2>
+            </div>
+            <p className="text-white/45 font-body text-sm max-w-xs md:text-right leading-relaxed">
+              Fiecare proiect e construit de la zero — zero template-uri,
+              zero compromisuri.
+            </p>
+          </div>
+        </AnimatedSection>
+
+        {/* Bento grid: first card spans 2 cols on md+ */}
+        <AnimatedSection>
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+            {portfolioProjects.map((p) => (
+              <div
+                key={p.slug}
+                className={`group relative overflow-hidden rounded-2xl ${p.span} ${
+                  p.span ? "min-h-[340px]" : "min-h-[260px]"
+                } cursor-pointer`}
+                style={{ border: "1px solid rgba(255,255,255,0.05)" }}
+              >
+                {/* Background image with scale on hover */}
+                <div
+                  className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
+                  style={{ backgroundImage: `url(${p.image})` }}
+                />
+
+                {/* Dark gradient overlay — keeps text readable */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#080810]/95 via-[#080810]/50 to-[#080810]/10" />
+
+                {/* Glassmorphism base layer */}
+                <div
+                  className="absolute inset-0 bg-[#0e0e1a]/50 transition-colors duration-300 group-hover:bg-[#0e0e1a]/30"
+                  style={{ backdropFilter: "blur(0px)" }}
+                />
+
+                {/* Hover border glow — yellow accent */}
+                <div
+                  className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
+                  style={{
+                    boxShadow: "inset 0 0 0 1px rgba(232,255,71,0.25)",
+                  }}
+                />
+
+                {/* Pulsing badge — top right */}
+                <div className="absolute top-4 right-4 z-10">
+                  <span className="relative inline-flex items-center gap-1.5 bg-[#080810]/80 backdrop-blur-sm border border-accent/25 text-accent text-[10px] font-display tracking-widest uppercase px-2.5 py-1 rounded-full">
+                    <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse-ring flex-shrink-0" />
+                    {p.tag}
+                  </span>
+                </div>
+
+                {/* Card content — bottom */}
+                <div className="absolute bottom-0 left-0 right-0 p-6 z-10">
+                  <p className="font-display font-700 text-base text-white mb-1 tracking-tight">
+                    {p.slug}
+                  </p>
+                  <p className="font-body text-xs text-white/50 leading-relaxed">
+                    {p.desc}
+                  </p>
+
+                  {/* Arrow — appears on hover */}
+                  <div className="mt-3 flex items-center gap-1.5 text-accent text-xs font-display font-700 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
+                    Vezi proiectul
+                    <ArrowRight size={12} />
+                  </div>
+                </div>
+              </div>
+            ))}
+          </div>
         </AnimatedSection>
       </div>
     </section>
@@ -1022,6 +1137,8 @@ export default function Page() {
         <Problema />
         {/* P3: Cum arată succesul? */}
         <Succes />
+        {/* Portofoliu */}
+        <Portofoliu />
         {/* P4: Plan în 3 pași */}
         <Plan />
         {/* P5: De ce să am încredere? */}
