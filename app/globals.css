@@ -1,0 +1,85 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-syne:  'Syne', sans-serif;
+    --font-inter: 'Inter', sans-serif;
+    --accent: #e8ff47;
+    --accent-dim: rgba(232, 255, 71, 0.12);
+    --border: rgba(255,255,255,0.07);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; }
+
+  ::selection {
+    background: var(--accent);
+    color: #080810;
+  }
+
+  ::-webkit-scrollbar { width: 5px; }
+  ::-webkit-scrollbar-track { background: #080810; }
+  ::-webkit-scrollbar-thumb { background: #1e1e2e; border-radius: 5px; }
+}
+
+@layer utilities {
+  .font-display { font-family: var(--font-syne); }
+  .font-body    { font-family: var(--font-inter); }
+
+  .text-accent   { color: var(--accent); }
+  .bg-accent     { background: var(--accent); }
+  .border-accent { border-color: var(--accent); }
+
+  .glow-accent {
+    box-shadow: 0 0 60px -10px rgba(232, 255, 71, 0.35);
+  }
+  .glow-blue {
+    box-shadow: 0 0 80px -20px rgba(99, 102, 241, 0.4);
+  }
+
+  /* Staggered fade-up animations */
+  .animate-fadeup {
+    animation: fadeup 0.7s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    opacity: 0;
+  }
+  .delay-100 { animation-delay: 100ms; }
+  .delay-200 { animation-delay: 200ms; }
+  .delay-300 { animation-delay: 300ms; }
+  .delay-400 { animation-delay: 400ms; }
+  .delay-500 { animation-delay: 500ms; }
+  .delay-600 { animation-delay: 600ms; }
+  .delay-700 { animation-delay: 700ms; }
+
+  .noise-overlay {
+    position: relative;
+  }
+  .noise-overlay::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='300' height='300'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='300' height='300' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 1;
+    border-radius: inherit;
+  }
+}
+
+@keyframes fadeup {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50%       { transform: translateY(-12px); }
+}
+
+@keyframes pulse-ring {
+  0%   { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(232, 255, 71, 0.4); }
+  70%  { transform: scale(1);    box-shadow: 0 0 0 16px rgba(232, 255, 71, 0); }
+  100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(232, 255, 71, 0); }
+}
+
+.animate-float      { animation: float 5s ease-in-out infinite; }
+.animate-pulse-ring { animation: pulse-ring 2.5s ease-out infinite; }
