@@ -16,19 +16,17 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "CapeSystem | High-Performance Web Systems & Digital Marketing",
-  description:
-    "Engineering high-conversion digital infrastructure. Next-gen web systems for ambitious brands.",
-  metadataBase: new URL("https://capesystem.com"),
+  title: "CapeSystem | Sisteme Web & Marketing pe azisunt.net",
+  description: "Transformăm traficul în profit. Infrastructură digitală de înaltă performanță pe azisunt.net.",
+  metadataBase: new URL("https://azisunt.net"),
   robots: { index: true, follow: true },
-  icons: {
-    icon: "/favicon.ico",
-  },
   openGraph: {
-    title: "CapeSystem | High-Performance Web Systems & Digital Marketing",
-    description:
-      "Engineering high-conversion digital infrastructure. Next-gen web systems for ambitious brands.",
-    images: ["/og-image.png"],
+    title: "CapeSystem | azisunt.net",
+    description: "Sisteme digitale care vând. Marketing care aduce clienți reali.",
+    url: "https://azisunt.net",
+    siteName: "CapeSystem",
+    locale: "ro_RO",
+    type: "website",
   },
 };
 
