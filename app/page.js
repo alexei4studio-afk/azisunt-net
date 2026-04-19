@@ -43,10 +43,12 @@ function Reveal({ children, className = "", delay = 0 }) {
 /* ─── Badge ─── */
 function Badge({ children }) {
   return (
-    <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full border border-white/10 bg-white/5 text-[10px] font-display tracking-widest uppercase text-white/60 mb-6">
-      <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse inline-block" />
-      {children}
-    </span>
+    <div className="inline-flex items-center mb-7" style={{ background: "linear-gradient(90deg, #89AACC33, #4E85BF22)", borderRadius: 999, padding: "1px" }}>
+      <span className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full bg-bg/80 backdrop-blur-sm text-[11px] font-display tracking-[0.2em] uppercase font-bold" style={{ color: "#89AACC" }}>
+        <span className="w-2 h-2 rounded-full animate-pulse flex-shrink-0" style={{ background: "linear-gradient(135deg, #89AACC, #4E85BF)", boxShadow: "0 0 8px #89AACC80" }} />
+        {children}
+      </span>
+    </div>
   );
 }
 
@@ -185,7 +187,7 @@ function Hero() {
           transition={{ duration: 0.8, delay: 0.5, ease: [0, 0.71, 0.2, 1.01] }}
           className="mb-10 w-full max-w-[300px] sm:w-72 animate-float"
         >
-          <div className="p-5 sm:p-6 bg-surface/50 backdrop-blur-xl border border-white/10 rounded-[2rem] shadow-2xl hover:border-white/20 transition-all">
+          <div className="group/card p-5 sm:p-6 bg-surface/50 backdrop-blur-xl border border-white/10 rounded-[2rem] shadow-2xl hover:border-[#89AACC]/40 transition-all duration-300 cursor-pointer">
             <div className="flex items-center justify-between mb-3">
               <div className="flex items-center gap-2">
                 <div className="w-7 h-7 rounded-lg flex items-center justify-center" style={{ background: "linear-gradient(135deg, #89AACC, #4E85BF)" }}>
@@ -193,7 +195,7 @@ function Hero() {
                 </div>
                 <span className="text-[9px] uppercase tracking-widest text-muted font-bold">Organic Growth</span>
               </div>
-              <span className="text-[9px] text-white/20 font-body">6 luni</span>
+              <ArrowUpRight size={14} className="text-white/20 group-hover/card:text-[#89AACC] transition-colors duration-300" />
             </div>
             <p className="text-5xl font-display font-black italic mb-3" style={{ background: "linear-gradient(90deg, #89AACC 0%, #4E85BF 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
               +312%
@@ -202,7 +204,7 @@ function Hero() {
               {[22, 35, 28, 48, 42, 60, 55, 75, 100].map((h, i) => (
                 <motion.div
                   key={i}
-                  className="flex-1 rounded-sm overflow-hidden"
+                  className="flex-1 rounded-sm overflow-hidden transition-opacity duration-300 group-hover/card:opacity-90"
                   style={{ height: `${h}%`, minHeight: 4, background: i === 8 ? "linear-gradient(180deg, #89AACC, #4E85BF)" : "rgba(255,255,255,0.08)" }}
                   initial={{ scaleY: 0, originY: "bottom" }}
                   animate={{ scaleY: 1 }}
@@ -211,7 +213,7 @@ function Hero() {
               ))}
             </div>
             <div className="flex items-center justify-between border-t border-white/5 pt-2.5">
-              <p className="text-[9px] uppercase tracking-[0.2em] text-white/30 italic font-body">napoletano.ro</p>
+              <p className="text-[9px] uppercase tracking-[0.2em] text-white/30 group-hover/card:text-[#89AACC]/60 italic font-body transition-colors duration-300">napoletano.ro</p>
               <div className="flex gap-0.5">
                 {[...Array(5)].map((_, i) => <Star key={i} size={8} className="fill-accent text-accent" />)}
               </div>
