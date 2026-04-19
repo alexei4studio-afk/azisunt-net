@@ -445,21 +445,71 @@ function Portofoliu() {
 /* ─── 5. PLAN, 6. INCREDERE, 7. COST, 8. CONTACT (Rămân neschimbate) ─── */
 function Plan() {
   const steps = [
-    { nr: "01", icon: <Phone size={20} />, title: "Discutăm", desc: "Analizăm afacerea, obiectivele și clienții tăi ideali." },
-    { nr: "02", icon: <Layers size={20} />, title: "Construim", desc: "Design custom, copywriting, SEO și setup complet." },
-    { nr: "03", icon: <BarChart3 size={20} />, title: "Scalăm", desc: "Rapoarte lunare clare și optimizare continuă." },
+    {
+      nr: "01",
+      icon: <Phone size={20} />,
+      badge: "Deep Audit",
+      title: "Audit & Strategie",
+      desc: "Disecăm afacerea până la os. Identificăm unghiurile de atac, analizăm competiția și construim un blueprint de execuție adaptat pieței tale. Fără presupuneri — doar date și decizii clare.",
+      bullets: ["Analiză competitivă completă", "Identificare ICP & mesaje-cheie", "Blueprint de execuție personalizat"],
+    },
+    {
+      nr: "02",
+      icon: <Layers size={20} />,
+      badge: "Full Build",
+      title: "Construcție & Hard Marketing",
+      desc: "Nu facem un site. Construim o infrastructură de vânzări. Design psihologic, copywriting persuasiv, SEO tehnic agresiv, tracking granular și funnel-uri calibrate să convertească — toate integrate într-un singur sistem brutal de eficient.",
+      bullets: ["Design psihologic & copywriting de conversie", "SEO tehnic + structură de autoritate", "Tracking, analytics & funnel setup complet"],
+    },
+    {
+      nr: "03",
+      icon: <BarChart3 size={20} />,
+      badge: "24/7 Monitoring",
+      title: "Dominanță & Scalare",
+      desc: "Sistemul rulează, noi îl stăpânim. Monitorizare 24/7, rapoarte clare lunar și optimizare continuă bazată pe date reale. Scopul nu e să fii prezent online — e să devii liderul de piață din nișa ta.",
+      bullets: ["Rapoarte lunare cu KPI reali", "Optimizare continuă bazată pe date", "Scalare sistematică spre dominanță"],
+    },
   ];
   return (
     <section id="plan" className="py-28 bg-bg px-6 border-t border-stroke/20">
       <div className="max-w-6xl mx-auto">
-        <Reveal className="text-center mb-16"><Badge>Procesul CapeSystem</Badge><h2 className="font-display italic text-4xl md:text-6xl tracking-tight mb-5">De neratat.</h2></Reveal>
+        <Reveal className="text-center mb-16">
+          <Badge>Procesul CapeSystem</Badge>
+          <h2 className="font-display italic text-4xl md:text-6xl tracking-tight mb-5">
+            Cum devii{" "}
+            <span style={{ background: "linear-gradient(90deg, #89AACC, #4E85BF)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+              lider de piață.
+            </span>
+          </h2>
+          <p className="text-muted text-sm max-w-xl mx-auto">Trei etape. Zero compromisuri. Un singur rezultat posibil.</p>
+        </Reveal>
         <div className="grid md:grid-cols-3 gap-8 max-w-5xl mx-auto">
           {steps.map((s, i) => (
-            <Reveal key={i} delay={i * 100}>
-              <div className="group relative h-full p-8 bg-surface border border-stroke rounded-[2rem] hover:border-white/20 transition-all">
-                <div className="flex justify-between mb-6 text-accent">{s.icon}<span className="text-white/5 text-5xl">{s.nr}</span></div>
-                <h3 className="font-display italic text-xl mb-3 text-white">{s.title}</h3>
-                <p className="text-muted font-body text-sm leading-relaxed">{s.desc}</p>
+            <Reveal key={i} delay={i * 120}>
+              <div className="group relative h-full p-10 bg-surface border border-stroke rounded-[3rem] hover:border-[#89AACC]/40 transition-all duration-300">
+                {/* Header row */}
+                <div className="flex justify-between items-start mb-6">
+                  <span className="text-[#89AACC]">{s.icon}</span>
+                  <span className="text-white/5 font-display italic text-5xl leading-none">{s.nr}</span>
+                </div>
+                {/* Badge */}
+                <div className="inline-flex items-center gap-1.5 mb-5 px-3 py-1 rounded-full border border-[#89AACC]/30 bg-[#89AACC]/8">
+                  <Zap size={9} style={{ color: "#89AACC" }} />
+                  <span className="text-[9px] font-bold uppercase tracking-widest" style={{ color: "#89AACC" }}>{s.badge}</span>
+                </div>
+                {/* Title */}
+                <h3 className="font-display italic text-xl mb-3 text-white transition-colors duration-300 group-hover:text-[#89AACC]">{s.title}</h3>
+                {/* Description */}
+                <p className="text-muted font-body text-sm leading-relaxed mb-6">{s.desc}</p>
+                {/* Bullets */}
+                <ul className="space-y-2">
+                  {s.bullets.map((b, j) => (
+                    <li key={j} className="flex items-start gap-2 text-xs text-white/50">
+                      <span className="mt-0.5 w-1 h-1 rounded-full flex-shrink-0" style={{ background: "#89AACC", marginTop: "6px" }} />
+                      {b}
+                    </li>
+                  ))}
+                </ul>
               </div>
             </Reveal>
           ))}
