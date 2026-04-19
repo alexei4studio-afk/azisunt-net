@@ -157,7 +157,7 @@ function Hero() {
         >
           Sisteme digitale
           <br />
-          <span className="accent-gradient bg-clip-text text-transparent">care vând.</span>
+          <span className="bg-clip-text text-transparent" style={{ background: "linear-gradient(90deg, #89AACC 0%, #4E85BF 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>care vând.</span>
         </motion.h1>
 
         <motion.div
@@ -289,7 +289,7 @@ function Succes() {
           <Badge>Rezultate Reale</Badge>
           <h2 className="font-display italic text-4xl md:text-6xl tracking-tight mb-5">
             Nu promitem vise.{" "}
-            <span className="accent-gradient bg-clip-text text-transparent">Arătăm cifre.</span>
+            <span className="bg-clip-text text-transparent" style={{ background: "linear-gradient(90deg, #89AACC 0%, #4E85BF 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Arătăm cifre.</span>
           </h2>
           <p className="text-muted font-body text-base max-w-lg mx-auto">
             Imaginează-ți telefonul sunând, inbox-ul plin cu cereri, tu alegând cu cine lucrezi.
@@ -353,7 +353,7 @@ function Portofoliu() {
             <div>
               <Badge>Portofoliu Activ</Badge>
               <h2 className="font-display italic text-4xl md:text-7xl text-white">
-                Sisteme <span className="accent-gradient bg-clip-text text-transparent">Live.</span>
+                Sisteme <span className="bg-clip-text text-transparent" style={{ background: "linear-gradient(90deg, #89AACC 0%, #4E85BF 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Live.</span>
               </h2>
             </div>
             <p className="text-muted font-body text-sm max-w-xs md:text-right leading-relaxed">
@@ -456,7 +456,7 @@ function Plan() {
           <Badge>Procesul CapeSystem</Badge>
           <h2 className="font-display italic text-4xl md:text-6xl tracking-tight mb-5">
             De la invizibil la{" "}
-            <span className="accent-gradient bg-clip-text text-transparent">de neratat.</span>
+            <span className="bg-clip-text text-transparent" style={{ background: "linear-gradient(90deg, #89AACC 0%, #4E85BF 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>de neratat.</span>
           </h2>
           <p className="text-muted font-body text-base max-w-lg mx-auto">
             Am simplificat tot procesul astfel încât tu să te concentrezi pe afacere, nu pe marketing.
@@ -508,7 +508,7 @@ function Incredere() {
           <h2 className="font-display italic text-4xl md:text-6xl tracking-tight mb-5">
             Nu suntem prima agenție.
             <br />
-            <span className="accent-gradient bg-clip-text text-transparent">Suntem prima care livrează.</span>
+            <span className="bg-clip-text text-transparent" style={{ background: "linear-gradient(90deg, #89AACC 0%, #4E85BF 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Suntem prima care livrează.</span>
           </h2>
         </Reveal>
 
@@ -633,7 +633,7 @@ function Contact() {
           <Badge>Hai să construim</Badge>
           <h2 className="font-display italic text-4xl md:text-6xl text-white mb-4">
             Ești gata să oprești<br />
-            <span className="accent-gradient bg-clip-text text-transparent">hemoragia de clienți?</span>
+            <span className="bg-clip-text text-transparent" style={{ background: "linear-gradient(90deg, #89AACC 0%, #4E85BF 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>hemoragia de clienți?</span>
           </h2>
           <p className="text-muted font-body text-sm leading-relaxed">
             O discuție de 30 de minute îți poate schimba traiectoria afacerii. Fără costuri, fără obligații.
