@@ -1119,7 +1119,7 @@ function Footer() {
           >
             <Video size={15} />
           </a>
-          {/* Facebook */}
+          {/* Facebook - FOLOSIM GLOBE PENTRU BUILD REUȘIT */}
           <a
             href="https://www.facebook.com/CSLEGION"
             target="_blank"
@@ -1127,9 +1127,9 @@ function Footer() {
             className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-accent hover:border-accent/30 transition-colors"
             aria-label="Facebook"
           >
-            <Facebook size={15} />
+            <Globe size={15} />
           </a>
-          {/* Instagram */}
+          {/* Instagram - FOLOSIM GLOBE PENTRU BUILD REUȘIT */}
           <a
             href="https://instagram.com"
             target="_blank"
@@ -1137,7 +1137,7 @@ function Footer() {
             className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-accent hover:border-accent/30 transition-colors"
             aria-label="Instagram"
           >
-            <Instagram size={15} />
+            <Globe size={15} />
           </a>
         </div>
         <p className="text-xs text-white/25 font-body">
@@ -1147,6 +1147,7 @@ function Footer() {
     </footer>
   );
 }
+
 
 /* ─── PAGE ─── */
 export default function Page() {
