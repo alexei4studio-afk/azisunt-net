@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import {
   ArrowRight,
+  ArrowUpRight,
   CheckCircle,
   TrendingDown,
   Eye,
@@ -21,8 +22,11 @@ import {
   Trophy,
   XCircle,
   Video,
-  Facebook,
-  Instagram,
+  Globe,
+  Monitor,
+  Server,
+  Facebook as FacebookIcon,
+  Instagram as InstagramIcon,
 } from "lucide-react";
 
 /* ─── Hook: apare când intră în viewport ─── */
@@ -502,30 +506,106 @@ function Succes() {
   );
 }
 
-/* ─── PORTOFOLIU ─── */
+/* ─── PORTOFOLIU — BentoGrid ─── */
 const portfolioProjects = [
   {
-    slug: "azisunt.biz",
-    tag: "E-commerce Specialist",
-    desc: "Platformă optimizată pentru conversie și viteză.",
-    image: "/p1.png",
-    span: "md:col-span-2",
+    badge: "Sistem Web",
+    BadgeIcon: Globe,
+    CardIcon: Globe,
+    title: "napoletano.ro",
+    description:
+      "Sistem web complet pentru un restaurant premium din Iași — rezervări online, meniu dinamic, SEO local și infrastructură optimizată pentru conversii.",
+    cta: "Detalii Proiect",
+    href: "https://napoletano.ro",
+    stack: "Next.js · Vercel · Google Places API",
+    featured: true,
   },
   {
-    slug: "napoletano.ro",
-    tag: "HoReCa Design",
-    desc: "Identitate digitală pentru experiențe culinare autentice.",
-    image: "/p2.png",
-    span: "",
+    badge: "Hardware Recomandat",
+    BadgeIcon: Monitor,
+    CardIcon: Monitor,
+    title: "Monitor Ultra-Wide Setup",
+    description:
+      'Setup recomandat pentru agenții și freelanceri — monitor ultra-wide 34" curbat, productivitate maximă, fără ferestre suprapuse. Testat de echipa noastră.',
+    cta: "Verifică Prețul",
+    href: "#",
+    stack: "Link afiliat · Comision 4–8%",
+    featured: false,
   },
   {
-    slug: "azisunt.com",
-    tag: "Corporate Branding",
-    desc: "Hub de soluții digitale pentru afaceri scalabile.",
-    image: "/p3.png",
-    span: "",
+    badge: "Marketing Infrastructure",
+    BadgeIcon: Server,
+    CardIcon: Server,
+    title: "azisunt.biz",
+    description:
+      "Infrastructură completă de marketing digital — landing pages cu A/B testing, automatizări email, tracking avansat și funnel de conversie optimizat pentru lead-uri B2B.",
+    cta: "Detalii Proiect",
+    href: "https://azisunt.biz",
+    stack: "Meta Ads · Make.com · Klaviyo",
+    featured: false,
   },
 ];
+
+function PortfolioCard({ project }) {
+  const { badge, BadgeIcon, CardIcon, title, description, cta, href, stack, featured } =
+    project;
+  return (
+    <div
+      className={[
+        "group relative flex flex-col gap-4 rounded-2xl p-7 overflow-hidden",
+        "bg-[#12121e] border transition-all duration-200 ease-out",
+        "hover:-translate-y-1 hover:border-[#e8ff47]",
+        featured ? "border-[rgba(232,255,71,0.18)]" : "border-white/5",
+      ].join(" ")}
+    >
+      {featured && (
+        <div
+          aria-hidden="true"
+          className="pointer-events-none absolute -top-14 -right-14 w-44 h-44 rounded-full"
+          style={{
+            background:
+              "radial-gradient(circle, rgba(232,255,71,0.06) 0%, transparent 70%)",
+          }}
+        />
+      )}
+
+      {/* Badge */}
+      <span className="inline-flex items-center gap-1.5 w-fit rounded-full px-2.5 py-1 text-[11px] font-medium uppercase tracking-widest text-[#e8ff47] border border-[rgba(232,255,71,0.2)] bg-[rgba(232,255,71,0.08)]">
+        <BadgeIcon size={10} strokeWidth={2.5} />
+        {badge}
+      </span>
+
+      {/* Icon decorativ */}
+      <CardIcon size={32} strokeWidth={1.5} className="text-[#e8ff47]" aria-hidden="true" />
+
+      {/* Titlu */}
+      <h3 className="font-display text-[1.35rem] font-extrabold italic text-white leading-tight m-0">
+        {title}
+      </h3>
+
+      {/* Descriere */}
+      <p className="font-body text-sm text-gray-400 leading-relaxed flex-1 m-0">
+        {description}
+      </p>
+
+      {/* Ghost CTA */}
+      <a
+        href={href}
+        target="_blank"
+        rel="noopener noreferrer"
+        className="mt-auto inline-flex items-center gap-1.5 w-fit rounded-lg px-3.5 py-2 text-[13px] font-medium text-[#e8ff47] border border-[rgba(232,255,71,0.25)] bg-transparent transition-colors duration-150 hover:bg-[rgba(232,255,71,0.08)] hover:border-[rgba(232,255,71,0.5)]"
+      >
+        {cta}
+        <ArrowUpRight size={14} strokeWidth={2.5} />
+      </a>
+
+      {/* Stack footer */}
+      <div className="border-t border-white/5 pt-3 text-[11px] tracking-wider text-white/20">
+        {stack}
+      </div>
+    </div>
+  );
+}
 
 function Portofoliu() {
   return (
@@ -550,64 +630,10 @@ function Portofoliu() {
           </div>
         </AnimatedSection>
 
-        {/* Bento grid: first card spans 2 cols on md+ */}
         <AnimatedSection>
           <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
             {portfolioProjects.map((p) => (
-              <div
-                key={p.slug}
-                className={`group relative overflow-hidden rounded-2xl ${p.span} ${
-                  p.span ? "min-h-[340px]" : "min-h-[260px]"
-                } cursor-pointer`}
-                style={{ border: "1px solid rgba(255,255,255,0.05)" }}
-              >
-                {/* Background image with scale on hover */}
-                <div
-                  className="absolute inset-0 bg-cover bg-center transition-transform duration-700 ease-out group-hover:scale-105"
-                  style={{ backgroundImage: `url(${p.image})` }}
-                />
-
-                {/* Dark gradient overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-[#080810]/95 via-[#080810]/50 to-[#080810]/10" />
-
-                {/* Glassmorphism base layer */}
-                <div
-                  className="absolute inset-0 bg-[#0e0e1a]/50 transition-colors duration-300 group-hover:bg-[#0e0e1a]/30"
-                  style={{ backdropFilter: "blur(0px)" }}
-                />
-
-                {/* Hover border glow */}
-                <div
-                  className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-                  style={{
-                    boxShadow: "inset 0 0 0 1px rgba(232,255,71,0.25)",
-                  }}
-                />
-
-                {/* Pulsing badge — top right */}
-                <div className="absolute top-4 right-4 z-10">
-                  <span className="relative inline-flex items-center gap-1.5 bg-[#080810]/80 backdrop-blur-sm border border-accent/25 text-accent text-[10px] font-display tracking-widest uppercase px-2.5 py-1 rounded-full">
-                    <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse-ring flex-shrink-0" />
-                    {p.tag}
-                  </span>
-                </div>
-
-                {/* Card content — bottom */}
-                <div className="absolute bottom-0 left-0 right-0 p-6 z-10">
-                  <p className="font-display font-700 text-base text-white mb-1 tracking-tight">
-                    {p.slug}
-                  </p>
-                  <p className="font-body text-xs text-white/50 leading-relaxed">
-                    {p.desc}
-                  </p>
-
-                  {/* Arrow — appears on hover */}
-                  <div className="mt-3 flex items-center gap-1.5 text-accent text-xs font-display font-700 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all duration-300">
-                    Vezi proiectul
-                    <ArrowRight size={12} />
-                  </div>
-                </div>
-              </div>
+              <PortfolioCard key={p.title} project={p} />
             ))}
           </div>
         </AnimatedSection>
