@@ -25,6 +25,8 @@ import {
   Globe,
   Monitor,
   Server,
+  ExternalLink,
+  Cpu,
   Facebook,    // Importăm direct
   Instagram    // Importăm direct
 } from "lucide-react";
