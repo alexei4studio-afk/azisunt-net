@@ -6,18 +6,18 @@ module.exports = {
   ],
   theme: {
     extend: {
-      fontFamily: {
-        display: ["var(--font-syne)",  "sans-serif"],
-        body:    ["var(--font-inter)", "sans-serif"],
-        sans:    ["var(--font-inter)", "sans-serif"],
-      },
       colors: {
-        accent: "#e8ff47",
-        surface: {
-          DEFAULT: "#080810",
-          card:    "#0e0e1a",
-          border:  "rgba(255,255,255,0.07)",
-        },
+        bg: "hsl(var(--bg))",
+        surface: "hsl(var(--surface))",
+        "text-primary": "hsl(var(--text))",
+        muted: "hsl(var(--muted))",
+        stroke: "hsl(var(--stroke))",
+        accent: "hsl(var(--accent))",
+      },
+      fontFamily: {
+        display: ["var(--font-display)", "serif"],
+        body: ["var(--font-body)", "sans-serif"],
+        sans: ["var(--font-body)", "sans-serif"],
       },
     },
   },
