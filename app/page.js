@@ -31,8 +31,8 @@ import {
   Server,
   ExternalLink,
   Cpu,
-  Facebook,
-  Instagram
+  FacebookIcon as Facebook,    // <--- Forțăm FacebookIcon să fie citit ca Facebook
+  InstagramIcon as Instagram     // <--- Forțăm InstagramIcon să fie citit ca Instagram
 } from "lucide-react";
 
 /* ─── Hook: apare când intră în viewport ─── */
