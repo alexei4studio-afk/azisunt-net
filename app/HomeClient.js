@@ -319,6 +319,7 @@ function Succes() {
   );
 }
 
+/* ─── 4. PORTOFOLIU ─── */
 function Portofoliu() {
   return (
     <section id="work" className="py-28 bg-bg px-6 border-t border-stroke/20">
@@ -327,27 +328,100 @@ function Portofoliu() {
           <div className="flex flex-col md:flex-row md:items-end justify-between gap-6">
             <div>
               <Badge>Portofoliu Activ</Badge>
-              <h2 className="font-display italic text-4xl md:text-7xl text-white">Sisteme <span className="bg-clip-text text-transparent" style={{ background: "linear-gradient(90deg, #89AACC 0%, #4E85BF 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Live.</span></h2>
+              <h2 className="font-display italic text-4xl md:text-7xl text-white">
+                Sisteme <span className="bg-clip-text text-transparent" style={{ background: "linear-gradient(90deg, #89AACC 0%, #4E85BF 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>Live.</span>
+              </h2>
             </div>
+            <p className="text-muted font-body text-sm max-w-xs md:text-right leading-relaxed">
+              Fiecare proiect e construit de la zero — zero template-uri, zero compromisuri.
+            </p>
           </div>
         </Reveal>
+
         <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-           <Reveal className="md:col-span-7">
-             <a href="https://napoletano.ro" target="_blank" className="group relative flex flex-col h-full p-10 bg-surface border border-stroke rounded-[3rem] overflow-hidden hover:border-white/20 hover:-translate-y-1 transition-all duration-300">
-               <Globe className="text-accent mb-6" size={32} />
-               <h3 className="text-3xl font-display italic mb-3">Napoletano.ro</h3>
-               <p className="text-muted text-sm mb-8 leading-relaxed italic group-hover:text-white transition-colors">Sistem web complet — meniu dinamic, rezervări online, SEO local de top.</p>
-               <div className="mt-auto text-accent text-xs font-bold uppercase">Vizitează ↗</div>
-             </a>
-           </Reveal>
-           <Reveal className="md:col-span-5" delay={100}>
-             <a href="https://azisunt.biz" target="_blank" className="group flex flex-col h-full p-10 bg-surface border border-stroke rounded-[3rem] hover:border-white/20 hover:-translate-y-1 transition-all duration-300">
-               <Server className="text-accent mb-6" size={32} />
-               <h3 className="text-3xl font-display italic mb-3">azisunt.biz</h3>
-               <p className="text-muted text-sm italic">Infrastructură marketing, funnel conversie B2B.</p>
-               <div className="mt-auto text-accent text-xs font-bold uppercase text-right">Vezi ↗</div>
-             </a>
-           </Reveal>
+          
+          {/* 1. NAPOLETANO */}
+          <Reveal className="md:col-span-7">
+            <a href="https://napoletano.ro" target="_blank" rel="noopener noreferrer"
+              className="group relative flex flex-col h-full p-10 bg-surface border border-stroke rounded-[3rem] overflow-hidden hover:border-white/20 hover:-translate-y-1 transition-all duration-300"
+            >
+              <div className="absolute inset-0 opacity-5 group-hover:opacity-10 transition-opacity"
+                style={{ backgroundImage: "radial-gradient(circle, #fff 1px, transparent 1px)", backgroundSize: "20px 20px" }} />
+              <Globe className="text-accent mb-6 relative z-10" size={32} />
+              <span className="inline-flex items-center gap-1.5 w-fit rounded-full px-2.5 py-1 text-[9px] font-body font-bold uppercase tracking-widest text-white/60 border border-white/10 bg-white/5 mb-4 relative z-10">
+                #1 Google Local · SEO
+              </span>
+              <h3 className="text-3xl font-display italic mb-3 relative z-10">Napoletano.ro</h3>
+              <p className="text-muted text-sm max-w-sm mb-8 leading-relaxed relative z-10">
+                Sistem web complet — meniu dinamic prin Supabase, rezervări online, SEO local de top. Trafic organic +312% în 6 luni.
+              </p>
+              <div className="flex items-center gap-2 text-xs font-bold text-accent group-hover:gap-4 transition-all uppercase tracking-widest relative z-10 mt-auto">
+                Vizitează site-ul <ArrowUpRight size={14} />
+              </div>
+            </a>
+          </Reveal>
+
+          {/* 2. SAMSUNG G9 */}
+          <Reveal className="md:col-span-5" delay={100}>
+            <a href="https://l.profitshare.ro/l/15727779?hash=Samsung%20Odyssey%20G9" target="_blank" rel="noopener noreferrer"
+              className="group flex flex-col h-full p-10 bg-surface border border-stroke rounded-[3rem] hover:border-white/20 hover:-translate-y-1 transition-all duration-300"
+            >
+              <Monitor className="text-accent mb-6" size={32} />
+              <span className="inline-flex items-center gap-1.5 w-fit rounded-full px-2.5 py-1 text-[9px] font-body font-bold uppercase tracking-widest text-white/60 border border-white/10 bg-white/5 mb-4">
+                Hardware Recomandat
+              </span>
+              <h3 className="text-3xl font-display italic mb-3">Samsung G9</h3>
+              <p className="text-muted text-sm mb-8 leading-relaxed">
+                Setup productivitate ultra-wide. Sistem afiliere optimizat pentru conversii maxime.
+              </p>
+              <div className="flex items-center gap-2 text-xs font-bold text-accent group-hover:gap-4 transition-all uppercase tracking-widest mt-auto">
+                Vezi Detalii <ArrowUpRight size={14} />
+              </div>
+            </a>
+          </Reveal>
+
+          {/* 3. AZISUNT.BIZ */}
+          <Reveal className="md:col-span-12" delay={150}>
+            <a href="https://azisunt.biz" target="_blank" rel="noopener noreferrer"
+              className="group relative flex flex-col md:flex-row md:items-center justify-between h-full p-10 bg-surface border border-stroke rounded-[3rem] hover:border-white/20 hover:-translate-y-1 transition-all duration-300"
+            >
+              <div className="max-w-xl">
+                <Server className="text-accent mb-6" size={32} />
+                <span className="inline-flex items-center gap-1.5 w-fit rounded-full px-2.5 py-1 text-[9px] font-body font-bold uppercase tracking-widest text-white/60 border border-white/10 bg-white/5 mb-4">
+                  Marketing Infrastructure
+                </span>
+                <h3 className="text-3xl font-display italic mb-3">azisunt.biz</h3>
+                <p className="text-muted text-sm md:mb-0 mb-8 leading-relaxed">
+                  Infrastructură marketing, funnel conversie B2B. Landing pages cu A/B testing, automatizări email și tracking avansat.
+                </p>
+              </div>
+              <div className="flex items-center gap-2 text-xs font-bold text-accent group-hover:gap-4 transition-all uppercase tracking-widest whitespace-nowrap mt-auto md:mt-0 md:ml-10">
+                Vezi Infrastructura <ArrowUpRight size={14} />
+              </div>
+            </a>
+          </Reveal>
+
+          {/* 4. AZISUNT.COM (StartFIRMĂ) */}
+          <Reveal className="md:col-span-12" delay={200}>
+            <a href="https://azisunt.com" target="_blank" rel="noopener noreferrer"
+              className="group relative flex flex-col md:flex-row md:items-center justify-between h-full p-10 bg-surface border border-[#89AACC]/20 rounded-[3rem] hover:border-[#89AACC]/60 hover:-translate-y-1 transition-all duration-300"
+            >
+              <div className="max-w-2xl">
+                <Layers className="text-[#89AACC] mb-6" size={32} />
+                <span className="inline-flex items-center gap-1.5 w-fit rounded-full px-2.5 py-1 text-[9px] font-body font-bold uppercase tracking-widest text-white/60 border border-white/10 bg-white/5 mb-4">
+                  SaaS / Fintech
+                </span>
+                <h3 className="text-3xl font-display italic mb-3 text-white">azisunt.com (StartFIRMĂ)</h3>
+                <p className="text-muted text-sm mb-0 leading-relaxed">
+                  Automatizare completă pentru înființare firme. Procesăm 5.500+ dosare ONRC, generare automată de documente și proces 100% digital în 5 minute.
+                </p>
+              </div>
+              <div className="flex items-center gap-2 text-xs font-bold text-[#89AACC] group-hover:gap-4 transition-all uppercase tracking-widest whitespace-nowrap mt-6 md:mt-0 md:ml-10">
+                Vizitează Platforma <ArrowUpRight size={14} />
+              </div>
+            </a>
+          </Reveal>
+
         </div>
       </div>
     </section>
