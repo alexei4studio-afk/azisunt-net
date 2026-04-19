@@ -127,9 +127,9 @@ function Navbar() {
               {l.label}
             </a>
           ))}
-          <a href="#contact" onClick={() => setOpen(false)} className="mt-2 accent-gradient text-bg font-bold text-xs px-5 py-3 rounded-full text-center uppercase tracking-widest hover:scale-105 transition-transform">
-            Vorbim? ↗
-          </a>
+          <a href="#contact" onClick={() => setOpen(false)} className="mt-2 accent-gradient text-bg font-bold text-xs px-5 py-3 rounded-full text-center uppercase tracking-widest">
+  Vorbim?
+</a>
         </div>
       )}
     </nav>
@@ -858,14 +858,14 @@ export default function Page() {
       <Succes />
       <Portofoliu />
 
-      {/* BLOG HUB - Manual, fără erori */}
+      {/* BLOG HUB */}
       <section className="py-24 px-6 border-t border-white/5">
         <div className="max-w-6xl mx-auto text-center">
           <h2 className="font-display italic text-4xl text-white mb-6">
             Knowledge <span className="text-[#89AACC]">Hub.</span>
           </h2>
           <div className="flex justify-center">
-            <a href="/blog" className="group p-10 bg-surface border border-[#89AACC]/20 rounded-[3rem] hover:border-[#89AACC]/60 transition-all duration-300">
+            <a href="/blog" className="group p-10 bg-surface border border-[#89AACC]/20 rounded-[3rem] hover:border-[#89AACC]/60 transition-all">
               <h3 className="font-display italic text-2xl text-white mb-2 text-center">Explorează Articolele ↗</h3>
               <p className="text-[#89AACC] text-[10px] font-bold uppercase tracking-[0.2em] text-center">Strategii SEO, GEO & AI</p>
             </a>
