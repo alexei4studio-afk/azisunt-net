@@ -7,6 +7,7 @@ import {
   ShieldAlert, CheckCircle, Star, Users,
   Zap, Phone, Layers, BarChart3, Clock, AlertTriangle,
   Globe, Server, Monitor, Mail, XCircle, Trophy,
+  Video, Facebook, Instagram,
 } from "lucide-react";
 import HeroVideo from "../components/HeroVideo";
 
@@ -717,10 +718,26 @@ function Contact() {
 }
 
 /* ─── FOOTER ─── */
+function SocialLink({ href, label, children }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={label}
+      className="w-8 h-8 rounded-full border border-white/8 flex items-center justify-center text-white/20 transition-all duration-200 hover:border-[#89AACC]/40 hover:text-[#89AACC]"
+    >
+      {children}
+    </a>
+  );
+}
+
 function Footer() {
   return (
     <footer className="border-t border-stroke/20 py-10 px-6">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+
+        {/* Logo */}
         <div className="flex items-center gap-3">
           <div className="accent-gradient p-[1px] rounded-full">
             <div className="bg-bg rounded-full px-2.5 py-1 text-[11px] font-display italic font-bold text-white">CS</div>
@@ -730,17 +747,32 @@ function Footer() {
             <p className="text-[9px] text-muted font-body uppercase tracking-widest">azisunt.net</p>
           </div>
         </div>
-        <p className="text-[10px] text-muted font-body text-center">
+
+        {/* Copyright */}
+        <p className="text-[10px] text-muted font-body text-center order-last md:order-none">
           © {new Date().getFullYear()} CapeSystem · High-Performance Web Systems & Digital Marketing
         </p>
-        <div className="flex items-center gap-4">
-          <a href="mailto:contact@azisunt.net" className="text-muted hover:text-white transition-colors" aria-label="Email">
-            <Mail size={15} />
-          </a>
-          <a href="tel:+40733874143" className="text-muted hover:text-white transition-colors" aria-label="Telefon">
-            <Phone size={15} />
-          </a>
+
+        {/* Social + contact */}
+        <div className="flex items-center gap-2.5">
+          <SocialLink href="https://www.tiktok.com/@capesystempower" label="TikTok">
+            <Video size={13} />
+          </SocialLink>
+          <SocialLink href="https://www.facebook.com/CSLEGION" label="Facebook">
+            <Facebook size={13} />
+          </SocialLink>
+          <SocialLink href="https://instagram.com/capesystem" label="Instagram">
+            <Instagram size={13} />
+          </SocialLink>
+          <div className="w-px h-4 bg-white/8 mx-1" />
+          <SocialLink href="mailto:alexei4studio@gmail.com" label="Email">
+            <Mail size={13} />
+          </SocialLink>
+          <SocialLink href="tel:+40733874143" label="Telefon">
+            <Phone size={13} />
+          </SocialLink>
         </div>
+
       </div>
     </footer>
   );
