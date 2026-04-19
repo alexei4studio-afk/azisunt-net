@@ -9,7 +9,6 @@ import {
   Globe, Server, Monitor, Mail, XCircle, Trophy,
 } from "lucide-react";
 import HeroVideo from "../components/HeroVideo";
-import { getSortedPostsData } from "../lib/posts";
 
 /* ─── useInView ─── */
 function useInView(threshold = 0.12) {
@@ -858,6 +857,22 @@ export default function Page() {
       <Problema />
       <Succes />
       <Portofoliu />
+
+      {/* BLOG HUB - Manual, fără erori */}
+      <section className="py-24 px-6 border-t border-white/5">
+        <div className="max-w-6xl mx-auto text-center">
+          <h2 className="font-display italic text-4xl text-white mb-6">
+            Knowledge <span className="text-[#89AACC]">Hub.</span>
+          </h2>
+          <div className="flex justify-center">
+            <a href="/blog" className="group p-10 bg-surface border border-[#89AACC]/20 rounded-[3rem] hover:border-[#89AACC]/60 transition-all duration-300">
+              <h3 className="font-display italic text-2xl text-white mb-2 text-center">Explorează Articolele ↗</h3>
+              <p className="text-[#89AACC] text-[10px] font-bold uppercase tracking-[0.2em] text-center">Strategii SEO, GEO & AI</p>
+            </a>
+          </div>
+        </div>
+      </section>
+
       <Plan />
       <Incredere />
       <CostulInactiunii />
