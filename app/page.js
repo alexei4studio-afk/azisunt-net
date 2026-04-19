@@ -538,7 +538,7 @@ const portfolioProjects = [
     stack: "Next.js · Supabase · Vercel · Google Places API",
     featured: true,
   },
-  {
+{
     badge: "Hardware Pro",
     BadgeIcon: Monitor,
     CardIcon: Monitor,
