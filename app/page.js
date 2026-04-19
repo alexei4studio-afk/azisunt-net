@@ -2,6 +2,8 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+// Adăugăm ArrowUpRight aici:
+import { ArrowUpRight } from "lucide-react"; 
 import HeroVideo from "../components/HeroVideo";
 
 // Navbar simplificat pentru stabilitate build
