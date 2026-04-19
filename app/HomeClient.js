@@ -90,7 +90,6 @@ function Navbar() {
  const links = [
     { href: "#problema", label: "Problema" },
     { href: "#work",     label: "Work" },
-    { href: "/blog",     label: "Blog" }, 
     { href: "#plan",     label: "Plan" },
     { href: "#incredere",label: "Clienți" },
     { href: "#contact",  label: "Contact" },
