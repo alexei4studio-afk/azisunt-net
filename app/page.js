@@ -72,10 +72,25 @@ export default function Page() {
           </motion.h1>
           <div className="h-8 mb-12">
             <AnimatePresence mode="wait">
-              <motion.p key={roles[roleIndex]} className="text-lg md:text-xl font-body">
-                High Performance <span className="font-display italic text-accent">{roles[roleIndex]}</span>.
-              </motion.p>
-            </AnimatePresence>
+  <motion.div 
+    key="stats-card"
+    initial={{ opacity: 0, scale: 0.8, y: 20 }}
+    animate={{ opacity: 1, scale: 1, y: 0 }}
+    transition={{ 
+      duration: 0.8, 
+      delay: 0.5, 
+      ease: [0, 0.71, 0.2, 1.01] 
+    }}
+    className="mb-12 p-6 bg-surface/40 backdrop-blur-xl border border-white/10 rounded-[2.5rem] shadow-2xl flex flex-col items-center w-full max-w-[320px] sm:max-w-none group hover:border-accent/20 transition-all"
+  >
+     <div className="flex items-center gap-2 mb-1">
+        <BarChart3 size={16} className="text-accent" />
+        <span className="text-[10px] uppercase tracking-widest text-muted font-bold">Organic Growth</span>
+     </div>
+     <p className="text-5xl font-display font-black text-white italic">+312%</p>
+     <p className="text-[9px] uppercase tracking-[0.3em] text-white/40 mt-3 italic text-center font-body">Case Study: Napoletano.ro</p>
+  </motion.div>
+</AnimatePresence>
 			</div>
 			{/* --- START STATS CARD --- */}
 <motion.div 
