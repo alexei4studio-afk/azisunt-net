@@ -178,22 +178,45 @@ function Hero() {
           </AnimatePresence>
         </motion.div>
 
-        {/* Stats Card glassmorphism */}
+        {/* Stats Card — float + bar chart animat */}
         <motion.div
           initial={{ opacity: 0, scale: 0.85, y: 20 }}
           animate={{ opacity: 1, scale: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.5, ease: [0, 0.71, 0.2, 1.01] }}
-          className="mb-10 p-5 sm:p-6 bg-surface/40 backdrop-blur-xl border border-white/10 rounded-[2rem] shadow-2xl flex flex-col items-center w-full max-w-[300px] sm:max-w-none sm:w-auto hover:border-white/20 transition-all"
+          className="mb-10 w-full max-w-[300px] sm:w-72 animate-float"
         >
-          <div className="flex items-center gap-2 mb-1">
-            <BarChart3 size={14} className="text-accent" />
-            <span className="text-[9px] uppercase tracking-widest text-muted font-bold">Organic Growth</span>
+          <div className="p-5 sm:p-6 bg-surface/50 backdrop-blur-xl border border-white/10 rounded-[2rem] shadow-2xl hover:border-white/20 transition-all">
+            <div className="flex items-center justify-between mb-3">
+              <div className="flex items-center gap-2">
+                <div className="w-7 h-7 rounded-lg flex items-center justify-center" style={{ background: "linear-gradient(135deg, #89AACC, #4E85BF)" }}>
+                  <BarChart3 size={13} className="text-white" />
+                </div>
+                <span className="text-[9px] uppercase tracking-widest text-muted font-bold">Organic Growth</span>
+              </div>
+              <span className="text-[9px] text-white/20 font-body">6 luni</span>
+            </div>
+            <p className="text-5xl font-display font-black italic mb-3" style={{ background: "linear-gradient(90deg, #89AACC 0%, #4E85BF 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+              +312%
+            </p>
+            <div className="flex items-end gap-1 h-10 mb-3">
+              {[22, 35, 28, 48, 42, 60, 55, 75, 100].map((h, i) => (
+                <motion.div
+                  key={i}
+                  className="flex-1 rounded-sm overflow-hidden"
+                  style={{ height: `${h}%`, minHeight: 4, background: i === 8 ? "linear-gradient(180deg, #89AACC, #4E85BF)" : "rgba(255,255,255,0.08)" }}
+                  initial={{ scaleY: 0, originY: "bottom" }}
+                  animate={{ scaleY: 1 }}
+                  transition={{ duration: 0.45, delay: 0.85 + i * 0.06, ease: "easeOut" }}
+                />
+              ))}
+            </div>
+            <div className="flex items-center justify-between border-t border-white/5 pt-2.5">
+              <p className="text-[9px] uppercase tracking-[0.2em] text-white/30 italic font-body">napoletano.ro</p>
+              <div className="flex gap-0.5">
+                {[...Array(5)].map((_, i) => <Star key={i} size={8} className="fill-accent text-accent" />)}
+              </div>
+            </div>
           </div>
-          <p className="text-4xl sm:text-5xl font-display font-black text-white italic">+312%</p>
-          <div className="flex gap-0.5 mt-3 mb-1">
-            {[...Array(5)].map((_, i) => <Star key={i} size={10} className="fill-accent text-accent" />)}
-          </div>
-          <p className="text-[9px] uppercase tracking-[0.3em] text-white/40 italic font-body text-center">Case Study: Napoletano.ro</p>
         </motion.div>
 
         <motion.div
@@ -257,13 +280,13 @@ function Problema() {
         </Reveal>
         <div className="grid md:grid-cols-3 gap-6">
           {problems.map((p, i) => (
-            <Reveal key={i} delay={i * 100}>
-              <div className="group h-full p-10 bg-surface border border-stroke rounded-[2.5rem] hover:border-red-500/25 hover:-translate-y-1 transition-all duration-300">
-                <div className="text-red-400/70 mb-6 group-hover:text-red-400 transition-colors">
+            <Reveal key={i} delay={i * 120}>
+              <div className="group h-full p-12 bg-surface border border-stroke rounded-[2.5rem] hover:border-red-500/40 hover:-translate-y-2 hover:bg-surface/80 transition-all duration-300">
+                <div className="w-16 h-16 rounded-2xl bg-red-500/10 flex items-center justify-center text-red-400/80 mb-8 group-hover:bg-red-500/20 group-hover:text-red-400 transition-all duration-300">
                   {p.icon}
                 </div>
-                <h3 className="font-display italic text-2xl mb-4 text-white">{p.title}</h3>
-                <p className="text-muted leading-relaxed font-body text-sm">{p.desc}</p>
+                <h3 className="font-display italic text-3xl mb-4 text-white leading-tight">{p.title}</h3>
+                <p className="text-muted leading-relaxed font-body text-base">{p.desc}</p>
               </div>
             </Reveal>
           ))}
