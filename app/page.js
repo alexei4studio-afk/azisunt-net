@@ -9,6 +9,7 @@ import {
   Globe, Server, Monitor, Mail, XCircle, Trophy,
 } from "lucide-react";
 import HeroVideo from "../components/HeroVideo";
+import { getSortedPostsData } from "../lib/posts";
 
 /* ─── useInView ─── */
 function useInView(threshold = 0.12) {
@@ -87,9 +88,10 @@ function Navbar() {
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
-  const links = [
+ const links = [
     { href: "#problema", label: "Problema" },
     { href: "#work",     label: "Work" },
+    { href: "/blog",     label: "Blog" }, 
     { href: "#plan",     label: "Plan" },
     { href: "#incredere",label: "Clienți" },
     { href: "#contact",  label: "Contact" },
@@ -126,8 +128,8 @@ function Navbar() {
               {l.label}
             </a>
           ))}
-          <a href="#contact" onClick={() => setOpen(false)} className="mt-2 bg-text-primary text-bg font-bold text-xs px-5 py-3 rounded-full text-center uppercase tracking-widest">
-            Vorbim?
+          <a href="#contact" onClick={() => setOpen(false)} className="mt-2 accent-gradient text-bg font-bold text-xs px-5 py-3 rounded-full text-center uppercase tracking-widest hover:scale-105 transition-transform">
+            Vorbim? ↗
           </a>
         </div>
       )}
