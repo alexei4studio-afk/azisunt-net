@@ -109,8 +109,8 @@ export default function Page() {
         </div>
       </section>
 
-      {/* 3. PROBLEMA - Recuperată din codul tău vechi */}
-      <section id="problema" className="py-28 bg-bg relative px-6">
+      {/* 3. PROBLEMA */}
+      <section id="problema" className="py-28 bg-bg relative px-6 border-b border-stroke/5">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16 space-y-4">
             <div className="flex items-center justify-center gap-3">
@@ -139,6 +139,79 @@ export default function Page() {
               <h3 className="font-display italic text-xl mb-3">Reclame fără ROI</h3>
               <p className="text-sm text-muted leading-relaxed font-body">Bagi bani în Meta Ads fără să știi ce funcționează. Bugetul dispare, conversiile nu apar.</p>
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 4. SUCCES - Rezultate Concrete */}
+      <section id="succes" className="py-24 bg-bg px-6">
+        <div className="max-w-6xl mx-auto border-t border-stroke pt-24">
+          <div className="grid md:grid-cols-2 gap-16 items-center">
+            <div>
+              <h2 className="font-display italic text-5xl md:text-6xl text-text-primary mb-8 leading-tight">
+                De la haos <br/> la <span className="text-accent">performanță.</span>
+              </h2>
+              <p className="text-muted font-body text-lg mb-12 max-w-md">
+                Nu construim doar site-uri, construim motoare de vânzări care rulează 24/7 fără supraveghere.
+              </p>
+              <div className="space-y-6">
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center border border-stroke">
+                    <CheckCircle className="text-accent" size={20} />
+                  </div>
+                  <div>
+                    <p className="text-white font-bold text-sm">Napoletano.ro</p>
+                    <p className="text-xs text-muted italic">Primul loc în Google pe nișa de pizza artizanală.</p>
+                  </div>
+                </div>
+                <div className="flex items-center gap-4">
+                  <div className="w-12 h-12 rounded-full bg-white/5 flex items-center justify-center border border-stroke">
+                    <CheckCircle className="text-accent" size={20} />
+                  </div>
+                  <div>
+                    <p className="text-white font-bold text-sm">Samsung Odyssey G9</p>
+                    <p className="text-xs text-muted italic">Sistem de afiliere optimizat pentru conversie maximă.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            
+            <div id="work" className="grid grid-cols-1 gap-6">
+              <a href="https://napoletano.ro" target="_blank" className="group relative bg-surface border border-stroke rounded-[2rem] p-8 overflow-hidden transition-all hover:border-white/20">
+                <div className="absolute inset-0 opacity-10 group-hover:opacity-20 transition-opacity" 
+                     style={{ backgroundImage: `radial-gradient(circle, #fff 1px, transparent 1px)`, backgroundSize: '10px 10px' }} />
+                <div className="relative z-10">
+                  <span className="text-[10px] text-accent uppercase tracking-widest mb-4 block">E-commerce / SEO</span>
+                  <h3 className="text-2xl font-display italic mb-2">Napoletano.ro</h3>
+                  <p className="text-xs text-muted max-w-xs">Scalare de la zero la autoritate locală prin SEO și UX.</p>
+                  <ArrowUpRight className="absolute top-8 right-8 text-muted group-hover:text-white group-hover:translate-x-1 group-hover:-translate-y-1 transition-all" size={20} />
+                </div>
+              </a>
+
+              <div className="group relative bg-surface border border-stroke rounded-[2rem] p-8 overflow-hidden transition-all hover:border-white/20">
+                <div className="relative z-10">
+                  <span className="text-[10px] text-accent uppercase tracking-widest mb-4 block">Affiliate Marketing</span>
+                  <h3 className="text-2xl font-display italic mb-2">Tech Setup: G9</h3>
+                  <p className="text-xs text-muted max-w-xs">Arhitectură de link-uri și funnel de vânzare asistată.</p>
+                  <ArrowUpRight className="absolute top-8 right-8 text-muted group-hover:text-white" size={20} />
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* 5. CONTACT - Final */}
+      <section id="contact" className="py-32 bg-bg px-6">
+        <div className="max-w-4xl mx-auto text-center border border-stroke rounded-[3rem] py-20 px-10 accent-gradient p-[1px]">
+          <div className="bg-bg rounded-[3rem] w-full h-full py-16">
+            <h2 className="text-4xl md:text-6xl font-display italic mb-8">Ești gata să scalăm?</h2>
+            <p className="text-muted mb-12 max-w-md mx-auto font-body text-sm uppercase tracking-widest">
+              Dacă vrei un sistem, nu doar un design, scrie-ne acum.
+            </p>
+            <a href="mailto:contact@azisunt.net" className="inline-block px-12 py-5 rounded-full bg-text-primary text-bg font-bold uppercase tracking-[0.2em] text-xs hover:scale-105 transition-transform">
+              Start Project
+            </a>
           </div>
         </div>
       </section>
