@@ -1,39 +1,34 @@
-// app/blog/[slug]/page.js  — Server Component async
+// app/blog/[slug]/page.js — Server Component async
 import { getPostData, getSortedPostsData } from "../../../lib/posts";
 import Link from "next/link";
 import { ArrowLeft, Clock } from "lucide-react";
 import { notFound } from "next/navigation";
 
-// ─────────────────────────────────────────────────────────────────────────────
-// generateStaticParams — rulează la BUILD TIME, generează toate rutele /blog/X
-// Next.js 14: getSortedPostsData() e sincronă, deci nu avem nevoie de await
-// ─────────────────────────────────────────────────────────────────────────────
 export async function generateStaticParams() {
   const posts = getSortedPostsData();
+  console.log("[generateStaticParams] Sluguri generate:", posts.map((p) => p.slug));
   return posts.map((post) => ({ slug: post.slug }));
 }
 
-// Slug-uri care nu sunt în generateStaticParams returnează 404, nu 500
+// ⚠️  IMPORTANT: dynamicParams = false înseamnă că orice slug
+// absent din generateStaticParams returnează 404 automat.
+// Dacă ai nevoie de SSR pentru articole noi fără rebuild, setează true.
 export const dynamicParams = false;
 
+// Forțează re-evaluarea la fiecare request în dev;
+// în producție Next.js 14 SSG e implicit.
+export const revalidate = false;
+
 export default async function PostPage({ params }) {
-  // ─────────────────────────────────────────────────────────────────────────
-  // ASYNC/AWAIT SYNC
-  // În Next.js 14.2.x, `params` este un obiect sincron — NU un Promise.
-  // `await params` funcționează (await pe non-Promise returnează valoarea ca-atare)
-  // dar produce un warning în consolă începând cu Next.js 14.2+.
-  // Forma corectă pentru 14.x: params.slug direct (fără await).
-  //
-  // Notă: În Next.js 15, params DEVINE async și va necesita await.
-  // Când faci upgrade la 15, revino și adaugă await înapoi.
-  // ─────────────────────────────────────────────────────────────────────────
-  const slug = params.slug;
+  // Next.js 14: params e sincron, nu await
+  // Next.js 15: va deveni async — când faci upgrade, adaugă await
+  const { slug } = params;
+
+  console.log("[PostPage] Slug primit:", slug);
 
   const post = await getPostData(slug);
 
   if (!post) {
-    // notFound() aruncă o eroare specială Next.js care randează pages/404
-    // sau app/not-found.js dacă există — mult mai curat decât render manual
     notFound();
   }
 
@@ -65,14 +60,23 @@ export default async function PostPage({ params }) {
           </h1>
         </header>
 
-        {/* Conținut Markdown randat ca HTML */}
-        <div
-          className="prose prose-invert prose-blue max-w-none
-            prose-p:text-muted prose-p:leading-relaxed prose-p:text-lg
-            prose-headings:font-display prose-headings:italic prose-headings:text-white
-            prose-strong:text-[#89AACC]"
-          dangerouslySetInnerHTML={{ __html: post.contentHtml }}
-        />
+        {/* ✅ Conținut Markdown → HTML */}
+        {post.contentHtml ? (
+          <div
+            className="prose prose-invert prose-blue max-w-none
+              prose-p:text-muted prose-p:leading-relaxed prose-p:text-lg
+              prose-headings:font-display prose-headings:italic prose-headings:text-white
+              prose-strong:text-[#89AACC]"
+            dangerouslySetInnerHTML={{ __html: post.contentHtml }}
+          />
+        ) : (
+          // Fallback vizibil dacă contentHtml e gol — util în dev
+          <p className="text-red-400 text-sm">
+            ⚠️ Conținut lipsă. Verifică fișierul{" "}
+            <code className="font-mono">content/blog/{slug}.md</code> și
+            asigură-te că are text după frontmatter.
+          </p>
+        )}
 
         {/* CTA final */}
         <footer className="mt-20 pt-10 border-t border-white/5">
