@@ -213,6 +213,23 @@ export default function Page() {
           </div>
         </div>
       </section>
+	  <section id="contact" className="py-20 bg-bg px-6 border-t border-stroke/20">
+  <div className="max-w-xl mx-auto text-center">
+    <h2 className="text-4xl font-display italic mb-10 text-white">Hai să construim.</h2>
+    
+    <form action="https://formspree.io/f/xqewbwgj" method="POST" className="space-y-4 text-left mb-10">
+      <input type="text" name="name" placeholder="Nume" required className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-3 text-white focus:border-accent outline-none" />
+      <input type="email" name="email" placeholder="Email" required className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-3 text-white focus:border-accent outline-none" />
+      <textarea name="message" placeholder="Proiectul tău..." rows={3} required className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-3 text-white focus:border-accent outline-none resize-none" />
+      <button type="submit" className="w-full bg-accent text-bg font-bold py-4 rounded-xl hover:scale-[1.01] transition-transform uppercase text-xs tracking-widest">Trimite Mesaj</button>
+    </form>
+
+    <div className="pt-10 border-t border-white/5">
+       <a href="tel:+40733874143" className="text-xl font-display text-white hover:text-accent transition-colors">+40 733 874 143</a>
+       <p className="text-muted text-[10px] uppercase tracking-widest mt-2 italic">Răspundem în max. 4 ore</p>
+    </div>
+  </div>
+</section>
     </main>
   );
 }
