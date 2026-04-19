@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import HeroVideo from "@/components/HeroVideo";
+import HeroVideo from "../components/HeroVideo";
 
 // Navbar simplificat pentru stabilitate build
 function Navbar() {
