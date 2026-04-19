@@ -110,8 +110,20 @@ function Navbar() {
               </a>
             ))}
           </div>
-          <a href="#contact" className="bg-text-primary text-bg px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider hover:scale-105 transition-transform">
-            Vorbim? ↗
+          <a
+            href="/blog"
+            className="relative px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider transition-all duration-300 hover:scale-105"
+            style={{
+              background: "linear-gradient(135deg, #89AACC 0%, #6A99C0 40%, #4E85BF 100%)",
+              border: "1px solid rgba(255,255,255,0.22)",
+              color: "#ffffff",
+              textShadow: "0 1px 3px rgba(0,0,0,0.4)",
+              boxShadow: "0 1px 0 rgba(255,255,255,0.15) inset, 0 4px 14px rgba(78,133,191,0.35)",
+            }}
+            onMouseEnter={e => e.currentTarget.style.boxShadow = "0 1px 0 rgba(255,255,255,0.15) inset, 0 0 18px rgba(137,170,204,0.55), 0 4px 14px rgba(78,133,191,0.45)"}
+            onMouseLeave={e => e.currentTarget.style.boxShadow = "0 1px 0 rgba(255,255,255,0.15) inset, 0 4px 14px rgba(78,133,191,0.35)"}
+          >
+            Blog Hub ↗
           </a>
           <button onClick={() => setOpen(!open)} className="sm:hidden flex flex-col gap-1 p-1" aria-label="Menu">
             <span className={`block w-5 h-0.5 bg-white transition-all ${open ? "rotate-45 translate-y-1.5" : ""}`} />
@@ -128,17 +140,20 @@ function Navbar() {
             </a>
           ))}
           <a 
-            href="#contact" 
+            href="/blog" 
             onClick={() => setOpen(false)} 
-            className="mt-2 font-bold text-xs px-5 py-4 rounded-full text-center uppercase tracking-widest transition-all"
+            className="mt-2 font-bold text-xs px-5 py-4 rounded-full text-center uppercase tracking-widest transition-all duration-300 block w-full"
             style={{ 
-              background: "linear-gradient(90deg, #89AACC 0%, #4E85BF 100%)", 
-              color: "#0a0a0a",
-              display: "block",
-              width: "100%"
+              background: "linear-gradient(135deg, #89AACC 0%, #6A99C0 40%, #4E85BF 100%)",
+              border: "1px solid rgba(255,255,255,0.22)",
+              color: "#ffffff",
+              textShadow: "0 1px 3px rgba(0,0,0,0.4)",
+              boxShadow: "0 1px 0 rgba(255,255,255,0.15) inset, 0 4px 20px rgba(78,133,191,0.4)",
             }}
+            onMouseEnter={e => e.currentTarget.style.boxShadow = "0 1px 0 rgba(255,255,255,0.15) inset, 0 0 22px rgba(137,170,204,0.6), 0 4px 20px rgba(78,133,191,0.5)"}
+            onMouseLeave={e => e.currentTarget.style.boxShadow = "0 1px 0 rgba(255,255,255,0.15) inset, 0 4px 20px rgba(78,133,191,0.4)"}
           >
-            Vorbim? ↗
+            Blog Hub ↗
           </a>
         </div>
       )}
