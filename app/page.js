@@ -20,6 +20,9 @@ import {
   Clock,
   Trophy,
   XCircle,
+  Video,
+  Facebook,
+  Instagram,
 } from "lucide-react";
 
 /* ─── Hook: apare când intră în viewport ─── */
@@ -81,7 +84,7 @@ function StickyBar() {
     >
       <div className="bg-[#0e0e1a]/95 backdrop-blur-md border-t border-white/8 px-6 py-3 flex items-center justify-between max-w-6xl mx-auto gap-4">
         <p className="font-display font-700 text-sm hidden sm:block">
-          Fiecare zi fără site = clienți la concurență.
+          Fiecare zi fără sistem = clienți la concurență.
         </p>
         <a
           href="#contact"
@@ -124,7 +127,7 @@ function Navbar() {
     >
       <nav className="max-w-6xl mx-auto px-6 flex items-center justify-between">
         <a href="#" className="font-display font-800 text-xl tracking-tight">
-          azi<span className="text-accent">sunt</span>.net
+          Cape<span className="text-accent">System</span>
         </a>
 
         <ul className="hidden md:flex items-center gap-8">
@@ -204,22 +207,22 @@ function Hero() {
       <div className="max-w-6xl mx-auto px-6 w-full">
         <div className="max-w-4xl">
           <div className="animate-fadeup delay-100">
-            <Badge>Agenție Web & Marketing · România</Badge>
+            <Badge>CapeSystem · Web Systems & Digital Marketing</Badge>
           </div>
 
           {/* ★ Punctul 1: Headline clar — ce oferi */}
           <h1 className="font-display text-5xl sm:text-6xl lg:text-7xl font-800 leading-[1.05] tracking-tight mb-6 animate-fadeup delay-200">
-            Site-uri care{" "}
+            Sisteme digitale care{" "}
             <span className="text-accent">vând.</span>
             <br />
             Marketing care aduce{" "}
             <span className="text-white/40">clienți reali.</span>
           </h1>
 
-          {/* ★ Punctul 2: durerea în Hero — injectat direct */}
+          {/* ★ Punctul 2: durerea în Hero */}
           <p className="font-body text-lg sm:text-xl text-white/55 leading-relaxed max-w-2xl mb-4 animate-fadeup delay-300">
             Dacă afacerea ta nu apare în primele rezultate Google, nu există
-            pentru 90% din potențialii tăi clienți. Noi rezolvăm asta —
+            pentru 90% din potențialii tăi clienți. CapeSystem rezolvă asta —
             rapid, transparent, cu rezultate măsurabile.
           </p>
 
@@ -423,8 +426,8 @@ function Succes() {
           </h2>
           <p className="text-white/50 font-body text-lg max-w-xl mx-auto">
             Imaginează-ți: telefonul sună, inbox-ul se umple cu cereri, iar tu
-            ai timp să alegi cu cine lucrezi. Asta e viața după ce rezolvăm
-            prezența ta digitală.
+            ai timp să alegi cu cine lucrezi. Asta e viața după ce CapeSystem
+            rezolvă prezența ta digitală.
           </p>
         </AnimatedSection>
 
@@ -564,7 +567,7 @@ function Portofoliu() {
                   style={{ backgroundImage: `url(${p.image})` }}
                 />
 
-                {/* Dark gradient overlay — keeps text readable */}
+                {/* Dark gradient overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-[#080810]/95 via-[#080810]/50 to-[#080810]/10" />
 
                 {/* Glassmorphism base layer */}
@@ -573,7 +576,7 @@ function Portofoliu() {
                   style={{ backdropFilter: "blur(0px)" }}
                 />
 
-                {/* Hover border glow — yellow accent */}
+                {/* Hover border glow */}
                 <div
                   className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
                   style={{
@@ -691,7 +694,7 @@ function Plan() {
   );
 }
 
-/* ─── AUTORITATE & SOCIAL PROOF — Punctul 5: De ce să am încredere? ─── */
+/* ─── AUTORITATE & SOCIAL PROOF — Punctul 5 ─── */
 function Incredere() {
   const stats = [
     { value: "40+", label: "Clienți activi" },
@@ -786,7 +789,7 @@ function Incredere() {
           ))}
         </div>
 
-        {/* ★ Punctul 7: CTA repetat în secțiunea de autoritate */}
+        {/* ★ Punctul 7: CTA repetat */}
         <AnimatedSection className="text-center">
           <a
             href="#contact"
@@ -804,7 +807,7 @@ function Incredere() {
   );
 }
 
-/* ─── COSTUL INACȚIUNII — Punctul 6: Ce pierzi dacă nu acționezi? ─── */
+/* ─── COSTUL INACȚIUNII — Punctul 6 ─── */
 function CostulInactiunii() {
   const losses = [
     {
@@ -831,7 +834,6 @@ function CostulInactiunii() {
 
   return (
     <section className="py-28 relative overflow-hidden">
-      {/* Red/dark background for urgency */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-red-950/10 to-transparent pointer-events-none" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-red-900/8 rounded-full blur-[120px] pointer-events-none" />
 
@@ -845,7 +847,7 @@ function CostulInactiunii() {
           </h2>
           <p className="text-white/50 font-body text-lg max-w-xl mx-auto">
             „Mai vedem", „ne mai gândim", „nu e momentul" — sunt cele mai
-            scumpe fraze pe care le-ai putea spune în 2024. Iată de ce:
+            scumpe fraze pe care le-ai putea spune. Iată de ce:
           </p>
         </AnimatedSection>
 
@@ -884,8 +886,8 @@ function CostulInactiunii() {
                 Competitorul tău citește aceeași pagină.
               </p>
               <p className="text-white/55 font-body text-sm">
-                Diferența dintre voi va fi cine acționează primul. Noi lucrăm cu
-                maximum{" "}
+                Diferența dintre voi va fi cine acționează primul. CapeSystem
+                lucrează cu maximum{" "}
                 <span className="text-white/80">2 clienți noi pe lună</span>{" "}
                 pentru a garanta calitatea. Locurile se ocupă rapid.
               </p>
@@ -1032,22 +1034,22 @@ function CTA() {
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14">
             <a
-              href="mailto:salut@azisunt.net"
+              href="mailto:alexei4studio@gmail.com"
               className="group w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-accent text-[#080810] font-display font-700 text-base px-8 py-4 rounded-full hover:scale-105 transition-all shadow-lg shadow-accent/20"
             >
               <Mail size={16} />
-              salut@azisunt.net
+              alexei4studio@gmail.com
               <ArrowRight
                 size={15}
                 className="group-hover:translate-x-1 transition-transform"
               />
             </a>
             <a
-              href="tel:+40700000000"
+              href="tel:+40733874143"
               className="w-full sm:w-auto inline-flex items-center justify-center gap-3 border border-white/10 text-white font-body text-base px-8 py-4 rounded-full hover:border-white/25 hover:bg-white/5 transition-all"
             >
               <Phone size={16} />
-              +40 700 000 000
+              +40 733 874 143
             </a>
           </div>
 
@@ -1068,56 +1070,46 @@ function Footer() {
       <div className="max-w-6xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-6">
         <div>
           <p className="font-display font-700 text-lg tracking-tight mb-1">
-            azi<span className="text-accent">sunt</span>.net
+            Cape<span className="text-accent">System</span>
           </p>
           <p className="text-xs text-white/30 font-body">
-            Web Design & Social Media Marketing · România
+            High-Performance Web Systems & Digital Marketing
           </p>
         </div>
-        <div className="flex items-center gap-5">
+        <div className="flex items-center gap-3">
+          {/* TikTok */}
+          <a
+            href="https://www.tiktok.com/@capesystempower"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-accent hover:border-accent/30 transition-colors"
+            aria-label="TikTok"
+          >
+            <Video size={15} />
+          </a>
+          {/* Facebook */}
+          <a
+            href="https://www.facebook.com/CSLEGION"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-accent hover:border-accent/30 transition-colors"
+            aria-label="Facebook"
+          >
+            <Facebook size={15} />
+          </a>
+          {/* Instagram */}
           <a
             href="https://instagram.com"
             target="_blank"
             rel="noopener noreferrer"
             className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-accent hover:border-accent/30 transition-colors"
+            aria-label="Instagram"
           >
-            <svg
-              width="15"
-              height="15"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <rect x="2" y="2" width="20" height="20" rx="5" ry="5" />
-              <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z" />
-              <line x1="17.5" y1="6.5" x2="17.51" y2="6.5" />
-            </svg>
-          </a>
-          <a
-            href="https://facebook.com"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w-9 h-9 rounded-full border border-white/10 flex items-center justify-center text-white/40 hover:text-accent hover:border-accent/30 transition-colors"
-          >
-            <svg
-              width="15"
-              height="15"
-              viewBox="0 0 24 24"
-              fill="none"
-              stroke="currentColor"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            >
-              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z" />
-            </svg>
+            <Instagram size={15} />
           </a>
         </div>
         <p className="text-xs text-white/25 font-body">
-          © {new Date().getFullYear()} Azi Sunt. Toate drepturile rezervate.
+          © {new Date().getFullYear()} CapeSystem. Toate drepturile rezervate.
         </p>
       </div>
     </footer>

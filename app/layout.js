@@ -16,15 +16,28 @@ const inter = Inter({
 });
 
 export const metadata = {
-  title: "Azi Sunt | Web Design & Social Media Marketing",
-  description: "Construim site-uri care vând și strategii de social media care aduc clienți reali.",
-  metadataBase: new URL("https://azisunt.net"),
+  title: "CapeSystem | High-Performance Web Systems & Digital Marketing",
+  description:
+    "Engineering high-conversion digital infrastructure. Next-gen web systems for ambitious brands.",
+  metadataBase: new URL("https://capesystem.com"),
   robots: { index: true, follow: true },
+  icons: {
+    icon: "/favicon.ico",
+  },
+  openGraph: {
+    title: "CapeSystem | High-Performance Web Systems & Digital Marketing",
+    description:
+      "Engineering high-conversion digital infrastructure. Next-gen web systems for ambitious brands.",
+    images: ["/og-image.png"],
+  },
 };
 
 export default function RootLayout({ children }) {
   return (
-    <html lang="ro" className={`${syne.variable} ${inter.variable} scroll-smooth`}>
+    <html
+      lang="ro"
+      className={`${syne.variable} ${inter.variable} scroll-smooth`}
+    >
       <body className="bg-[#080810] text-white antialiased overflow-x-hidden">
         {children}
       </body>
