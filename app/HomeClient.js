@@ -520,13 +520,64 @@ function Plan() {
 }
 
 function Incredere() {
+  const testimonials = [
+    {
+      quote: "Rezervări online cu 40% mai multe față de anul trecut. Nu mă așteptam la rezultate atât de clare și de rapide.",
+      name: "Andrei M.",
+      role: "Owner, Pensiune turistică",
+      metric: "+40%",
+      metricLabel: "rezervări online",
+    },
+    {
+      quote: "Apar prima pe Google pentru orașul meu. Clienții mă găsesc fără să mai investesc în reclame plătite.",
+      name: "Ioana P.",
+      role: "Medic stomatolog",
+      metric: "#1",
+      metricLabel: "Google local",
+    },
+  ];
   return (
-    <section id="incredere" className="py-28 bg-bg px-6 border-t border-stroke/20 text-center">
-      <Badge>Clienți Fericiți</Badge>
-      <h2 className="font-display italic text-4xl mb-12">Suntem prima care livrează.</h2>
-      <div className="grid md:grid-cols-2 gap-6 max-w-4xl mx-auto">
-         <div className="p-8 bg-surface border border-stroke rounded-3xl italic text-sm">"Rezervări online cu 40% mai multe față de anul trecut." - Andrei M.</div>
-         <div className="p-8 bg-surface border border-stroke rounded-3xl italic text-sm">"Apar prima pe Google pentru orașul meu." - Ioana P.</div>
+    <section id="incredere" className="py-28 bg-bg px-6 border-t border-stroke/20">
+      <div className="max-w-5xl mx-auto">
+        <div className="text-center mb-16">
+          <Badge>Clienți Fericiți</Badge>
+          <h2 className="font-display italic text-4xl md:text-5xl tracking-tight mb-3">
+            Suntem primii care{" "}
+            <span style={{ background: "linear-gradient(90deg, #89AACC, #4E85BF)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>
+              livrează.
+            </span>
+          </h2>
+          <p className="text-muted text-sm max-w-md mx-auto">Cifrele vorbesc. Clienții confirmă.</p>
+        </div>
+        <div className="grid md:grid-cols-2 gap-6">
+          {testimonials.map((t, i) => (
+            <div key={i} className="group relative p-10 bg-surface border border-stroke rounded-[3rem] hover:border-[#89AACC]/40 transition-all duration-300 flex flex-col justify-between gap-8">
+              {/* Quote mark */}
+              <span className="absolute top-8 right-10 font-display italic text-7xl leading-none text-white/5 select-none">"</span>
+              {/* Stars */}
+              <div className="flex gap-1">
+                {[...Array(5)].map((_, j) => (
+                  <Star key={j} size={12} fill="#89AACC" style={{ color: "#89AACC" }} />
+                ))}
+              </div>
+              {/* Quote */}
+              <p className="font-display italic text-lg text-white/80 leading-relaxed">
+                "{t.quote}"
+              </p>
+              {/* Footer row */}
+              <div className="flex items-end justify-between">
+                <div>
+                  <p className="text-sm font-bold text-white">{t.name}</p>
+                  <p className="text-xs text-muted">{t.role}</p>
+                </div>
+                <div className="text-right">
+                  <p className="font-display italic text-3xl font-bold" style={{ color: "#89AACC" }}>{t.metric}</p>
+                  <p className="text-[10px] uppercase tracking-widest text-muted">{t.metricLabel}</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
     </section>
   );
