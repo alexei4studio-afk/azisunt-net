@@ -767,8 +767,8 @@ function Contact() {
           <a href="tel:+40733874143" className="font-display italic text-2xl text-white hover:text-accent transition-colors block mb-1">
             +40 733 874 143
           </a>
-          <a href="mailto:contact@azisunt.net" className="text-muted text-xs font-body hover:text-white transition-colors">
-            contact@azisunt.net
+          <a href="mailto:harapalb923@gmail.com" className="text-muted text-xs font-body hover:text-white transition-colors">
+            harapalb923@gmail.com
           </a>
           <p className="text-muted text-[10px] uppercase tracking-widest mt-3 italic font-body">
             Răspundem în max. 4 ore
@@ -800,7 +800,7 @@ function SocialLink({ href, label, children }) {
 
 function Footer() {
   return (
-    <footer className="border-t border-stroke/20 py-10 px-6">
+    <footer className="border-t border-stroke/20 pt-10 pb-24 px-6">
       <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
 
         {/* Logo */}
@@ -833,7 +833,7 @@ function Footer() {
             <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg>
           </SocialLink>
           <div className="w-px h-4 bg-white/8 mx-1" />
-          <SocialLink href="mailto:alexei4studio@gmail.com" label="Email">
+          <SocialLink href="mailto:harapalb923@gmail.com" label="Email">
             <Mail size={13} />
           </SocialLink>
           <SocialLink href="tel:+40733874143" label="Telefon">
