@@ -127,8 +127,18 @@ function Navbar() {
               {l.label}
             </a>
           ))}
-          <a href="#contact" onClick={() => setOpen(false)} className="mt-2 accent-gradient text-bg font-bold text-xs px-5 py-3 rounded-full text-center uppercase tracking-widest">
-  Vorbim?
+<a 
+  href="#contact" 
+  onClick={() => setOpen(false)} 
+  className="mt-2 font-bold text-xs px-5 py-4 rounded-full text-center uppercase tracking-widest transition-all"
+  style={{ 
+    background: "linear-gradient(90deg, #89AACC 0%, #4E85BF 100%)", 
+    color: "#0a0a0a",
+    display: "block",
+    width: "100%"
+  }}
+>
+  Vorbim? ↗
 </a>
         </div>
       )}
