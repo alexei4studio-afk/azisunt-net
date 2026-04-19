@@ -515,19 +515,6 @@ function Succes() {
 /* ─── PORTOFOLIU — BentoGrid ─── */
 const portfolioProjects = [
   {
-    badge: "Sistem Web",
-    BadgeIcon: Globe,
-    CardIcon: Globe,
-    title: "napoletano.ro",
-    description:
-      "Sistem web complet pentru un restaurant premium din Iași — rezervări online, meniu dinamic, SEO local și infrastructură optimizată pentru conversii.",
-    cta: "Detalii Proiect",
-    href: "https://napoletano.ro",
-    stack: "Next.js · Supabase · Vercel · Google Places API",
-    featured: true,
-  },
-const portfolioProjects = [
-  {
     badge: "Full-Stack System",
     BadgeIcon: Globe,
     CardIcon: Globe,
@@ -538,7 +525,7 @@ const portfolioProjects = [
     stack: "Next.js · Supabase · Vercel · Google Places API",
     featured: true,
   },
-{
+  {
     badge: "Hardware Pro",
     BadgeIcon: Monitor,
     CardIcon: Monitor,
