@@ -545,7 +545,7 @@ const portfolioProjects = [
     title: "Samsung Odyssey G9",
     description: "Configurația ultra-wide pe care dezvoltăm sistemele CapeSystem. Productivitate maximă pentru workflow-uri complexe de dezvoltare și marketing.",
     cta: "Verifică Preț & Stoc",
-    href: "https://l.profitshare.ro/l/15727767",
+    href: "https://l.profitshare.ro/l/15727779?hash=Samsung Odyssey G9",
     stack: "Productivity · Setup · 49 inch",
     featured: false,
   },
