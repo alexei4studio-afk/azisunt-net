@@ -658,8 +658,8 @@ function Contact() {
         <Reveal className="text-center mb-12">
           <Badge>Hai să construim</Badge>
           <h2 className="font-display italic text-4xl md:text-6xl text-white mb-4">
-            Ești gata să oprești<br />
-            <span className="bg-clip-text text-transparent" style={{ background: "linear-gradient(90deg, #89AACC 0%, #4E85BF 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>hemoragia de clienți?</span>
+            Site-ul tău actual îți face<br />
+            <span className="bg-clip-text text-transparent" style={{ background: "linear-gradient(90deg, #89AACC 0%, #4E85BF 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>bine sau rău?</span>
           </h2>
           <p className="text-muted font-body text-sm leading-relaxed">
             O discuție de 30 de minute îți poate schimba traiectoria afacerii. Fără costuri, fără obligații.
