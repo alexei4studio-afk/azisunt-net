@@ -5,34 +5,34 @@ import {
   useEffect, 
   useRef 
 } from "react";
-import {
-  ArrowRight,
-  ArrowUpRight,
-  CheckCircle,
-  TrendingDown,
-  Eye,
-  ShieldAlert,
-  Layers,
-  Megaphone,
-  BarChart3,
-  Phone,
-  Mail,
-  Search,
-  Zap,
-  Users,
-  Star,
-  AlertTriangle,
-  Clock,
-  Trophy,
-  XCircle,
-  Video,
-  Globe,
-  Monitor,
-  Server,
-  ExternalLink,
+import { 
+  ArrowRight, 
+  ArrowUpRight, 
+  CheckCircle, 
+  TrendingDown, 
+  Eye, 
+  ShieldAlert, 
+  Layers, 
+  Megaphone, 
+  BarChart3, 
+  Phone, 
+  Mail, 
+  Search, 
+  Zap, 
+  Users, 
+  Star, 
+  AlertTriangle, 
+  Clock, 
+  Trophy, 
+  XCircle, 
+  Video, 
+  Globe, 
+  Monitor, 
+  Server, 
+  ExternalLink, 
   Cpu,
-  FacebookIcon as Facebook,    // <--- Forțăm FacebookIcon să fie citit ca Facebook
-  InstagramIcon as Instagram     // <--- Forțăm InstagramIcon să fie citit ca Instagram
+  // Schimbăm numele aici ca să fim siguri
+ 
 } from "lucide-react";
 
 /* ─── Hook: apare când intră în viewport ─── */
