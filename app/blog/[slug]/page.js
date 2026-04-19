@@ -1,4 +1,3 @@
-// app/blog/[slug]/page.js — Server Component async
 import { getPostData, getSortedPostsData } from "../../../lib/posts";
 import Link from "next/link";
 import { ArrowLeft, Clock } from "lucide-react";
@@ -10,36 +9,34 @@ export async function generateStaticParams() {
   return posts.map((post) => ({ slug: post.slug }));
 }
 
-// ⚠️  IMPORTANT: dynamicParams = false înseamnă că orice slug
-// absent din generateStaticParams returnează 404 automat.
-// Dacă ai nevoie de SSR pentru articole noi fără rebuild, setează true.
 export const dynamicParams = false;
-
-// Forțează re-evaluarea la fiecare request în dev;
-// în producție Next.js 14 SSG e implicit.
 export const revalidate = false;
 
 export default async function PostPage({ params }) {
-  // Next.js 14: params e sincron, nu await
-  // Next.js 15: va deveni async — când faci upgrade, adaugă await
   const { slug } = params;
 
   console.log("[PostPage] Slug primit:", slug);
 
   const post = await getPostData(slug);
 
+  // ✅ Log-ul critic pentru debug: vedem ce citeste serverul din fisier
+  console.log(
+    "[PostPage] contentHtml preview:",
+    post?.contentHtml?.slice(0, 50) ?? "NULL"
+  );
+
   if (!post) {
     notFound();
   }
 
   return (
-    <main className="bg-bg min-h-screen pt-32 pb-20 px-6">
+    <main className="bg-[#030303] min-h-screen pt-32 pb-20 px-6">
       <article className="max-w-3xl mx-auto">
 
         {/* Buton Înapoi */}
         <Link
-          href="/blog"
-          className="group inline-flex items-center gap-2 text-muted hover:text-white transition-colors mb-12 text-[10px] font-bold uppercase tracking-widest"
+          href="/"
+          className="group inline-flex items-center gap-2 text-gray-500 hover:text-white transition-colors mb-12 text-[10px] font-bold uppercase tracking-widest"
         >
           <ArrowLeft size={14} className="group-hover:-translate-x-1 transition-transform" />
           Înapoi la Hub
@@ -50,38 +47,38 @@ export default async function PostPage({ params }) {
             <span className="px-3 py-1 rounded-full bg-[#89AACC15] border border-[#89AACC30] text-[#89AACC] text-[9px] font-bold uppercase tracking-widest">
               {post.category || post.tag || "Insight"}
             </span>
-            <span className="flex items-center gap-2 text-muted text-[9px] uppercase tracking-widest">
+            <span className="flex items-center gap-2 text-gray-500 text-[9px] uppercase tracking-widest">
               <Clock size={12} /> {post.readTime}
             </span>
           </div>
 
-          <h1 className="font-display italic text-4xl md:text-6xl text-white leading-[1.1] tracking-tighter mb-8">
+          <h1 className="text-4xl md:text-6xl text-white font-bold leading-[1.1] tracking-tighter mb-8 italic">
             {post.title}
           </h1>
         </header>
 
         {/* ✅ Conținut Markdown → HTML */}
-        {post.contentHtml ? (
+        {post.contentHtml && post.contentHtml.length > 0 ? (
           <div
-            className="prose prose-invert prose-blue max-w-none
-              prose-p:text-muted prose-p:leading-relaxed prose-p:text-lg
-              prose-headings:font-display prose-headings:italic prose-headings:text-white
-              prose-strong:text-[#89AACC]"
+            className="prose prose-invert prose-blue max-w-none 
+              prose-p:text-gray-400 prose-p:leading-relaxed prose-p:text-lg
+              prose-headings:text-white prose-strong:text-[#89AACC]"
             dangerouslySetInnerHTML={{ __html: post.contentHtml }}
           />
         ) : (
-          // Fallback vizibil dacă contentHtml e gol — util în dev
-          <p className="text-red-400 text-sm">
-            ⚠️ Conținut lipsă. Verifică fișierul{" "}
-            <code className="font-mono">content/blog/{slug}.md</code> și
-            asigură-te că are text după frontmatter.
-          </p>
+          <div className="p-6 border border-red-900/30 bg-red-900/10 rounded-xl">
+            <p className="text-red-400 text-sm">
+              ⚠️ Conținut lipsă în fișierul: <code className="font-mono bg-black/50 px-1">content/blog/{slug}.md</code>
+              <br />
+              Asigură-te că ai text scris după al doilea rând de <code className="font-mono">---</code>.
+            </p>
+          </div>
         )}
 
         {/* CTA final */}
         <footer className="mt-20 pt-10 border-t border-white/5">
-          <div className="bg-surface border border-stroke rounded-[2.5rem] p-10 text-center relative overflow-hidden">
-            <h3 className="font-display italic text-2xl text-white mb-4 relative z-10">
+          <div className="bg-[#0A0A0A] border border-white/5 rounded-[2.5rem] p-10 text-center relative overflow-hidden">
+            <h3 className="text-2xl text-white mb-4 relative z-10 italic">
               Vrei un sistem de autoritate similar?
             </h3>
             <Link
