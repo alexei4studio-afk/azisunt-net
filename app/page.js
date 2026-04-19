@@ -1051,9 +1051,9 @@ function CTA() {
         <AnimatedSection>
           <Badge>Hai să vorbim</Badge>
           <h2 className="font-display font-800 text-5xl sm:text-6xl leading-[1.05] tracking-tight mb-6">
-            Ești gata să oprești
+            Sistemul tău web lucrează pentru tine
             <br />
-            <span className="text-accent">hemoragia de clienți?</span>
+            <span className="text-accent">sau împotriva ta?</span>
           </h2>
           <p className="font-body text-lg text-white/50 max-w-xl mx-auto mb-4">
             O discuție de 30 de minute îți poate schimba traiectoria afacerii.
