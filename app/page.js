@@ -7,7 +7,6 @@ import {
   ShieldAlert, CheckCircle, Star, Users,
   Zap, Phone, Layers, BarChart3, Clock, AlertTriangle,
   Globe, Server, Monitor, Mail, XCircle, Trophy,
-  Video,
 } from "lucide-react";
 import HeroVideo from "../components/HeroVideo";
 
@@ -446,6 +445,73 @@ function Portofoliu() {
               </div>
             </a>
           </Reveal>
+
+          {/* StartFIRMĂ — SaaS / Fintech */}
+          <Reveal className="md:col-span-5" delay={200}>
+            <a href="https://azisunt.com" target="_blank" rel="noopener noreferrer"
+              className="group relative flex flex-col h-full p-10 bg-surface border border-stroke rounded-[3rem] overflow-hidden hover:border-[#89AACC]/40 hover:-translate-y-1 transition-all duration-300"
+            >
+              {/* subtle radial glow */}
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none"
+                style={{ background: "radial-gradient(circle at 30% 50%, rgba(137,170,204,0.07) 0%, transparent 70%)" }} />
+
+              {/* Icon */}
+              <div className="w-12 h-12 rounded-2xl flex items-center justify-center mb-6 relative z-10 flex-shrink-0"
+                style={{ background: "linear-gradient(135deg, rgba(137,170,204,0.15), rgba(78,133,191,0.08))", border: "1px solid rgba(137,170,204,0.2)" }}>
+                <Layers size={22} className="text-[#89AACC]" />
+              </div>
+
+              {/* Badge */}
+              <span className="inline-flex items-center gap-1.5 w-fit rounded-full px-2.5 py-1 text-[9px] font-body font-bold uppercase tracking-widest text-white/60 border border-white/10 bg-white/5 mb-4 relative z-10">
+                SaaS / Fintech
+              </span>
+
+              <h3 className="text-3xl font-display italic mb-3 relative z-10">StartFIRMĂ</h3>
+              <p className="text-muted text-sm mb-6 leading-relaxed relative z-10">
+                Automatizare completă pentru înființare firme. Generator de dosare ONRC în 5 minute, proces 100% digital.
+              </p>
+
+              {/* Stats */}
+              <div className="grid grid-cols-3 gap-3 mb-8 relative z-10">
+                {[
+                  { value: "5500+", label: "Firme înregistrate" },
+                  { value: "5 min.", label: "Generare dosar" },
+                  { value: "100%", label: "Digital" },
+                ].map((s) => (
+                  <div key={s.label} className="bg-white/5 border border-white/8 rounded-2xl p-3 text-center group-hover:border-[#89AACC]/20 transition-colors">
+                    <p className="font-display italic text-lg text-white leading-none mb-1">{s.value}</p>
+                    <p className="font-body text-[9px] text-muted uppercase tracking-wider leading-tight">{s.label}</p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="flex items-center gap-2 text-xs font-bold text-accent group-hover:gap-4 transition-all uppercase tracking-widest relative z-10 mt-auto">
+                Vizitează platforma <ArrowUpRight size={14} />
+              </div>
+            </a>
+          </Reveal>
+
+          <Reveal className="md:col-span-7" delay={250}>
+            <div className="h-full p-10 bg-surface border border-stroke rounded-[3rem] flex flex-col justify-between"
+              style={{ background: "linear-gradient(135deg, rgba(137,170,204,0.04) 0%, transparent 60%)" }}>
+              <div>
+                <span className="inline-flex items-center gap-1.5 w-fit rounded-full px-2.5 py-1 text-[9px] font-body font-bold uppercase tracking-widest text-white/60 border border-white/10 bg-white/5 mb-6">
+                  De ce CapeSystem?
+                </span>
+                <h3 className="font-display italic text-3xl md:text-4xl text-white mb-4 leading-tight">
+                  Construim sisteme,<br />
+                  <span className="bg-clip-text text-transparent" style={{ background: "linear-gradient(90deg, #89AACC 0%, #4E85BF 100%)", WebkitBackgroundClip: "text", WebkitTextFillColor: "transparent" }}>nu pagini.</span>
+                </h3>
+                <p className="text-muted font-body text-sm leading-relaxed max-w-sm">
+                  Fiecare proiect e o infrastructură gândită strategic — SEO, conversie, automatizare — totul la un loc.
+                </p>
+              </div>
+              <a href="#contact" className="group mt-8 inline-flex items-center gap-2 accent-gradient text-bg font-bold text-xs px-6 py-3 rounded-full hover:scale-105 transition-transform uppercase tracking-widest w-fit">
+                Vreau și eu un sistem
+                <ArrowRight size={12} className="group-hover:translate-x-1 transition-transform" />
+              </a>
+            </div>
+          </Reveal>
         </div>
       </div>
     </section>
@@ -725,7 +791,7 @@ function SocialLink({ href, label, children }) {
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}
-      className="w-8 h-8 rounded-full border border-white/8 flex items-center justify-center text-white/20 transition-all duration-200 hover:border-[#89AACC]/40 hover:text-[#89AACC]"
+      className="w-9 h-9 rounded-full border border-white/15 flex items-center justify-center text-white/50 transition-all duration-200 hover:border-[#89AACC]/50 hover:text-[#89AACC] hover:bg-white/5"
     >
       {children}
     </a>
@@ -756,7 +822,9 @@ function Footer() {
         {/* Social + contact */}
         <div className="flex items-center gap-2.5">
           <SocialLink href="https://www.tiktok.com/@capesystempower" label="TikTok">
-            <Video size={13} />
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.74a4.85 4.85 0 0 1-1.01-.05z"/>
+            </svg>
           </SocialLink>
           <SocialLink href="https://www.facebook.com/CSLEGION" label="Facebook">
             <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
