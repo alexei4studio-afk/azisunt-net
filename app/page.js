@@ -526,7 +526,7 @@ const portfolioProjects = [
     stack: "Next.js · Supabase · Vercel · Google Places API",
     featured: true,
   },
-  const portfolioProjects = [
+const portfolioProjects = [
   {
     badge: "Full-Stack System",
     BadgeIcon: Globe,
@@ -535,7 +535,7 @@ const portfolioProjects = [
     description: "Sistem web custom cu integrare Supabase pentru managementul meniului și al galeriei în timp real. Optimizat pentru SEO local și conversii rapide.",
     cta: "Vezi Proiectul",
     href: "https://napoletano.ro",
-    stack: "Next.js · Supabase · Google API · Vercel",
+    stack: "Next.js · Supabase · Vercel · Google Places API",
     featured: true,
   },
   {
