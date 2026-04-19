@@ -1040,15 +1040,15 @@ function Servicii() {
   );
 }
 
-/* ─── CTA FINAL — Punctul 7: CTA Clar ─── */
+/* ─── CTA FINAL — Punctul 7: Formular de Contact Activ ─── */
 function CTA() {
   return (
     <section id="contact" className="py-28 relative overflow-hidden">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-accent/3 to-transparent pointer-events-none" />
       <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-accent/8 rounded-full blur-[120px] pointer-events-none" />
 
-      <div className="max-w-4xl mx-auto px-6 text-center relative">
-        <AnimatedSection>
+      <div className="max-w-4xl mx-auto px-6 relative">
+        <AnimatedSection className="text-center mb-12">
           <Badge>Hai să vorbim</Badge>
           <h2 className="font-display font-800 text-5xl sm:text-6xl leading-[1.05] tracking-tight mb-6">
             Sistemul tău web lucrează pentru tine
@@ -1056,38 +1056,66 @@ function CTA() {
             <span className="text-accent">sau împotriva ta?</span>
           </h2>
           <p className="font-body text-lg text-white/50 max-w-xl mx-auto mb-4">
-            O discuție de 30 de minute îți poate schimba traiectoria afacerii.
-            Fără costuri, fără obligații — doar claritate și un plan concret.
+            Trimite-ne un mesaj și îți facem un plan concret în 24 de ore.
           </p>
-          <p className="font-body text-sm text-red-400/80 mb-10 flex items-center justify-center gap-2">
-            <AlertTriangle size={14} />
-            Acceptăm maximum 2 clienți noi pe lună. Locuri disponibile: limitate.
-          </p>
+        </AnimatedSection>
 
-          <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-14">
-            <a
-              href="mailto:alexei4studio@gmail.com"
-              className="group w-full sm:w-auto inline-flex items-center justify-center gap-3 bg-accent text-[#080810] font-display font-700 text-base px-8 py-4 rounded-full hover:scale-105 transition-all shadow-lg shadow-accent/20"
-            >
-              <Mail size={16} />
-              alexei4studio@gmail.com
-              <ArrowRight
-                size={15}
-                className="group-hover:translate-x-1 transition-transform"
+        <AnimatedSection className="max-w-xl mx-auto bg-surface-card border border-white/10 p-8 rounded-3xl shadow-2xl relative">
+          <form 
+            action="https://formspree.io/f/xqewbwgj" 
+            method="POST"
+            className="space-y-5 text-left"
+          >
+            <div>
+              <label htmlFor="name" className="block text-xs font-medium text-white/40 mb-1.5 ml-1 uppercase tracking-widest">Nume Complet</label>
+              <input
+                type="text"
+                name="name"
+                required
+                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent/50 transition-colors"
+                placeholder="Ex: Andrei Ionescu"
               />
-            </a>
-            <a
-              href="tel:+40733874143"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-3 border border-white/10 text-white font-body text-base px-8 py-4 rounded-full hover:border-white/25 hover:bg-white/5 transition-all"
-            >
-              <Phone size={16} />
-              +40 733 874 143
-            </a>
-          </div>
+            </div>
 
-          <div className="inline-flex items-center gap-3 text-sm font-body text-white/40 border border-white/8 rounded-full px-5 py-2.5">
-            <CheckCircle size={15} className="text-accent" />
-            Consultanță gratuită · Fără spam · Răspundem în max. 4 ore
+            <div>
+              <label htmlFor="email" className="block text-xs font-medium text-white/40 mb-1.5 ml-1 uppercase tracking-widest">Email Business</label>
+              <input
+                type="email"
+                name="email"
+                required
+                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent/50 transition-colors"
+                placeholder="andrei@companie.ro"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="message" className="block text-xs font-medium text-white/40 mb-1.5 ml-1 uppercase tracking-widest">Proiectul tău pe scurt</label>
+              <textarea
+                name="message"
+                required
+                rows={4}
+                className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-accent/50 transition-colors resize-none"
+                placeholder="Spune-ne ce vrei să construim..."
+              ></textarea>
+            </div>
+
+            <button
+              type="submit"
+              className="group w-full bg-accent text-[#080810] font-display font-800 py-4 rounded-xl hover:bg-[#d4eb3d] transition-all flex items-center justify-center gap-2 text-lg active:scale-[0.98]"
+            >
+              Trimite Solicitarea
+              <ArrowRight size={18} className="group-hover:translate-x-1 transition-transform" />
+            </button>
+          </form>
+          
+          <div className="mt-8 flex flex-wrap items-center justify-center gap-6 border-t border-white/5 pt-8">
+             <a href="tel:+40733874143" className="flex items-center gap-2 text-white/40 hover:text-white transition-colors text-sm">
+                <Phone size={14} className="text-accent" /> +40 733 874 143
+             </a>
+             <div className="w-1.5 h-1.5 rounded-full bg-white/10 hidden sm:block" />
+             <div className="flex items-center gap-2 text-white/40 text-sm italic">
+                <CheckCircle size={14} className="text-accent" /> Răspundem în max. 4 ore
+             </div>
           </div>
         </AnimatedSection>
       </div>
