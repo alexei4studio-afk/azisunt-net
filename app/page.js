@@ -1,6 +1,10 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
+import { 
+  useState, 
+  useEffect, 
+  useRef 
+} from "react";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -27,8 +31,8 @@ import {
   Server,
   ExternalLink,
   Cpu,
-  Facebook,    // Importăm direct
-  Instagram    // Importăm direct
+  Facebook,
+  Instagram
 } from "lucide-react";
 
 /* ─── Hook: apare când intră în viewport ─── */
