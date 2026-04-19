@@ -3,6 +3,7 @@
 import { useState, useEffect, useRef } from "react";
 import {
   ArrowRight,
+  ArrowUpRight,
   CheckCircle,
   TrendingDown,
   Eye,
