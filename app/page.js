@@ -76,7 +76,24 @@ export default function Page() {
                 High Performance <span className="font-display italic text-accent">{roles[roleIndex]}</span>.
               </motion.p>
             </AnimatePresence>
-          </div>
+			</div>
+			{/* --- START STATS CARD --- */}
+<motion.div 
+  initial={{ opacity: 0, scale: 0.9 }}
+  animate={{ opacity: 1, scale: 1 }}
+  className="my-8 p-6 bg-surface/40 backdrop-blur-xl border border-white/10 rounded-[2rem] shadow-2xl flex flex-col items-center"
+>
+   <div className="flex items-center gap-2 mb-1">
+      <BarChart3 size={16} className="text-accent" />
+      <span className="text-[10px] uppercase tracking-widest text-muted font-bold">Organic Growth</span>
+   </div>
+   <p className="text-5xl font-display font-black text-white italic">+312%</p>
+   <p className="text-[9px] uppercase tracking-[0.3em] text-white/40 mt-3 italic text-center">
+     Case Study: Napoletano.ro
+   </p>
+</motion.div>
+{/* --- END STATS CARD --- */}
+          
           <div className="flex flex-col sm:flex-row gap-4 mb-12">
             <a href="#work" className="px-8 py-4 rounded-full bg-text-primary text-bg text-xs font-bold uppercase tracking-widest hover:scale-105 transition-transform">Vezi Portofoliu</a>
             <a href="#contact" className="px-8 py-4 rounded-full border border-stroke text-text-primary text-xs font-bold uppercase tracking-widest hover:bg-white/5 transition-all">Vreau un sistem</a>
