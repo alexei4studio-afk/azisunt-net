@@ -2,11 +2,10 @@
 
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-// Adăugăm ArrowUpRight aici:
-import { ArrowUpRight } from "lucide-react"; 
+import { ArrowRight, ArrowUpRight, Eye, TrendingDown, ShieldAlert, CheckCircle } from "lucide-react"; 
 import HeroVideo from "../components/HeroVideo";
 
-// Navbar simplificat pentru stabilitate build
+// 1. NAVBAR - Stil Pill
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   useEffect(() => {
@@ -17,18 +16,19 @@ function Navbar() {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-6 px-4">
-      <div className={`inline-flex items-center rounded-full backdrop-blur-md border border-white/10 bg-surface/80 px-4 py-2 transition-all duration-300 ${scrolled ? "shadow-lg shadow-black/20" : ""}`}>
+      <div className={`inline-flex items-center rounded-full backdrop-blur-md border border-white/10 bg-surface/80 px-4 py-2 transition-all duration-300 ${scrolled ? "shadow-lg shadow-black/40" : ""}`}>
         <div className="flex items-center gap-6">
           <div className="accent-gradient p-[1px] rounded-full">
             <div className="bg-bg rounded-full px-2 py-1 text-[11px] font-display italic font-bold text-white">CS</div>
           </div>
           <div className="hidden sm:flex gap-4">
-            <span className="text-[10px] uppercase tracking-widest text-muted">Home</span>
-            <span className="text-[10px] uppercase tracking-widest text-muted">Work</span>
+            <a href="#work" className="text-[10px] uppercase tracking-widest text-muted hover:text-white transition-colors">Work</a>
+            <a href="#problema" className="text-[10px] uppercase tracking-widest text-muted hover:text-white transition-colors">Problema</a>
+            <a href="#contact" className="text-[10px] uppercase tracking-widest text-muted hover:text-white transition-colors">Contact</a>
           </div>
-          <button className="bg-text-primary text-bg px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider">
-            Say hi ↗
-          </button>
+          <a href="#contact" className="bg-text-primary text-bg px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider hover:scale-105 transition-transform">
+            Vorbim? ↗
+          </a>
         </div>
       </div>
     </nav>
@@ -37,7 +37,7 @@ function Navbar() {
 
 export default function Page() {
   const [roleIndex, setRoleIndex] = useState(0);
-  const roles = ["Creative", "Fullstack", "Founder", "Scholar"];
+  const roles = ["Web Systems", "Digital Marketing", "SEO Automation", "Lead Gen"];
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -50,6 +50,7 @@ export default function Page() {
     <main className="bg-bg min-h-screen text-text-primary">
       <Navbar />
       
+      {/* 2. HERO - Personalizat CapeSystem */}
       <section className="relative h-screen w-full flex items-center justify-center overflow-hidden">
         <HeroVideo src="https://stream.mux.com/Aa02T7oM1wH5Mk5EEVDYhbZ1ChcdhRsS2m1NYyx4Ua1g.m3u8" />
         
@@ -59,7 +60,7 @@ export default function Page() {
             animate={{ opacity: 1, y: 0 }}
             className="text-[10px] md:text-xs text-muted uppercase tracking-[0.4em] mb-6"
           >
-            Collection '26
+            CapeSystem · Collection '26
           </motion.span>
 
           <motion.h1 
@@ -68,7 +69,7 @@ export default function Page() {
             transition={{ delay: 0.2 }}
             className="font-display italic text-6xl md:text-8xl lg:text-9xl leading-[0.85] tracking-tighter mb-8"
           >
-            Michael Smith
+            CapeSystem
           </motion.h1>
 
           <div className="h-8 mb-12">
@@ -80,7 +81,7 @@ export default function Page() {
                 exit={{ opacity: 0, y: -10 }}
                 className="text-lg md:text-xl font-body"
               >
-                A <span className="font-display italic text-accent">{roles[roleIndex]}</span> lives in Chicago.
+                High Performance <span className="font-display italic text-accent">{roles[roleIndex]}</span>.
               </motion.p>
             </AnimatePresence>
           </div>
@@ -91,16 +92,15 @@ export default function Page() {
             transition={{ delay: 0.5 }}
             className="flex gap-4"
           >
-            <button className="px-8 py-3.5 rounded-full bg-text-primary text-bg text-xs font-bold uppercase tracking-widest hover:scale-105 transition-transform">
-              See Works
-            </button>
-            <button className="px-8 py-3.5 rounded-full border border-stroke text-text-primary text-xs font-bold uppercase tracking-widest hover:bg-white/5 transition-all">
-              Reach out...
-            </button>
+            <a href="#work" className="px-8 py-3.5 rounded-full bg-text-primary text-bg text-xs font-bold uppercase tracking-widest hover:scale-105 transition-transform">
+              Vezi Portofoliu
+            </a>
+            <a href="#contact" className="px-8 py-3.5 rounded-full border border-stroke text-text-primary text-xs font-bold uppercase tracking-widest hover:bg-white/5 transition-all">
+              Vreau un sistem
+            </a>
           </motion.div>
         </div>
 
-        {/* Scroll Indicator */}
         <div className="absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3">
           <span className="text-[9px] tracking-[0.3em] text-muted uppercase">Scroll</span>
           <div className="w-[1px] h-12 bg-stroke relative overflow-hidden">
@@ -109,53 +109,39 @@ export default function Page() {
         </div>
       </section>
 
-      <section className="py-24 px-6 max-w-6xl mx-auto text-center">
-        <h2 className="font-display italic text-4xl mb-4 text-muted">Building the future...</h2>
+      {/* 3. PROBLEMA - Recuperată din codul tău vechi */}
+      <section id="problema" className="py-28 bg-bg relative px-6">
+        <div className="max-w-6xl mx-auto">
+          <div className="text-center mb-16 space-y-4">
+            <div className="flex items-center justify-center gap-3">
+               <div className="w-8 h-[1px] bg-stroke" />
+               <span className="text-[10px] text-muted uppercase tracking-[0.3em]">Costul Inacțiunii</span>
+            </div>
+            <h2 className="font-display italic text-4xl md:text-5xl text-text-primary leading-tight">
+              Sistemul tău web lucrează pentru tine <br/> 
+              <span className="text-muted">sau împotriva ta?</span>
+            </h2>
+          </div>
+
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="p-8 bg-surface border border-stroke rounded-[2rem] hover:border-white/20 transition-all">
+              <Eye className="text-accent mb-6" size={32} />
+              <h3 className="font-display italic text-xl mb-3">Ești invizibil online</h3>
+              <p className="text-sm text-muted leading-relaxed font-body">Competitorii tăi apar primii în Google. Tu nu exiști. Clienții potențiali nici nu știu că ești acolo.</p>
+            </div>
+            <div className="p-8 bg-surface border border-stroke rounded-[2rem] hover:border-white/20 transition-all">
+              <TrendingDown className="text-accent mb-6" size={32} />
+              <h3 className="font-display italic text-xl mb-3">Site-ul nu convinge</h3>
+              <p className="text-sm text-muted leading-relaxed font-body">Un site lent trimite oamenii direct la concurență. Prima impresie durează 3 secunde.</p>
+            </div>
+            <div className="p-8 bg-surface border border-stroke rounded-[2rem] hover:border-white/20 transition-all">
+              <ShieldAlert className="text-accent mb-6" size={32} />
+              <h3 className="font-display italic text-xl mb-3">Reclame fără ROI</h3>
+              <p className="text-sm text-muted leading-relaxed font-body">Bagi bani în Meta Ads fără să știi ce funcționează. Bugetul dispare, conversiile nu apar.</p>
+            </div>
+          </div>
+        </div>
       </section>
-	  {/* Section: Selected Works */}
-<section className="py-24 px-6 md:px-10 lg:px-16 max-w-[1200px] mx-auto bg-bg">
-  <div className="flex flex-col md:flex-row justify-between items-end mb-12 gap-6">
-    <div className="space-y-4">
-      <div className="flex items-center gap-3">
-        <div className="w-8 h-[1px] bg-stroke" />
-        <span className="text-[10px] text-muted uppercase tracking-[0.3em]">Selected Work</span>
-      </div>
-      <h2 className="text-4xl md:text-5xl font-display italic text-text-primary">
-        Featured <span className="text-muted">projects</span>
-      </h2>
-    </div>
-    <button className="hidden md:flex items-center gap-2 text-xs uppercase tracking-widest text-text-primary group border border-stroke px-6 py-3 rounded-full hover:bg-white/5 transition-all">
-      View all work <ArrowUpRight size={14} className="group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform" />
-    </button>
-  </div>
-
-  {/* Bento Grid */}
-  <div className="grid grid-cols-1 md:grid-cols-12 gap-6">
-    {/* Card 1: Napoletano */}
-    <div className="md:col-span-7 group relative aspect-video md:aspect-auto md:h-[450px] bg-surface border border-stroke rounded-[2rem] overflow-hidden">
-      <div className="absolute inset-0 opacity-20 pointer-events-none z-10" 
-           style={{ backgroundImage: `radial-gradient(circle, #000 1px, transparent 1px)`, backgroundSize: '4px 4px' }} />
-      <div className="absolute inset-0 bg-gradient-to-t from-bg via-transparent to-transparent z-20" />
-      <div className="absolute bottom-8 left-8 z-30">
-        <span className="text-[10px] text-muted uppercase tracking-widest mb-2 block">Full-Stack / SEO</span>
-        <h3 className="text-2xl font-display italic text-text-primary">Napoletano.ro</h3>
-      </div>
-      {/* Imaginea va veni aici */}
-      <div className="absolute inset-0 bg-white/5 group-hover:scale-105 transition-transform duration-700" />
-    </div>
-
-    {/* Card 2: Samsung G9 */}
-    <div className="md:col-span-5 group relative aspect-square md:aspect-auto md:h-[450px] bg-surface border border-stroke rounded-[2rem] overflow-hidden">
-      <div className="absolute inset-0 opacity-20 pointer-events-none z-10" 
-           style={{ backgroundImage: `radial-gradient(circle, #000 1px, transparent 1px)`, backgroundSize: '4px 4px' }} />
-      <div className="absolute inset-0 bg-white/5 group-hover:scale-105 transition-transform duration-700" />
-      <div className="absolute bottom-8 left-8 z-30">
-        <span className="text-[10px] text-muted uppercase tracking-widest mb-2 block">Affiliate / Setup</span>
-        <h3 className="text-2xl font-display italic text-text-primary">Odyssey G9</h3>
-      </div>
-    </div>
-  </div>
-</section>
     </main>
   );
 }
