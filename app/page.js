@@ -523,7 +523,7 @@ const portfolioProjects = [
       "Sistem web complet pentru un restaurant premium din Iași — rezervări online, meniu dinamic, SEO local și infrastructură optimizată pentru conversii.",
     cta: "Detalii Proiect",
     href: "https://napoletano.ro",
-    stack: "Next.js · Vercel · Google Places API",
+    stack: "Next.js · Supabase · Vercel · Google Places API",
     featured: true,
   },
   {
