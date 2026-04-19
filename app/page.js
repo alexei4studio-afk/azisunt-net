@@ -7,7 +7,7 @@ import {
   ShieldAlert, CheckCircle, Star, Users,
   Zap, Phone, Layers, BarChart3, Clock, AlertTriangle,
   Globe, Server, Monitor, Mail, XCircle, Trophy,
-  Video, Facebook, Instagram,
+  Video,
 } from "lucide-react";
 import HeroVideo from "../components/HeroVideo";
 
@@ -759,10 +759,10 @@ function Footer() {
             <Video size={13} />
           </SocialLink>
           <SocialLink href="https://www.facebook.com/CSLEGION" label="Facebook">
-            <Facebook size={13} />
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
           </SocialLink>
-          <SocialLink href="https://instagram.com/capesystem" label="Instagram">
-            <Instagram size={13} />
+          <SocialLink href="https://instagram.com/capesystemdesign" label="Instagram">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg>
           </SocialLink>
           <div className="w-px h-4 bg-white/8 mx-1" />
           <SocialLink href="mailto:alexei4studio@gmail.com" label="Email">
