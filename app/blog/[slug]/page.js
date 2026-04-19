@@ -1,30 +1,39 @@
+// app/blog/[slug]/page.js  — Server Component async
 import { getPostData, getSortedPostsData } from "../../../lib/posts";
 import Link from "next/link";
 import { ArrowLeft, Clock } from "lucide-react";
 import { notFound } from "next/navigation";
 
-// ✅ FIX: În Next.js 14 (spre deosebire de 15), generateStaticParams
-// trebuie exportat și funcționează SINCRON
+// ─────────────────────────────────────────────────────────────────────────────
+// generateStaticParams — rulează la BUILD TIME, generează toate rutele /blog/X
+// Next.js 14: getSortedPostsData() e sincronă, deci nu avem nevoie de await
+// ─────────────────────────────────────────────────────────────────────────────
 export async function generateStaticParams() {
   const posts = getSortedPostsData();
-  return posts.map((post) => ({
-    slug: post.slug,
-  }));
+  return posts.map((post) => ({ slug: post.slug }));
 }
 
-// ✅ FIX: Previne 500 pentru slug-uri necunoscute — returnează 404 curat
+// Slug-uri care nu sunt în generateStaticParams returnează 404, nu 500
 export const dynamicParams = false;
 
 export default async function PostPage({ params }) {
-  // ✅ FIX: În Next.js 14, params e sincron — NU trebuie await.
-  // În Next.js 15 e async. Codul tău cu await params funcționa accidental,
-  // dar poate cauza warning-uri. Forma corectă pentru 14:
+  // ─────────────────────────────────────────────────────────────────────────
+  // ASYNC/AWAIT SYNC
+  // În Next.js 14.2.x, `params` este un obiect sincron — NU un Promise.
+  // `await params` funcționează (await pe non-Promise returnează valoarea ca-atare)
+  // dar produce un warning în consolă începând cu Next.js 14.2+.
+  // Forma corectă pentru 14.x: params.slug direct (fără await).
+  //
+  // Notă: În Next.js 15, params DEVINE async și va necesita await.
+  // Când faci upgrade la 15, revino și adaugă await înapoi.
+  // ─────────────────────────────────────────────────────────────────────────
   const slug = params.slug;
 
   const post = await getPostData(slug);
 
-  // ✅ FIX: Folosim notFound() în loc de render manual — afișează pagina 404
   if (!post) {
+    // notFound() aruncă o eroare specială Next.js care randează pages/404
+    // sau app/not-found.js dacă există — mult mai curat decât render manual
     notFound();
   }
 
@@ -47,7 +56,7 @@ export default async function PostPage({ params }) {
               {post.category || post.tag || "Insight"}
             </span>
             <span className="flex items-center gap-2 text-muted text-[9px] uppercase tracking-widest">
-              <Clock size={12} /> {post.readTime || "5 min"}
+              <Clock size={12} /> {post.readTime}
             </span>
           </div>
 
@@ -56,12 +65,12 @@ export default async function PostPage({ params }) {
           </h1>
         </header>
 
-        {/* Randare conținut HTML din Markdown */}
+        {/* Conținut Markdown randat ca HTML */}
         <div
           className="prose prose-invert prose-blue max-w-none
-          prose-p:text-muted prose-p:leading-relaxed prose-p:text-lg
-          prose-headings:font-display prose-headings:italic prose-headings:text-white
-          prose-strong:text-[#89AACC]"
+            prose-p:text-muted prose-p:leading-relaxed prose-p:text-lg
+            prose-headings:font-display prose-headings:italic prose-headings:text-white
+            prose-strong:text-[#89AACC]"
           dangerouslySetInnerHTML={{ __html: post.contentHtml }}
         />
 
@@ -79,6 +88,7 @@ export default async function PostPage({ params }) {
             </Link>
           </div>
         </footer>
+
       </article>
     </main>
   );

@@ -1,11 +1,16 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // ✅ FIX CRITIC: Spune Vercel să includă fișierele .md în bundle
-  // Fără asta, `fs.readdirSync` găsește un folder gol în producție
+  // ─────────────────────────────────────────────────────────────────────────
+  // FIX PRINCIPAL — Fără această cheie, Vercel NU copiază fișierele .md
+  // în bundle-ul de runtime. Next.js 14 output file tracing analizează
+  // STATIC importurile JS și nu poate detecta fișierele citite dinamic
+  // prin process.cwd() + fs la runtime.
+  //
+  // "/**"          → aplică-se pe TOATE rutele (/  și  /blog/[slug])
+  // "./content/**" → include recursiv tot ce e în folderul content/
+  // ─────────────────────────────────────────────────────────────────────────
   outputFileTracingIncludes: {
-    // Toate rutele care folosesc fs să includă content/blog
-    "/": ["./content/blog/**/*.md"],
-    "/blog/[slug]": ["./content/blog/**/*.md"],
+    "/**": ["./content/**"],
   },
 
   images: {
