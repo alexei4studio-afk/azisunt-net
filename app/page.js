@@ -3,7 +3,6 @@
 import { useState, useEffect, useRef } from "react";
 import {
   ArrowRight,
-  ArrowUpRight,
   CheckCircle,
   TrendingDown,
   Eye,
@@ -25,8 +24,8 @@ import {
   Globe,
   Monitor,
   Server,
-  Facebook as FacebookIcon,
-  Instagram as InstagramIcon,
+  Facebook,    // Importăm direct
+  Instagram    // Importăm direct
 } from "lucide-react";
 
 /* ─── Hook: apare când intră în viewport ─── */
