@@ -2,23 +2,26 @@ import { getSortedPostsData } from "../lib/posts";
 import HomeClient from "./HomeClient";
 
 export default function Page() {
-  // Luăm datele reale prin motorul lib/posts.js
   const allPostsData = getSortedPostsData();
   
-  // Returnăm un singur bloc JSX care conține și Formularul și Blogul
   return (
-    <main className="min-h-screen bg-white">
-      {/* Secțiunea Lead Qualifier AI */}
-      <section className="py-12 bg-slate-50 border-b">
-        <div className="max-w-3xl mx-auto px-4">
-          <h2 className="text-2xl font-bold mb-6 text-center text-slate-800">
-            Califică-ți Proiectul cu CapeSystem AI
-          </h2>
+    <main className="min-h-screen">
+      {/* Secțiunea Lead Qualifier AI - Integrată Curat */}
+      <section className="w-full py-16 bg-white border-b">
+        <div className="max-w-4xl mx-auto px-6">
+          <div className="text-center mb-10">
+            <h1 className="text-3xl md:text-4xl font-extrabold text-slate-900 mb-4">
+              CapeSystem Lead Qualifier
+            </h1>
+            <p className="text-slate-600 max-w-2xl mx-auto">
+              Analizăm proiectul tău în 30 de secunde pentru a stabili compatibilitatea cu soluțiile noastre de autonomie totală.
+            </p>
+          </div>
           
-          <form action="/api/qualify" method="POST" className="grid grid-cols-1 gap-4 bg-white p-8 rounded-xl shadow-md">
-            <div>
-              <label className="block text-sm font-semibold mb-2 text-slate-700">Obiectiv Principal</label>
-              <select name="goal" className="w-full border border-slate-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+          <form action="/api/qualify" method="POST" className="grid grid-cols-1 md:grid-cols-2 gap-6 bg-slate-50 p-8 rounded-2xl border border-slate-100 shadow-sm">
+            <div className="flex flex-col">
+              <label className="text-sm font-bold text-slate-700 mb-2 ml-1">Obiectiv Principal</label>
+              <select name="goal" className="bg-white border border-slate-200 p-3 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all">
                 <option>Magazin Afiliere</option>
                 <option>SaaS</option>
                 <option>Optimizare Performanță</option>
@@ -26,42 +29,42 @@ export default function Page() {
               </select>
             </div>
 
-            <div>
-              <label className="block text-sm font-semibold mb-2 text-slate-700">Stadiu Proiect</label>
-              <select name="stage" className="w-full border border-slate-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+            <div className="flex flex-col">
+              <label className="text-sm font-bold text-slate-700 mb-2 ml-1">Stadiu Proiect</label>
+              <select name="stage" className="bg-white border border-slate-200 p-3 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all">
                 <option>Idee nouă</option>
                 <option>Business existent (Migrare)</option>
                 <option>Audit tehnic</option>
               </select>
             </div>
 
-            <div>
-              <label className="block text-sm font-semibold mb-2 text-slate-700">Buget Estimativ</label>
-              <select name="budget" className="w-full border border-slate-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+            <div className="flex flex-col">
+              <label className="text-sm font-bold text-slate-700 mb-2 ml-1">Buget Estimativ</label>
+              <select name="budget" className="bg-white border border-slate-200 p-3 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all">
                 <option value="low">&lt; 500€</option>
                 <option value="mid">500€ - 1500€</option>
                 <option value="high">&gt; 1500€</option>
               </select>
             </div>
 
-            <div>
-              <label className="block text-sm font-semibold mb-2 text-slate-700">Urgență</label>
-              <select name="urgency" className="w-full border border-slate-300 p-3 rounded-lg focus:ring-2 focus:ring-blue-500 outline-none">
+            <div className="flex flex-col">
+              <label className="text-sm font-bold text-slate-700 mb-2 ml-1">Urgență</label>
+              <select name="urgency" className="bg-white border border-slate-200 p-3 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none transition-all">
                 <option>Ieri</option>
                 <option>2-4 săptămâni</option>
                 <option>Doar explorez</option>
               </select>
             </div>
 
-            <button type="submit" className="mt-6 bg-blue-600 text-white font-bold py-4 rounded-lg hover:bg-blue-700 transition shadow-lg active:transform active:scale-95">
-              Trimite spre Analiză AI
+            <button type="submit" className="md:col-span-2 mt-4 bg-slate-900 text-white font-bold py-4 rounded-xl hover:bg-blue-600 transition-all shadow-md transform active:scale-95">
+              Start Analiză Proiect
             </button>
           </form>
         </div>
       </section>
 
-      {/* Secțiunea de Blog (HomeClient) sub formular */}
-      <div className="py-8">
+      {/* Blog Feed */}
+      <div className="bg-white">
         <HomeClient latestPosts={allPostsData.slice(0, 3)} />
       </div>
     </main>
