@@ -77,17 +77,17 @@ function StickyBar() {
   );
 }
 
-/* ─── NAVBAR ─── */
+/* ─── NAVBAR ACTUALIZAT (Logo Nou + Dimensiuni Mari) ─── */
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   useEffect(() => {
-    const onScroll = () => setScrolled(window.scrollY > 100);
+    const onScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
- const links = [
+  const links = [
     { href: "#problema", label: "Problema" },
     { href: "#work",     label: "Work" },
     { href: "#plan",     label: "Plan" },
@@ -96,61 +96,74 @@ function Navbar() {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-6 px-4">
-      <div className={`inline-flex items-center rounded-full backdrop-blur-md border border-white/10 bg-surface/80 px-4 py-2 transition-all duration-300 ${scrolled ? "shadow-lg shadow-black/40" : ""}`}>
-        <div className="flex items-center gap-6">
-          <div className="accent-gradient p-[1px] rounded-full">
-            <div className="bg-bg rounded-full px-2 py-1 text-[11px] font-display italic font-bold text-white">CS</div>
-          </div>
-          <div className="hidden sm:flex gap-5">
+    <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-8 px-4 transition-all duration-500">
+      <div 
+        className={`inline-flex items-center rounded-full backdrop-blur-xl border border-white/10 bg-surface/90 px-8 py-4 transition-all duration-300 ${
+          scrolled ? "shadow-2xl shadow-blue-500/20 scale-95" : "scale-100"
+        }`}
+      >
+        <div className="flex items-center gap-10">
+          {/* LOGO NOU - Inlocuit CS cu imaginea din public */}
+          <a href="/" className="flex items-center hover:opacity-80 transition-opacity">
+            <img 
+              src="/logo.png" 
+              alt="CapeSystem Logo" 
+              className="h-12 md:h-14 w-auto object-contain" 
+            />
+          </a>
+
+          {/* Link-uri Marite */}
+          <div className="hidden md:flex gap-8">
             {links.map((l) => (
-              <a key={l.href} href={l.href} className="text-[10px] uppercase tracking-widest text-muted hover:text-white transition-colors">
+              <a 
+                key={l.href} 
+                href={l.href} 
+                className="text-[13px] font-bold uppercase tracking-[0.15em] text-muted hover:text-white transition-colors"
+              >
                 {l.label}
               </a>
             ))}
           </div>
+
+          {/* Buton Blog Hub Marit */}
           <a
             href="/blog"
-            className="relative px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider transition-all duration-300 hover:scale-105"
+            className="relative px-7 py-3 rounded-full text-[12px] font-black uppercase tracking-widest transition-all duration-300 hover:scale-105"
             style={{
               background: "linear-gradient(135deg, #89AACC 0%, #6A99C0 40%, #4E85BF 100%)",
-              border: "1px solid rgba(255,255,255,0.22)",
+              border: "1px solid rgba(255,255,255,0.3)",
               color: "#ffffff",
-              textShadow: "0 1px 3px rgba(0,0,0,0.4)",
-              boxShadow: "0 1px 0 rgba(255,255,255,0.15) inset, 0 4px 14px rgba(78,133,191,0.35)",
+              boxShadow: "0 4px 20px rgba(78,133,191,0.4)",
             }}
-            onMouseEnter={e => e.currentTarget.style.boxShadow = "0 1px 0 rgba(255,255,255,0.15) inset, 0 0 18px rgba(137,170,204,0.55), 0 4px 14px rgba(78,133,191,0.45)"}
-            onMouseLeave={e => e.currentTarget.style.boxShadow = "0 1px 0 rgba(255,255,255,0.15) inset, 0 4px 14px rgba(78,133,191,0.35)"}
           >
             Blog Hub ↗
           </a>
-          <button onClick={() => setOpen(!open)} className="sm:hidden flex flex-col gap-1 p-1" aria-label="Menu">
-            <span className={`block w-5 h-0.5 bg-white transition-all ${open ? "rotate-45 translate-y-1.5" : ""}`} />
-            <span className={`block w-5 h-0.5 bg-white transition-all ${open ? "opacity-0" : ""}`} />
-            <span className={`block w-5 h-0.5 bg-white transition-all ${open ? "-rotate-45 -translate-y-1.5" : ""}`} />
+
+          <button onClick={() => setOpen(!open)} className="sm:hidden flex flex-col gap-1.5 p-1" aria-label="Menu">
+            <span className={`block w-6 h-0.5 bg-white transition-all ${open ? "rotate-45 translate-y-2" : ""}`} />
+            <span className={`block w-6 h-0.5 bg-white transition-all ${open ? "opacity-0" : ""}`} />
+            <span className={`block w-6 h-0.5 bg-white transition-all ${open ? "-rotate-45 -translate-y-2" : ""}`} />
           </button>
         </div>
       </div>
+
+      {/* Mobile Menu Actualizat */}
       {open && (
-        <div className="absolute top-full mt-2 w-[calc(100%-2rem)] max-w-sm bg-surface/95 backdrop-blur-md border border-white/10 rounded-3xl px-6 py-5 flex flex-col gap-3">
+        <div className="absolute top-full mt-4 w-[calc(100%-2rem)] max-w-sm bg-surface/98 backdrop-blur-2xl border border-white/10 rounded-[2.5rem] px-8 py-8 flex flex-col gap-5 shadow-2xl">
           {links.map((l) => (
-            <a key={l.href} href={l.href} onClick={() => setOpen(false)} className="text-sm text-white/70 hover:text-white font-display italic">
+            <a 
+              key={l.href} 
+              href={l.href} 
+              onClick={() => setOpen(false)} 
+              className="text-lg text-white/90 hover:text-white font-display italic border-b border-white/5 pb-2"
+            >
               {l.label}
             </a>
           ))}
           <a 
             href="/blog" 
             onClick={() => setOpen(false)} 
-            className="mt-2 font-bold text-xs px-5 py-4 rounded-full text-center uppercase tracking-widest transition-all duration-300 block w-full"
-            style={{ 
-              background: "linear-gradient(135deg, #89AACC 0%, #6A99C0 40%, #4E85BF 100%)",
-              border: "1px solid rgba(255,255,255,0.22)",
-              color: "#ffffff",
-              textShadow: "0 1px 3px rgba(0,0,0,0.4)",
-              boxShadow: "0 1px 0 rgba(255,255,255,0.15) inset, 0 4px 20px rgba(78,133,191,0.4)",
-            }}
-            onMouseEnter={e => e.currentTarget.style.boxShadow = "0 1px 0 rgba(255,255,255,0.15) inset, 0 0 22px rgba(137,170,204,0.6), 0 4px 20px rgba(78,133,191,0.5)"}
-            onMouseLeave={e => e.currentTarget.style.boxShadow = "0 1px 0 rgba(255,255,255,0.15) inset, 0 4px 20px rgba(78,133,191,0.4)"}
+            className="mt-4 font-black text-sm px-6 py-5 rounded-2xl text-center uppercase tracking-widest bg-blue-600 text-white"
           >
             Blog Hub ↗
           </a>
