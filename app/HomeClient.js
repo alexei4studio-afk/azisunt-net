@@ -99,7 +99,7 @@ function Navbar() {
   // pt-5 este distanța perfectă față de marginea de sus
 <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-5 px-4 transition-all duration-500">
   <div 
-    className={`inline-flex items-center rounded-full backdrop-blur-xl border border-white/10 bg-surface/90 px-6 py-3 transition-all duration-300 ${
+    className={`inline-flex items-center rounded-full backdrop-blur-xl border border-white/10 bg-surface/90 px-6 py-2 transition-all duration-300 ${
       scrolled ? "shadow-2xl shadow-blue-500/20 scale-95" : "scale-100"
     }`}
   >
@@ -107,10 +107,10 @@ function Navbar() {
           {/* LOGO NOU - Inlocuit CS cu imaginea din public */}
           <a href="/" className="flex items-center hover:opacity-80 transition-opacity">
             <img 
-              src="/logo.png" 
-              alt="CapeSystem Logo" 
-              className="h-12 md:h-14 w-auto object-contain" 
-            />
+  src="/logo.png" 
+  alt="CapeSystem Logo" 
+  className="h-[60px] md:h-[80px] w-auto object-contain" 
+/>
           </a>
 
           {/* Link-uri Marite */}
