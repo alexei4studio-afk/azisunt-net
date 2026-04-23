@@ -99,7 +99,7 @@ function Navbar() {
   // pt-5 este distanța perfectă față de marginea de sus
 <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-5 px-4 transition-all duration-500">
   <div 
-    className={`inline-flex items-center rounded-full backdrop-blur-xl border border-white/10 bg-surface/90 px-6 py-2 transition-all duration-300 ${
+    className={`inline-flex items-center rounded-full backdrop-blur-xl border border-white/10 bg-surface/90 px-6 py-0 transition-all duration-300 ${
       scrolled ? "shadow-2xl shadow-blue-500/20 scale-95" : "scale-100"
     }`}
   >
