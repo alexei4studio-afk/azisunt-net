@@ -23,12 +23,13 @@ function Navbar() {
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-3 px-4">
       <div className={`inline-flex items-center rounded-full backdrop-blur-xl border border-white/10 bg-[hsl(var(--surface))]/90 px-4 h-[45px] transition-all duration-300 gap-6 ${scrolled ? "shadow-2xl shadow-black/30" : ""}`}>
-        {/* LOGO — mare, overflow permis */}
-        <a href="/" className="flex items-center -my-2">
+        {/* Logo — h-[52px] overflows pill via -my-2 */}
+        <a href="/" className="flex items-center -my-2 hover:scale-105 transition-transform">
           <img
             src="/logo.png"
             alt="CapeSystem"
-            className="h-[52px] w-auto object-contain drop-shadow-[0_0_8px_rgba(137,170,204,0.3)]"
+            className="h-[52px] w-auto object-contain"
+            style={{ filter: "drop-shadow(0 0 8px rgba(137,170,204,0.3))" }}
           />
         </a>
 
