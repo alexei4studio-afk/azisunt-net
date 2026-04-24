@@ -433,12 +433,13 @@ export default function BlogContent({ articles = [] }) {
 
   return (
     <main className="bg-[hsl(var(--bg))] min-h-screen text-[hsl(var(--text))] overflow-x-hidden">
+      <Navbar />
       <BlogHero
         activeCategory={activeCategory}
         setActiveCategory={setActiveCategory}
         searchQuery={searchQuery}
         setSearchQuery={setSearchQuery}
-        totalArticles={articles.length}
+        totalArticles={safeArticles.length}
       />
 
       {/* Articles grid */}
