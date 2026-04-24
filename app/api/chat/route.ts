@@ -2,8 +2,9 @@ import { NextRequest, NextResponse } from "next/server";
 
 export const runtime = "edge";
 
+// Schimbă de la v1beta la v1 și asigură-te că modelul e scris corect
 const GEMINI_API_KEY = "AIzaSyAzPiqq7e5Ax-rh07thIeBzSD1UNrZ_dfA";
-const GEMINI_ENDPOINT = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+const GEMINI_ENDPOINT = `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
 
 const CAPESYSTEM_KNOWLEDGE = `
 CapeSystem — Sisteme Web & Marketing Digital
