@@ -1,5 +1,5 @@
 // Server Component — fără "use client"
-import { getSortedPostsData } from "@/lib/posts";
+import { getSortedPostsData } from "../../lib/posts";
 import BlogContent, { FAQS } from "./BlogContent";
 
 export const metadata = {
@@ -18,7 +18,6 @@ export const metadata = {
 };
 
 export default function BlogPage() {
-  // Garantăm că articles e întotdeauna un array valid
   let articles = [];
   try {
     const data = getSortedPostsData();
