@@ -7,7 +7,21 @@ import {
   ShieldAlert, CheckCircle, Star, Users,
   Zap, Phone, Layers, BarChart3, Clock, AlertTriangle,
   Globe, Server, Monitor, Mail, XCircle, Trophy,
+  ClipboardCheck,
 } from "lucide-react";
+
+const WA_LINK = "https://wa.me/40733874143";
+const AUDIT_LINK = "/audit";
+
+/* ─── WhatsApp SVG inline (brand icon, no lucide) ─── */
+function WaIcon({ size = 13 }) {
+  return (
+    <svg width={size} height={size} viewBox="0 0 24 24" fill="currentColor">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
+      <path d="M12 0C5.373 0 0 5.373 0 12c0 2.124.558 4.121 1.535 5.849L.057 23.571a.75.75 0 0 0 .921.921l5.722-1.478A11.945 11.945 0 0 0 12 24c6.627 0 12-5.373 12-12S18.627 0 12 0zm0 21.75a9.718 9.718 0 0 1-4.962-1.359l-.355-.212-3.695.953.977-3.58-.232-.368A9.718 9.718 0 0 1 2.25 12C2.25 6.615 6.615 2.25 12 2.25S21.75 6.615 21.75 12 17.385 21.75 12 21.75z"/>
+    </svg>
+  );
+}
 import HeroVideo from "../components/HeroVideo";
 
 /* ─── useInView ─── */
@@ -62,22 +76,25 @@ function StickyBar() {
   }, []);
   return (
     <div className={`fixed bottom-0 left-0 right-0 z-50 transition-all duration-500 ${show ? "translate-y-0 opacity-100" : "translate-y-full opacity-0"}`}>
-      <div className="bg-bg/95 backdrop-blur-md border-t border-white/8 px-6 py-3 flex items-center justify-between max-w-5xl mx-auto gap-4">
-        <p className="font-display italic text-sm hidden sm:block text-white/70">
-          Fiecare zi fără sistem = clienți la concurență.
-        </p>
+      <div className="bg-bg/95 backdrop-blur-md border-t border-white/8 px-6 py-3 flex flex-col sm:flex-row items-center gap-3 max-w-5xl mx-auto">
+        {/* 1. Buton — primul */}
         <a
-          href="#contact"
-          className="ml-auto inline-flex items-center gap-2 accent-gradient text-bg font-bold text-xs px-6 py-2.5 rounded-full hover:scale-105 transition-transform whitespace-nowrap"
+          href={AUDIT_LINK}
+          className="inline-flex items-center gap-2 accent-gradient text-bg font-bold text-xs px-6 py-2.5 rounded-full hover:scale-105 transition-transform whitespace-nowrap uppercase tracking-widest"
         >
-          Vorbim acum <ArrowRight size={13} />
+          Rezerv un loc ↗
         </a>
+        {/* 2. Copy — după buton */}
+        <p className="font-display italic text-xs text-white/60 text-center sm:text-left leading-snug">
+          Fiecare zi de amânare costă bani reali. Competitorul tău citește aceeași pagină.{" "}
+          <span className="text-white/40">CapeSystem lucrează cu max 2 clienți noi pe lună.</span>
+        </p>
       </div>
     </div>
   );
 }
 
-/* ─── NAVBAR ACTUALIZAT (Logo Nou + Dimensiuni Mari) ─── */
+/* ─── NAVBAR ─── */
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
@@ -93,43 +110,54 @@ function Navbar() {
     { href: "#plan",     label: "Plan" },
     { href: "#incredere",label: "Clienți" },
     { href: "#contact",  label: "Contact" },
+    { href: "/blog",     label: "Blog" },
   ];
 
   return (
-  // pt-5 este distanța perfectă față de marginea de sus
-<nav className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-3 px-4 transition-all duration-500">
-  <div 
-    className={`inline-flex items-center rounded-full backdrop-blur-xl border border-white/10 bg-surface/90 px-6 h-[45px] transition-all duration-300 ${
-      scrolled ? "shadow-2xl shadow-blue-500/20 scale-95" : "scale-100"
-    }`}
-  >
-        <div className="flex items-center gap-10">
-          {/* LOGO NOU - Inlocuit CS cu imaginea din public */}
+    <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-3 px-4 transition-all duration-500">
+      <div
+        className={`inline-flex items-center rounded-full backdrop-blur-xl border border-white/10 bg-surface/90 px-6 h-[45px] transition-all duration-300 ${
+          scrolled ? "shadow-2xl shadow-blue-500/20 scale-95" : "scale-100"
+        }`}
+      >
+        <div className="flex items-center gap-8">
+          {/* Logo — h-[35px] exactă conform brief */}
           <a href="/" className="flex items-center hover:opacity-80 transition-opacity">
-            <img 
-  src="/logo.png" 
-  alt="CapeSystem Logo" 
-  className="h-[60px] md:h-[80px] w-auto object-contain" 
-/>
+            <img
+              src="/logo.png"
+              alt="CapeSystem Logo"
+              className="h-[35px] w-auto object-contain"
+            />
           </a>
 
-          {/* Link-uri Marite */}
-          <div className="hidden md:flex gap-8">
+          {/* Desktop links */}
+          <div className="hidden md:flex items-center gap-6">
             {links.map((l) => (
-              <a 
-                key={l.href} 
-                href={l.href} 
-                className="text-[13px] font-bold uppercase tracking-[0.15em] text-muted hover:text-white transition-colors"
+              <a
+                key={l.href}
+                href={l.href}
+                className="text-[11px] font-bold uppercase tracking-[0.15em] text-muted hover:text-white transition-colors"
               >
                 {l.label}
               </a>
             ))}
+            {/* Audit Rapid — accent, cu iconiță */}
+            <a
+              href={AUDIT_LINK}
+              className="inline-flex items-center gap-1.5 text-[11px] font-black uppercase tracking-widest transition-colors"
+              style={{ color: "#89AACC" }}
+            >
+              <ClipboardCheck size={14} />
+              Audit Rapid
+            </a>
           </div>
 
-          {/* Buton Blog Hub Marit */}
+          {/* Vorbim acum → WhatsApp */}
           <a
-            href="/blog"
-            className="relative px-7 py-3 rounded-full text-[12px] font-black uppercase tracking-widest transition-all duration-300 hover:scale-105"
+            href={WA_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hidden md:inline-flex items-center gap-1.5 px-5 py-2 rounded-full text-[11px] font-black uppercase tracking-widest transition-all duration-300 hover:scale-105"
             style={{
               background: "linear-gradient(135deg, #89AACC 0%, #6A99C0 40%, #4E85BF 100%)",
               border: "1px solid rgba(255,255,255,0.3)",
@@ -137,10 +165,12 @@ function Navbar() {
               boxShadow: "0 4px 20px rgba(78,133,191,0.4)",
             }}
           >
-            Blog Hub ↗
+            <WaIcon size={12} />
+            Vorbim acum
           </a>
 
-          <button onClick={() => setOpen(!open)} className="sm:hidden flex flex-col gap-1.5 p-1" aria-label="Menu">
+          {/* Mobile hamburger */}
+          <button onClick={() => setOpen(!open)} className="md:hidden flex flex-col gap-1.5 p-1" aria-label="Menu">
             <span className={`block w-6 h-0.5 bg-white transition-all ${open ? "rotate-45 translate-y-2" : ""}`} />
             <span className={`block w-6 h-0.5 bg-white transition-all ${open ? "opacity-0" : ""}`} />
             <span className={`block w-6 h-0.5 bg-white transition-all ${open ? "-rotate-45 -translate-y-2" : ""}`} />
@@ -148,25 +178,43 @@ function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu Actualizat */}
+      {/* Mobile Menu */}
       {open && (
-        <div className="absolute top-full mt-4 w-[calc(100%-2rem)] max-w-sm bg-surface/98 backdrop-blur-2xl border border-white/10 rounded-[2.5rem] px-8 py-8 flex flex-col gap-5 shadow-2xl">
+        <div className="absolute top-full mt-4 w-[calc(100%-2rem)] max-w-sm bg-surface/98 backdrop-blur-2xl border border-white/10 rounded-[2.5rem] px-8 py-8 flex flex-col gap-4 shadow-2xl">
           {links.map((l) => (
-            <a 
-              key={l.href} 
-              href={l.href} 
-              onClick={() => setOpen(false)} 
-              className="text-lg text-white/90 hover:text-white font-display italic border-b border-white/5 pb-2"
+            <a
+              key={l.href}
+              href={l.href}
+              onClick={() => setOpen(false)}
+              className="text-lg text-white/90 hover:text-white font-display italic border-b border-white/5 pb-3"
             >
               {l.label}
             </a>
           ))}
-          <a 
-            href="/blog" 
-            onClick={() => setOpen(false)} 
-            className="mt-4 font-black text-sm px-6 py-5 rounded-2xl text-center uppercase tracking-widest bg-blue-600 text-white"
+          {/* Audit Rapid mobile */}
+          <a
+            href={AUDIT_LINK}
+            onClick={() => setOpen(false)}
+            className="flex items-center gap-2 text-base font-black uppercase tracking-widest pb-3 border-b border-white/5"
+            style={{ color: "#89AACC" }}
           >
-            Blog Hub ↗
+            <ClipboardCheck size={16} />
+            Audit Rapid
+          </a>
+          {/* WhatsApp mobile */}
+          <a
+            href={WA_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={() => setOpen(false)}
+            className="mt-2 inline-flex items-center justify-center gap-2 font-black text-sm px-6 py-4 rounded-2xl text-center uppercase tracking-widest text-white"
+            style={{
+              background: "linear-gradient(135deg, #89AACC 0%, #4E85BF 100%)",
+              boxShadow: "0 4px 20px rgba(78,133,191,0.3)",
+            }}
+          >
+            <WaIcon size={15} />
+            Vorbim pe WhatsApp
           </a>
         </div>
       )}
@@ -266,8 +314,14 @@ function Hero() {
           <a href="#work" className="px-8 py-4 rounded-full bg-text-primary text-bg text-xs font-bold uppercase tracking-widest hover:scale-105 transition-transform text-center">
             Vezi Portofoliu
           </a>
-          <a href="#contact" className="px-8 py-4 rounded-full border border-white/15 text-text-primary text-xs font-bold uppercase tracking-widest hover:bg-white/5 transition-all text-center">
-            Vreau un sistem →
+          <a
+            href={WA_LINK}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="px-8 py-4 rounded-full border border-white/15 text-text-primary text-xs font-bold uppercase tracking-widest hover:bg-white/5 transition-all text-center inline-flex items-center justify-center gap-2"
+          >
+            <WaIcon size={13} />
+            Vorbim acum
           </a>
         </motion.div>
 
@@ -600,11 +654,27 @@ function Incredere() {
 function CostulInactiunii() {
   return (
     <section className="py-28 bg-bg border-t border-stroke/20">
-      <div className="max-w-4xl mx-auto px-6 bg-red-950/10 border border-red-500/20 p-10 rounded-[3rem] text-center">
-        <AlertTriangle className="mx-auto text-red-500 mb-6" size={40} />
-        <h2 className="font-display italic text-3xl mb-4 text-white">Fiecare zi de amânare costă bani reali.</h2>
-        <p className="text-muted text-sm mb-8">Competitorul tău citește aceeași pagină. CapeSystem lucrează cu max 2 clienți noi pe lună.</p>
-        <a href="#contact" className="accent-gradient text-bg font-bold px-8 py-4 rounded-full uppercase text-xs inline-block">Rezerv un loc ↗</a>
+      <div className="max-w-4xl mx-auto px-6 bg-red-950/10 border border-red-500/20 p-10 rounded-[3rem]">
+        <div className="flex flex-col md:flex-row items-center gap-8">
+          <AlertTriangle className="text-red-500 flex-shrink-0" size={40} />
+          <div className="flex flex-col gap-4 text-center md:text-left flex-1">
+            {/* 1. Buton primul */}
+            <div>
+              <a
+                href={AUDIT_LINK}
+                className="inline-block accent-gradient text-bg font-bold px-8 py-4 rounded-full uppercase text-xs tracking-widest hover:scale-105 transition-transform"
+              >
+                Rezerv un loc ↗
+              </a>
+            </div>
+            {/* 2. Copy după */}
+            <h2 className="font-display italic text-2xl text-white">Fiecare zi de amânare costă bani reali.</h2>
+            <p className="text-muted text-sm">
+              Competitorul tău citește aceeași pagină.{" "}
+              <span className="text-white/80">CapeSystem lucrează cu max 2 clienți noi pe lună.</span>
+            </p>
+          </div>
+        </div>
       </div>
     </section>
   );
@@ -615,24 +685,113 @@ function Contact() {
     <section id="contact" className="py-32 bg-bg px-6 border-t border-stroke/20">
       <div className="max-w-xl mx-auto text-center">
         <Badge>Contact</Badge>
-        <h2 className="font-display italic text-4xl mb-12">Hai să construim.</h2>
+        <h2 className="font-display italic text-4xl mb-4">Hai să construim.</h2>
+        <p className="text-muted text-sm mb-10">O discuție de 30 de minute poate schimba traiectoria afacerii tale.</p>
+
+        {/* WhatsApp — opțiunea rapidă */}
+        <a
+          href={WA_LINK}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="mb-6 flex items-center justify-center gap-3 bg-[#25D366]/10 border border-[#25D366]/25 text-[#25D366] font-bold text-sm px-6 py-4 rounded-2xl hover:bg-[#25D366]/18 transition-colors"
+        >
+          <WaIcon size={18} />
+          Scrie-ne direct pe WhatsApp
+          <ArrowUpRight size={14} />
+        </a>
+
+        {/* Separator */}
+        <div className="relative mb-6">
+          <div className="absolute inset-0 flex items-center"><div className="w-full border-t border-white/8" /></div>
+          <div className="relative flex justify-center">
+            <span className="px-4 bg-bg text-white/30 text-[10px] uppercase tracking-widest font-body">sau trimite un mesaj</span>
+          </div>
+        </div>
+
         <form action="https://formspree.io/f/xqewbwgj" method="POST" className="space-y-4 text-left">
           <input type="text" name="name" placeholder="Nume" required className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-3 text-white outline-none focus:border-accent" />
           <input type="email" name="email" placeholder="Email" required className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-3 text-white outline-none focus:border-accent" />
-          <textarea name="message" placeholder="Mesaj..." rows={3} required className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-3 text-white outline-none focus:border-accent" />
+          <textarea name="message" placeholder="Mesaj..." rows={3} required className="w-full bg-white/5 border border-white/10 rounded-xl px-5 py-3 text-white outline-none focus:border-accent resize-none" />
           <button type="submit" className="w-full accent-gradient text-bg font-bold py-4 rounded-xl uppercase text-xs tracking-widest">Trimite ↗</button>
         </form>
+
+        <div className="mt-8 pt-6 border-t border-white/5 flex flex-col items-center gap-2">
+          <a href="tel:+40733874143" className="font-display italic text-xl text-white hover:text-accent transition-colors">+40 733 874 143</a>
+          <a href="mailto:harapalb923@gmail.com" className="text-muted text-xs font-body hover:text-white transition-colors">harapalb923@gmail.com</a>
+        </div>
       </div>
     </section>
   );
 }
 
+function SocialLink({ href, label, children }) {
+  return (
+    <a href={href} target="_blank" rel="noopener noreferrer" aria-label={label}
+      className="w-9 h-9 rounded-full border border-white/15 flex items-center justify-center text-white/50 transition-all duration-200 hover:border-[#89AACC]/50 hover:text-[#89AACC] hover:bg-white/5">
+      {children}
+    </a>
+  );
+}
+
 function Footer() {
   return (
-    <footer className="py-10 border-t border-stroke/20 text-center text-[10px] text-muted uppercase tracking-widest">
-      © {new Date().getFullYear()} CapeSystem · azisunt.net · High Performance Systems
+    <footer className="border-t border-stroke/20 pt-10 pb-24 px-6">
+      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+        {/* Brand */}
+        <div className="flex items-center gap-3">
+          <div className="accent-gradient p-[1px] rounded-full">
+            <div className="bg-bg rounded-full px-2.5 py-1 text-[11px] font-display italic font-bold text-white">CS</div>
+          </div>
+          <div>
+            <p className="font-display italic text-sm text-white">CapeSystem</p>
+            <p className="text-[9px] text-muted font-body uppercase tracking-widest">azisunt.net</p>
+          </div>
+        </div>
+
+        {/* Copyright */}
+        <p className="text-[10px] text-muted font-body text-center order-last md:order-none">
+          © {new Date().getFullYear()} CapeSystem · High Performance Web Systems
+        </p>
+
+        {/* Social icons — toate SVG inline, nicio iconiță Lucide de brand */}
+        <div className="flex items-center gap-2.5">
+          {/* TikTok */}
+          <SocialLink href="https://www.tiktok.com/@capesystempower" label="TikTok">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.74a4.85 4.85 0 0 1-1.01-.05z"/>
+            </svg>
+          </SocialLink>
+          {/* Facebook */}
+          <SocialLink href="https://www.facebook.com/CSLEGION" label="Facebook">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/>
+            </svg>
+          </SocialLink>
+          {/* Instagram */}
+          <SocialLink href="https://instagram.com/capesystemdesign" label="Instagram">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <rect x="2" y="2" width="20" height="20" rx="5"/>
+              <circle cx="12" cy="12" r="4"/>
+              <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/>
+            </svg>
+          </SocialLink>
+          <div className="w-px h-4 bg-white/8 mx-0.5" />
+          {/* WhatsApp */}
+          <SocialLink href={WA_LINK} label="WhatsApp">
+            <WaIcon size={13} />
+          </SocialLink>
+          {/* Email */}
+          <SocialLink href="mailto:harapalb923@gmail.com" label="Email">
+            <Mail size={13} />
+          </SocialLink>
+          {/* Phone */}
+          <SocialLink href="tel:+40733874143" label="Telefon">
+            <Phone size={13} />
+          </SocialLink>
+        </div>
+      </div>
     </footer>
-  )
+  );
 }
 
 /* ─── COMPONENTA FINALĂ ─── */
