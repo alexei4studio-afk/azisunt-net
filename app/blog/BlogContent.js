@@ -413,12 +413,15 @@ function Footer() {
 }
 
 /* ─── MAIN EXPORT ─── */
-export default function BlogContent({ articles }) {
+export default function BlogContent({ articles = [] }) {
   const [activeCategory, setActiveCategory] = useState("Toate");
   const [searchQuery, setSearchQuery] = useState("");
 
+  // Garantăm că e array valid chiar dacă props vine undefined
+  const safeArticles = Array.isArray(articles) ? articles : [];
+
   // ── FILTER: uses ALL articles passed from Server Component (not sliced) ──
-  const filtered = articles.filter((a) => {
+  const filtered = safeArticles.filter((a) => {
     const matchCat = activeCategory === "Toate" || a.category === activeCategory || a.tag === activeCategory;
     const q = searchQuery.toLowerCase();
     const matchSearch = !q || a.title.toLowerCase().includes(q) || a.excerpt.toLowerCase().includes(q) || (a.tag ?? "").toLowerCase().includes(q);
@@ -467,8 +470,8 @@ export default function BlogContent({ articles }) {
                     <p className="text-[hsl(var(--muted))] text-[9px] uppercase tracking-widest font-body mb-5">Impact Hub</p>
                     <div className="space-y-4">
                       {[
-                        { value: String(articles.length), label: "Articole publicate" },
-                        { value: String(articles.filter((a) => a.category === "Studii de Caz").length), label: "Studii de caz" },
+                        { value: String(safeArticles.length), label: "Articole publicate" },
+                        { value: String(safeArticles.filter((a) => a.category === "Studii de Caz").length), label: "Studii de caz" },
                         { value: "SEO+GEO+AEO", label: "Acoperire vizibilitate" },
                       ].map((s) => (
                         <div key={s.label} className="flex items-center justify-between border-b border-white/5 pb-3 last:border-none last:pb-0">
