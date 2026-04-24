@@ -81,7 +81,9 @@ function Navbar() {
     <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-6 px-4">
       <div className={`inline-flex items-center rounded-full backdrop-blur-md border border-white/10 bg-[hsl(var(--surface))]/80 px-4 py-2 transition-all duration-300 ${scrolled ? "shadow-lg shadow-black/40" : ""}`}>
         <div className="flex items-center gap-5">
-          <a href="/" className="accent-gradient p-[1px] rounded-full">
+         <a href="/" className="flex items-center -my-2">
+  <img src="/logo.png" alt="CapeSystem" className="h-[52px] w-auto object-contain" />
+</a>
             <div className="bg-[hsl(var(--bg))] rounded-full px-2 py-1 text-[11px] font-display italic font-bold text-white">CS</div>
           </a>
           <div className="hidden sm:flex gap-5 items-center text-[10px] uppercase tracking-widest text-[hsl(var(--muted))]">
