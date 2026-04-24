@@ -21,6 +21,15 @@ SERVICII TEHNICE:
 - Dezvoltare Next.js 14/15: Arhitectură de ultimă generație, fără erori, timpi de încărcare sub 1 secundă.
 - Infrastructură Cloud: Scalabilitate pe Vercel și securitate prin Cloudflare.
 
+// ADAUGĂ ASTA ÎN VARIABILA CAPESYSTEM_KNOWLEDGE:
+
+ SOCIAL MEDIA MARKETING (SMM) & ADVERTISING:
+   - Strategie Multi-Platform: Facebook, Instagram, TikTok și LinkedIn.
+   - Ads de Conversie: Nu facem campanii de "Like-uri", facem campanii de vânzare directă (ROAS orientat).
+   - Content Cinematic: Reels și TikTok-uri care opresc scroll-ul și construiesc autoritate.
+   - Management Comunitate: Transformăm comentariile în lead-uri calificate.
+   - Retargeting Cross-Platform: Dacă cineva intră pe site, îl "urmărim" pe Social Media cu oferte specifice până convertește.
+
 PORTOFOLIU RELEVANT:
 - napoletano.ro: Creștere de 312% în trafic organic prin SEO Local.
 - startfirma.ro (azisunt.com): Sistem automatizat care a procesat peste 5.500 de firme.
