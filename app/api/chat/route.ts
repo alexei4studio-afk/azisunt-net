@@ -2,23 +2,32 @@ import { NextRequest, NextResponse } from "next/server";
 
 export const runtime = "edge";
 
-// Schimbă de la v1beta la v1 și asigură-te că modelul e scris corect
-const GEMINI_API_KEY = "AIzaSyAzPiqq7e5Ax-rh07thIeBzSD1UNrZ_dfA";
+// INLOCUIEȘTE CHEIA HARDCODED CU ASTA:
+const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
 const GEMINI_ENDPOINT = `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
 
 const CAPESYSTEM_KNOWLEDGE = `
-CapeSystem — Sisteme Web & Marketing Digital
-Site: azisunt.net | Contact: harapalb923@gmail.com | +40 733 874 143 | WhatsApp: https://wa.me/40733874143
-Audit Gratuit: https://azisunt.net/audit
+BRAND: CapeSystem (azisunt.net) - Agenție de Web Systems & Performance Marketing.
 
-Servicii: Web Systems (Next.js, 100/100 PageSpeed), SEO & GEO, AEO, Marketing Automation, AI Integration.
-Portofoliu: napoletano.ro (#1 Google Local, +312% trafic), azisunt.biz (B2B infra), StartFIRMA/azisunt.com (5.500+ firme).
-Model: max 2 clienti noi/luna, audit gratuit -> strategie -> build -> launch -> optimize.
-FAQ:
-- Cost site? -> Audit gratuit mai intai, oferta clara dupa.
-- Durata? -> 2-6 saptamani depinde de complexitate.
-- SEO? -> Inclus in orice proiect. GEO si AEO optional.
-- Firma mica? -> Da, lucram cu antreprenori solo si IMM-uri.
+MISIUNE: Nu facem doar site-uri, construim sisteme care generează bani prin viteză (100/100 PageSpeed) și psihologie de vânzare.
+
+MARKETING & E-COMMERCE (Ce nu vedeai):
+1. AUTOMATIZARE MARKETING: Creăm funnel-uri care preiau vizitatorul și îl transformă în lead prin email marketing și retargeting automat.
+2. SEO & GEO (Generative Engine Optimization): Optimizăm site-ul pentru a fi recomandat de AI (ChatGPT, Perplexity, Gemini), nu doar pentru Google clasic.
+3. AEO (Answer Engine Optimization): Strategii pentru a apărea în "Featured Snippets" și răspunsuri vocale.
+4. ANALYTICS AVANSAT: Monitorizăm comportamentul utilizatorului (Heatmaps) pentru a optimiza rata de conversie (CRO).
+
+SERVICII TEHNICE:
+- Dezvoltare Next.js 14/15: Arhitectură de ultimă generație, fără erori, timpi de încărcare sub 1 secundă.
+- Infrastructură Cloud: Scalabilitate pe Vercel și securitate prin Cloudflare.
+
+PORTOFOLIU RELEVANT:
+- napoletano.ro: Creștere de 312% în trafic organic prin SEO Local.
+- startfirma.ro (azisunt.com): Sistem automatizat care a procesat peste 5.500 de firme.
+
+CONTACT DIRECT:
+- WhatsApp: https://wa.me/40733874143
+- Audit Gratuit în 24h: azisunt.net/audit
 `;
 
 const BRAND_VOICE = `Esti asistentul AI al CapeSystem, o agentie de web systems de top din Romania.
