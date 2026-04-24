@@ -74,7 +74,7 @@ function extractColors(html: string): { primary: string; accent: string } {
 
   // Fallback: look for hex colors in style tags
   const hexMatches = html.match(/#[0-9A-Fa-f]{6}/g) || [];
-  const uniqueColors = [...new Set(hexMatches)].filter(
+  const uniqueColors = Array.from(new Set(hexMatches)).filter(
     (c) => c !== "#ffffff" && c !== "#000000" && c !== "#FFFFFF" && c !== "#000000"
   );
 
