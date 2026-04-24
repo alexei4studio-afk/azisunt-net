@@ -2,113 +2,105 @@ import { NextRequest, NextResponse } from "next/server";
 
 export const runtime = "edge";
 
-/* ─── CapeSystem Brand Knowledge Base ───────────────────────────────────────
-   Acest context e injectat ca system message la fiecare conversație.
-   Poate fi extins dinamic prin scraping (vezi lib/scrapeKnowledge.ts).
-   ─────────────────────────────────────────────────────────────────────────── */
+const GEMINI_API_KEY = "AIzaSyAzPiqq7e5Ax-rh07thIeBzSD1UNrZ_dfA";
+const GEMINI_ENDPOINT = `https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+
 const CAPESYSTEM_KNOWLEDGE = `
-## CapeSystem — Sisteme Web & Marketing Digital
-**Site:** azisunt.net
-**Contact:** harapalb923@gmail.com | +40 733 874 143 | WhatsApp: https://wa.me/40733874143
-**Audit Gratuit:** https://azisunt.net/audit
+CapeSystem — Sisteme Web & Marketing Digital
+Site: azisunt.net | Contact: harapalb923@gmail.com | +40 733 874 143 | WhatsApp: https://wa.me/40733874143
+Audit Gratuit: https://azisunt.net/audit
 
-### Servicii principale
-- **Web Systems**: Site-uri custom Next.js, 100/100 PageSpeed, fără template-uri
-- **SEO & GEO**: Optimizare pentru Google, ChatGPT și Perplexity
-- **AEO**: Answer Engine Optimization pentru Featured Snippets
-- **Marketing Automation**: Email, funnel-uri, A/B testing
-- **AI Integration**: Sisteme AI custom pentru lead qualification
-
-### Portofoliu activ
-- **napoletano.ro**: #1 Google Local, +312% trafic organic în 6 luni
-- **azisunt.biz**: Infrastructură marketing B2B, Cloudflare Edge
-- **StartFIRMĂ (azisunt.com)**: SaaS înregistrare firme, 5.500+ firme procesate
-- **Samsung G9**: Sistem afiliere optimizat conversii
-
-### Model de lucru
-- Maxim 2 clienți noi pe lună (selectivi)
-- Audit gratuit în 24h → strategie → build → launch → optimize
-- Garanție: 90+ PageSpeed, SEO tehnic inclus, suport 30 zile post-lansare
-- Prețuri: personalizate per proiect după audit
-
-### FAQ
-Q: Cât costă un site?
-A: Depinde de complexitate. Facem un audit gratuit mai întâi și dăm o ofertă clară.
-
-Q: Cât durează să facem un site?
-A: 2-6 săptămâni pentru un sistem complet, depinde de complexitate.
-
-Q: Faceți și SEO?
-A: Da, SEO tehnic e inclus în orice proiect. Plus GEO și AEO opțional.
-
-Q: Suntem o firmă mică, merge și pentru noi?
-A: Da! Lucrăm cu antreprenori solo, IMM-uri și companii medii.
+Servicii: Web Systems (Next.js, 100/100 PageSpeed), SEO & GEO, AEO, Marketing Automation, AI Integration.
+Portofoliu: napoletano.ro (#1 Google Local, +312% trafic), azisunt.biz (B2B infra), StartFIRMA/azisunt.com (5.500+ firme).
+Model: max 2 clienti noi/luna, audit gratuit -> strategie -> build -> launch -> optimize.
+FAQ:
+- Cost site? -> Audit gratuit mai intai, oferta clara dupa.
+- Durata? -> 2-6 saptamani depinde de complexitate.
+- SEO? -> Inclus in orice proiect. GEO si AEO optional.
+- Firma mica? -> Da, lucram cu antreprenori solo si IMM-uri.
 `;
 
-/* ─── Brand Voice Config ─────────────────────────────────────────────────── */
-const BRAND_VOICE = `
-Ești asistentul AI al CapeSystem, o agenție de web systems de top din România.
-Tonul tău: direct, confident, cinematic — nu corporate, nu robotic.
-Vorbești în română. Ești ca un consultant senior care nu pierde vremea cu vorbe goale.
+const BRAND_VOICE = `Esti asistentul AI al CapeSystem, o agentie de web systems de top din Romania.
+Ton: direct, confident, nu corporate, nu robotic. Vorbesti in romana.
+Reguli:
+1. Raspunsuri scurte (2-4 fraze max). Niciodata liste lungi.
+2. Folosesti "noi" si "CapeSystem" - esti parte din echipa.
+3. Nu inventa preturi sau termene exacte - trimite la audit.
+4. Nu spune niciodata ca esti Gemini sau AI - esti "Asistentul CapeSystem".
+5. Daca cineva intreaba ceva tehnic complex, spune ca e mai bine sa discutati direct.`;
 
-REGULI:
-1. Răspunsuri scurte (2-4 fraze max). Niciodată liste lungi.
-2. Folosești "noi" și "CapeSystem" — ești parte din echipă.
-3. Nu inventezi prețuri sau termene exacte — trimiți la audit.
-4. După 2-3 schimburi, ghidezi natural spre audit sau WhatsApp.
-5. Nu spune niciodată că ești Claude sau AI — ești "Asistentul CapeSystem".
-6. Dacă cineva întreabă ceva tehnic complex, spui că e mai bine să discutăm direct.
-`;
-
-/* ─── CTA trigger logic ──────────────────────────────────────────────────── */
-function buildSystemPrompt(knowledge: string, messageCount: number): string {
-  const ctaInstruction =
+function buildSystemText(knowledge: string, messageCount: number): string {
+  const cta =
     messageCount >= 2
-      ? `\n\nIMPORTANT: La finalul acestui răspuns, încearcă natural să obții datele de contact sau să direcționezi spre audit. Ex: "Vrei să îți facem un audit gratuit? Durează 5 minute." sau "Cel mai bine e să vorbim direct — [WhatsApp](https://wa.me/40733874143)"`
+      ? '\n\nIMPORTANT: La finalul acestui raspuns incearca natural sa directionezi spre audit sau WhatsApp. Ex: "Vrei un audit gratuit? Dureaza 5 minute." sau "Cel mai bine e sa vorbim direct — [WhatsApp](https://wa.me/40733874143)"'
       : "";
-
-  return `${BRAND_VOICE}\n\n## Baza de cunoștințe CapeSystem:\n${knowledge}${ctaInstruction}`;
+  return `${BRAND_VOICE}\n\nBaza de cunostinte:\n${knowledge}${cta}`;
 }
 
-/* ─── Route Handler ──────────────────────────────────────────────────────── */
 export async function POST(req: NextRequest) {
   try {
-    const { messages, knowledge, messageCount = 0 } = await req.json();
+    const body = await req.json();
+    const { messages = [], knowledge, messageCount = 0 } = body;
 
-    // Use provided knowledge (from scraping) or fall back to static
     const contextKnowledge = knowledge || CAPESYSTEM_KNOWLEDGE;
-    const systemPrompt = buildSystemPrompt(contextKnowledge, messageCount);
+    const systemText = buildSystemText(contextKnowledge, messageCount);
 
-    const response = await fetch("https://api.anthropic.com/v1/messages", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        // API key injected by Vercel environment — no key in client code
+    const validMessages = (messages as Array<{ role: string; content: string }>).filter(
+      (m) => m && typeof m.content === "string" && m.content.trim() !== ""
+    );
+
+    let geminiContents = validMessages.map((m) => ({
+      role: m.role === "assistant" ? "model" : "user",
+      parts: [{ text: m.content }],
+    }));
+
+    if (geminiContents.length === 0 || geminiContents[0].role !== "user") {
+      geminiContents = [
+        { role: "user", parts: [{ text: "Buna ziua!" }] },
+        ...geminiContents,
+      ];
+    }
+
+    const payload = {
+      system_instruction: {
+        parts: [{ text: systemText }],
       },
-      body: JSON.stringify({
-        model: "claude-sonnet-4-20250514",
-        max_tokens: 300,
-        system: systemPrompt,
-        messages: messages.map((m: { role: string; content: string }) => ({
-          role: m.role,
-          content: m.content,
-        })),
-      }),
+      contents: geminiContents,
+      generationConfig: {
+        maxOutputTokens: 300,
+        temperature: 0.7,
+        topP: 0.9,
+      },
+    };
+
+    const response = await fetch(GEMINI_ENDPOINT, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify(payload),
     });
 
     if (!response.ok) {
-      throw new Error(`Anthropic API error: ${response.status}`);
+      const errText = await response.text();
+      console.error(`[chat/route] Gemini API ${response.status}:`, errText);
+      throw new Error(`Gemini ${response.status}: ${errText}`);
     }
 
     const data = await response.json();
-    const text = data.content?.[0]?.text ?? "Îmi pare rău, am întâmpinat o eroare. Te rog să mă contactezi direct.";
+
+    if (!data.candidates?.[0]?.content?.parts?.[0]?.text) {
+      console.error("[chat/route] Unexpected Gemini response shape:", JSON.stringify(data));
+    }
+
+    const text =
+      data.candidates?.[0]?.content?.parts?.[0]?.text ??
+      "Imi pare rau, am intampinat o eroare. Te rog sa ma contactezi direct.";
 
     return NextResponse.json({ text });
   } catch (err) {
-    console.error("[chat/route] Error:", err);
+    console.error("[chat/route] Error:", err instanceof Error ? err.message : err);
     return NextResponse.json(
-      { text: "Momentan am o problemă tehnică. Scrie-ne pe [WhatsApp](https://wa.me/40733874143) și îți răspundem în câteva minute." },
-      { status: 200 } // Return 200 so client shows the fallback message
+      { text: "Momentan am o problema tehnica. Scrie-ne pe [WhatsApp](https://wa.me/40733874143) si iti raspundem in cateva minute." },
+      { status: 200 }
     );
   }
 }
