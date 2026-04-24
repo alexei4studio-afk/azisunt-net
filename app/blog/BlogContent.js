@@ -77,24 +77,18 @@ function Navbar() {
     window.addEventListener("scroll", onScroll);
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
-
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-6 px-4">
       <div className={`inline-flex items-center rounded-full backdrop-blur-md border border-white/10 bg-[hsl(var(--surface))]/80 px-4 py-2 transition-all duration-300 ${scrolled ? "shadow-lg shadow-black/40" : ""}`}>
         <div className="flex items-center gap-5">
-          {/* Logo Patch */}
-          <a href="/" className="flex items-center -my-2 drop-shadow-[0_0_15px_rgba(137,170,204,0.3)] hover:scale-105 transition-transform duration-300">
-            <img src="/logo.png" alt="CapeSystem" className="h-[52px] w-auto object-contain" />
+          <a href="/" className="accent-gradient p-[1px] rounded-full">
+            <div className="bg-[hsl(var(--bg))] rounded-full px-2 py-1 text-[11px] font-display italic font-bold text-white">CS</div>
           </a>
-
           <div className="hidden sm:flex gap-5 items-center text-[10px] uppercase tracking-widest text-[hsl(var(--muted))]">
             <a href="/#problema" className="hover:text-white transition-colors">Problema</a>
             <a href="/#work" className="hover:text-white transition-colors">Work</a>
-            <a href="/blog" className="hover:text-white transition-colors">Knowledge Hub</a>
-            {/* Link-ul de Audit adăugat înapoi */}
-            <a href="/audit" className="text-[#89AACC] font-bold hover:brightness-125 transition-all">AI Audit</a>
+            <a href="/blog" className="text-white border-b border-[#89AACC]/60 pb-0.5">Knowledge Hub</a>
           </div>
-          
           <a href="/#contact" className="bg-white text-black px-4 py-1.5 rounded-full text-[10px] font-bold uppercase tracking-wider hover:scale-105 transition-transform">Vorbim? ↗</a>
         </div>
       </div>
