@@ -55,7 +55,7 @@ export default function RootLayout({ children }) {
       lang="ro"
       className={`${syne.variable} ${inter.variable} scroll-smooth`}
     >
-      <body className="bg-[#080810] text-white antialiased overflow-x-hidden">
+      <body className="bg-[#080810] text-white antialiased">
         {children}
 
         {/* ── FloatingChat — apare pe toate paginile ── */}

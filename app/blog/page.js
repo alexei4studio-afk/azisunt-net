@@ -22,6 +22,8 @@ export default function BlogPage() {
   try {
     const data = getSortedPostsData();
     articles = Array.isArray(data) ? data : [];
+	console.log("[blog/page] Total articole încărcate:", articles.length);
+console.log("[blog/page] Sluguri:", articles.map(a => a.slug));
   } catch (err) {
     console.error("[blog/page] getSortedPostsData error:", err);
     articles = [];

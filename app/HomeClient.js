@@ -100,7 +100,7 @@ function Navbar() {
 <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-3 px-4 transition-all duration-500">
   <div 
     className={`inline-flex items-center rounded-full backdrop-blur-xl border border-white/10 bg-surface/90 px-6 h-[45px] transition-all duration-300 ${
-      scrolled ? "shadow-2xl shadow-blue-500/20 scale-95" : "scale-100"
+      scrolled ? "shadow-2xl shadow-blue-500/20" : ""
     }`}
   >
         <div className="flex items-center gap-10">
@@ -675,7 +675,7 @@ function Footer() {
 /* ─── COMPONENTA FINALĂ ─── */
 export default function HomeClient({ latestPosts }) {
   return (
-    <main className="bg-bg min-h-screen text-text-primary overflow-x-hidden">
+    <main className="bg-bg min-h-screen text-text-primary" style={{ overflowX: "clip" }}>
       <Navbar />
       <StickyBar />
       <Hero />

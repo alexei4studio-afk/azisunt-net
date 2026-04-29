@@ -2,9 +2,8 @@ import { NextRequest, NextResponse } from "next/server";
 
 export const runtime = "edge";
 
-// INLOCUIEȘTE CHEIA HARDCODED CU ASTA:
 const GEMINI_API_KEY = process.env.GEMINI_API_KEY;
-const GEMINI_ENDPOINT = `https://generativelanguage.googleapis.com/v1/models/gemini-1.5-flash:generateContent?key=${GEMINI_API_KEY}`;
+const GEMINI_ENDPOINT = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=${GEMINI_API_KEY}`;
 
 const CAPESYSTEM_KNOWLEDGE = `
 BRAND: CapeSystem (azisunt.net) - Agenție de Web Systems & Performance Marketing.
@@ -21,14 +20,12 @@ SERVICII TEHNICE:
 - Dezvoltare Next.js 14/15: Arhitectură de ultimă generație, fără erori, timpi de încărcare sub 1 secundă.
 - Infrastructură Cloud: Scalabilitate pe Vercel și securitate prin Cloudflare.
 
-// ADAUGĂ ASTA ÎN VARIABILA CAPESYSTEM_KNOWLEDGE:
-
- SOCIAL MEDIA MARKETING (SMM) & ADVERTISING:
-   - Strategie Multi-Platform: Facebook, Instagram, TikTok și LinkedIn.
-   - Ads de Conversie: Nu facem campanii de "Like-uri", facem campanii de vânzare directă (ROAS orientat).
-   - Content Cinematic: Reels și TikTok-uri care opresc scroll-ul și construiesc autoritate.
-   - Management Comunitate: Transformăm comentariile în lead-uri calificate.
-   - Retargeting Cross-Platform: Dacă cineva intră pe site, îl "urmărim" pe Social Media cu oferte specifice până convertește.
+SOCIAL MEDIA MARKETING (SMM) & ADVERTISING:
+- Strategie Multi-Platform: Facebook, Instagram, TikTok și LinkedIn.
+- Ads de Conversie: Nu facem campanii de "Like-uri", facem campanii de vânzare directă (ROAS orientat).
+- Content Cinematic: Reels și TikTok-uri care opresc scroll-ul și construiesc autoritate.
+- Management Comunitate: Transformăm comentariile în lead-uri calificate.
+- Retargeting Cross-Platform: Dacă cineva intră pe site, îl "urmărim" pe Social Media cu oferte specifice până convertește.
 
 PORTOFOLIU RELEVANT:
 - napoletano.ro: Creștere de 312% în trafic organic prin SEO Local.
@@ -81,7 +78,7 @@ export async function POST(req: NextRequest) {
     }
 
     const payload = {
-      system_instruction: {
+      systemInstruction: {          // ← FIX: era system_instruction (snake_case invalid)
         parts: [{ text: systemText }],
       },
       contents: geminiContents,

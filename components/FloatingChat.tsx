@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useRef, useEffect, useCallback } from "react";
+import { createPortal } from "react-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { X, Send, Loader2, Sparkles, MessageCircle, ChevronDown } from "lucide-react";
 
@@ -148,7 +149,7 @@ export default function FloatingChat({
         ]);
       }
     }
-  }, [open]);
+  }, [open, greeting]); // messages omis intenționat — vrem doar la primul open
 
   /* ── Show greeting bubble after 4s if not opened ── */
   useEffect(() => {
@@ -157,10 +158,9 @@ export default function FloatingChat({
     return () => clearTimeout(t);
   }, [greetingDismissed]);
 
-  /* ── Send message ── */
-  const sendMessage = useCallback(async () => {
-    const text = input.trim();
-    if (!text || loading) return;
+  /* ── Send message (core — primește textul direct) ── */
+  const sendText = useCallback(async (text: string) => {
+    if (!text.trim() || loading) return;
 
     const userMsg: Message = { role: "user", content: text, id: Date.now().toString() };
     const newMessages = [...messages, userMsg];
@@ -197,7 +197,10 @@ export default function FloatingChat({
     } finally {
       setLoading(false);
     }
-  }, [input, loading, messages, knowledge]);
+  }, [loading, messages, knowledge]);
+
+  /* ── Wrapper pentru butonul Send (folosește input din state) ── */
+  const sendMessage = useCallback(() => sendText(input.trim()), [input, sendText]);
 
   const handleKeyDown = (e: React.KeyboardEvent) => {
     if (e.key === "Enter" && !e.shiftKey) {
@@ -211,7 +214,10 @@ export default function FloatingChat({
     background: `linear-gradient(135deg, ${primaryColor} 0%, ${accentColor} 100%)`,
   };
 
-  return (
+  const [mounted, setMounted] = useState(false);
+  useEffect(() => setMounted(true), []);
+
+  const chatUI = (
     <>
       {/* ── Greeting bubble ── */}
       <AnimatePresence>
@@ -245,7 +251,7 @@ export default function FloatingChat({
       {/* ── Floating button ── */}
       <motion.button
         onClick={() => setOpen(!open)}
-        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full flex items-center justify-center shadow-2xl relative"
+        className="fixed bottom-6 right-6 z-50 w-14 h-14 rounded-full flex items-center justify-center shadow-2xl"
         style={{
           ...gradientStyle,
           boxShadow: `0 8px 32px ${primaryColor}50, 0 2px 8px rgba(0,0,0,0.4)`,
@@ -281,7 +287,7 @@ export default function FloatingChat({
       <AnimatePresence>
         {open && (
           <motion.div
-            initial={{ opacity: 0, scale: 0.92, y: 20, transformOrigin: "bottom right" }}
+            initial={{ opacity: 0, scale: 0.92, y: 20 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.92, y: 20 }}
             transition={{ type: "spring", stiffness: 300, damping: 28 }}
@@ -291,6 +297,7 @@ export default function FloatingChat({
               background: "hsl(0 0% 5%)",
               border: `1px solid ${primaryColor}30`,
               borderRadius: "1.75rem",
+              transformOrigin: "bottom right",
               boxShadow: `0 24px 64px rgba(0,0,0,0.6), 0 0 0 1px ${primaryColor}15, 0 -1px 0 ${primaryColor}20`,
             }}
           >
@@ -397,7 +404,7 @@ export default function FloatingChat({
                 {["Cât costă un site?", "Faceți SEO?", "Vreau un audit"].map((q) => (
                   <button
                     key={q}
-                    onClick={() => { setInput(q); setTimeout(() => sendMessage(), 50); }}
+                    onClick={() => sendText(q)}
                     className="text-[11px] px-3 py-1.5 rounded-full transition-all hover:scale-105"
                     style={{
                       background: `${primaryColor}15`,
@@ -458,4 +465,6 @@ export default function FloatingChat({
       </AnimatePresence>
     </>
   );
+
+  return mounted ? createPortal(chatUI, document.body) : null;
 }
