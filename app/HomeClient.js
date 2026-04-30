@@ -670,12 +670,66 @@ function Contact() {
   );
 }
 
+function SocialLink({ href, label, children }) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={label}
+      className="w-9 h-9 rounded-full border border-white/15 flex items-center justify-center text-white/50 transition-all duration-200 hover:border-[#89AACC]/50 hover:text-[#89AACC] hover:bg-white/5"
+    >
+      {children}
+    </a>
+  );
+}
+
 function Footer() {
   return (
-    <footer className="py-10 border-t border-stroke/20 text-center text-[10px] text-muted uppercase tracking-widest">
-      © {new Date().getFullYear()} CapeSystem · azisunt.net · High Performance Systems
+    <footer className="border-t border-stroke/20 pt-10 pb-24 px-6">
+      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-center justify-between gap-6">
+
+        {/* Logo */}
+        <div className="flex items-center gap-3">
+          <div className="accent-gradient p-[1px] rounded-full">
+            <div className="bg-bg rounded-full px-2.5 py-1 text-[11px] font-display italic font-bold text-white">CS</div>
+          </div>
+          <div>
+            <p className="font-display italic text-sm text-white">CapeSystem</p>
+            <p className="text-[9px] text-muted font-body uppercase tracking-widest">azisunt.net</p>
+          </div>
+        </div>
+
+        {/* Copyright */}
+        <p className="text-[10px] text-muted font-body text-center order-last md:order-none">
+          © {new Date().getFullYear()} CapeSystem · High-Performance Web Systems & Digital Marketing
+        </p>
+
+        {/* Social + contact */}
+        <div className="flex items-center gap-2.5">
+          <SocialLink href="https://www.tiktok.com/@capesystempower" label="TikTok">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+              <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.32 6.32 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.69a8.18 8.18 0 0 0 4.78 1.52V6.74a4.85 4.85 0 0 1-1.01-.05z"/>
+            </svg>
+          </SocialLink>
+          <SocialLink href="https://www.facebook.com/CSLEGION" label="Facebook">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="currentColor"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3z"/></svg>
+          </SocialLink>
+          <SocialLink href="https://instagram.com/capesystemdesign" label="Instagram">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><rect x="2" y="2" width="20" height="20" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="0.5" fill="currentColor" stroke="none"/></svg>
+          </SocialLink>
+          <div className="w-px h-4 bg-white/8 mx-1" />
+          <SocialLink href="mailto:harapalb923@gmail.com" label="Email">
+            <Mail size={13} />
+          </SocialLink>
+          <SocialLink href="tel:+40733874143" label="Telefon">
+            <Phone size={13} />
+          </SocialLink>
+        </div>
+
+      </div>
     </footer>
-  )
+  );
 }
 
 /* ─── COMPONENTA FINALĂ ─── */
