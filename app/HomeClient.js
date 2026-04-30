@@ -141,7 +141,7 @@ function Navbar() {
             </a>
           </div>
 
-          {/* Vorbim acum → WhatsApp */}
+          {/* Vorbim acum → WhatsApp — desktop */}
           <a
             href="https://wa.me/40733874143"
             target="_blank"
@@ -155,6 +155,12 @@ function Navbar() {
             Vorbim acum
           </a>
 
+          {/* Mobile — Vorbim + hamburger */}
+          <a href="https://wa.me/40733874143" target="_blank" rel="noopener noreferrer"
+            className="md:hidden inline-flex items-center gap-1 text-white font-black text-[10px] px-3 py-1.5 rounded-full uppercase tracking-wider"
+            style={{ background: "linear-gradient(135deg, #89AACC, #4E85BF)" }}>
+            Vorbim
+          </a>
           <button onClick={() => setOpen(!open)} className="md:hidden flex flex-col gap-1.5 p-1" aria-label="Menu">
             <span className={`block w-6 h-0.5 bg-white transition-all ${open ? "rotate-45 translate-y-2" : ""}`} />
             <span className={`block w-6 h-0.5 bg-white transition-all ${open ? "opacity-0" : ""}`} />
