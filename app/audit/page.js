@@ -14,6 +14,7 @@ const WA_LINK = "https://wa.me/40733874143";
 /* ─── SHARED NAV LOGO ─── */
 function Navbar() {
   const [scrolled, setScrolled] = useState(false);
+  const [open, setOpen] = useState(false);
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 40);
     window.addEventListener("scroll", onScroll);
@@ -22,27 +23,23 @@ function Navbar() {
 
   return (
     <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-3 px-4">
-      <div className={`inline-flex items-center rounded-full backdrop-blur-xl border border-white/10 bg-[hsl(var(--surface))]/90 px-4 h-[45px] transition-all duration-300 gap-6 ${scrolled ? "shadow-2xl shadow-black/30" : ""}`}>
-        {/* Logo — h-[52px] overflows pill via -my-2 */}
+      <div className={`inline-flex items-center rounded-full backdrop-blur-xl border border-white/10 bg-[hsl(var(--surface))]/90 px-4 h-[45px] transition-all duration-300 gap-4 ${scrolled ? "shadow-2xl shadow-black/30" : ""}`}>
         <a href="/" className="flex items-center -my-2 hover:scale-105 transition-transform">
-          <img
-            src="/logo.png"
-            alt="CapeSystem"
-            className="h-[52px] w-auto object-contain"
-            style={{ filter: "drop-shadow(0 0 8px rgba(137,170,204,0.3))" }}
-          />
+          <img src="/logo.png" alt="CapeSystem" className="h-[52px] w-auto object-contain"
+            style={{ filter: "drop-shadow(0 0 8px rgba(137,170,204,0.3))" }} />
         </a>
 
-        <div className="hidden sm:flex items-center gap-5">
-          <a href="/#work"    className="text-[10px] uppercase tracking-widest text-[hsl(var(--muted))] hover:text-white transition-colors">Work</a>
-          <a href="/blog"     className="text-[10px] uppercase tracking-widest text-[hsl(var(--muted))] hover:text-white transition-colors">Blog</a>
-          <a href="/audit"    className="inline-flex items-center gap-1.5 text-[10px] uppercase tracking-widest font-black" style={{ color: "#89AACC" }}>
+        {/* Desktop */}
+        <div className="hidden md:flex items-center gap-5">
+          <a href="/#work" className="text-[10px] uppercase tracking-widest text-[hsl(var(--muted))] hover:text-white transition-colors">Work</a>
+          <a href="/blog"  className="text-[10px] uppercase tracking-widest text-[hsl(var(--muted))] hover:text-white transition-colors">Blog</a>
+          <a href="/audit" className="inline-flex items-center gap-1.5 text-[10px] uppercase tracking-widest font-black" style={{ color: "#89AACC" }}>
             <Sparkles size={11} /> AI Audit
           </a>
         </div>
 
         <a href={WA_LINK} target="_blank" rel="noopener noreferrer"
-          className="inline-flex items-center gap-1.5 text-[hsl(var(--bg))] font-black text-[10px] px-4 py-1.5 rounded-full uppercase tracking-wider hover:scale-105 transition-transform"
+          className="hidden md:inline-flex items-center gap-1.5 text-[hsl(var(--bg))] font-black text-[10px] px-4 py-1.5 rounded-full uppercase tracking-wider hover:scale-105 transition-transform"
           style={{ background: "linear-gradient(135deg, #89AACC, #4E85BF)" }}>
           <svg width="11" height="11" viewBox="0 0 24 24" fill="currentColor">
             <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347z"/>
@@ -50,7 +47,43 @@ function Navbar() {
           </svg>
           Vorbim
         </a>
+
+        {/* Mobile — Vorbim + hamburger */}
+        <a href={WA_LINK} target="_blank" rel="noopener noreferrer"
+          className="md:hidden inline-flex items-center gap-1 text-[hsl(var(--bg))] font-black text-[10px] px-3 py-1.5 rounded-full uppercase tracking-wider"
+          style={{ background: "linear-gradient(135deg, #89AACC, #4E85BF)" }}>
+          Vorbim
+        </a>
+        <button onClick={() => setOpen(!open)} className="md:hidden flex flex-col gap-1.5 p-1" aria-label="Menu">
+          <span className={`block w-5 h-0.5 bg-white transition-all ${open ? "rotate-45 translate-y-2" : ""}`} />
+          <span className={`block w-5 h-0.5 bg-white transition-all ${open ? "opacity-0" : ""}`} />
+          <span className={`block w-5 h-0.5 bg-white transition-all ${open ? "-rotate-45 -translate-y-2" : ""}`} />
+        </button>
       </div>
+
+      {/* Mobile dropdown */}
+      {open && (
+        <div className="absolute top-full mt-3 w-[calc(100%-2rem)] max-w-sm bg-[hsl(var(--surface))]/98 backdrop-blur-2xl border border-white/10 rounded-[2rem] px-6 py-6 flex flex-col gap-4 shadow-2xl">
+          <a href="/#work" onClick={() => setOpen(false)}
+            className="text-base text-white/80 hover:text-white font-display italic border-b border-white/5 pb-3">
+            Work
+          </a>
+          <a href="/blog" onClick={() => setOpen(false)}
+            className="text-base text-white/80 hover:text-white font-display italic border-b border-white/5 pb-3">
+            Blog
+          </a>
+          <a href="/audit" onClick={() => setOpen(false)}
+            className="flex items-center gap-2 text-base font-black uppercase tracking-widest pb-3 border-b border-white/5"
+            style={{ color: "#89AACC" }}>
+            <Sparkles size={13} /> AI Audit
+          </a>
+          <a href={WA_LINK} target="_blank" rel="noopener noreferrer" onClick={() => setOpen(false)}
+            className="inline-flex items-center justify-center gap-2 font-black text-sm px-6 py-3 rounded-2xl text-white uppercase tracking-widest"
+            style={{ background: "linear-gradient(135deg, #89AACC, #4E85BF)" }}>
+            Vorbim pe WhatsApp
+          </a>
+        </div>
+      )}
     </nav>
   );
 }

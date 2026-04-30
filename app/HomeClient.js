@@ -155,7 +155,7 @@ function Navbar() {
             Vorbim acum
           </a>
 
-          <button onClick={() => setOpen(!open)} className="sm:hidden flex flex-col gap-1.5 p-1" aria-label="Menu">
+          <button onClick={() => setOpen(!open)} className="md:hidden flex flex-col gap-1.5 p-1" aria-label="Menu">
             <span className={`block w-6 h-0.5 bg-white transition-all ${open ? "rotate-45 translate-y-2" : ""}`} />
             <span className={`block w-6 h-0.5 bg-white transition-all ${open ? "opacity-0" : ""}`} />
             <span className={`block w-6 h-0.5 bg-white transition-all ${open ? "-rotate-45 -translate-y-2" : ""}`} />
@@ -483,29 +483,6 @@ function Portofoliu() {
               </div>
               <div className="flex items-center gap-2 text-xs font-bold text-[#89AACC] group-hover:gap-4 transition-all uppercase tracking-widest whitespace-nowrap mt-6 md:mt-0 md:ml-10">
                 Vizitează Platforma <ArrowUpRight size={14} />
-              </div>
-            </a>
-          </Reveal>
-
-          {/* 5. AZISUNT.SHOP */}
-          <Reveal className="md:col-span-12" delay={250}>
-            <a href="https://azisunt.shop" target="_blank" rel="noopener noreferrer"
-              className="group relative flex flex-col md:flex-row md:items-center justify-between h-full p-10 bg-surface border border-[#89AACC]/20 rounded-[3rem] hover:border-[#89AACC]/60 hover:-translate-y-1 transition-all duration-300"
-            >
-              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-[3rem]"
-                style={{ background: "radial-gradient(circle at 80% 50%, rgba(137,170,204,0.06) 0%, transparent 65%)" }} />
-              <div className="max-w-2xl relative z-10">
-                <Globe className="text-[#89AACC] mb-6" size={32} />
-                <span className="inline-flex items-center gap-1.5 w-fit rounded-full px-2.5 py-1 text-[9px] font-body font-bold uppercase tracking-widest text-white/60 border border-white/10 bg-white/5 mb-4">
-                  E-commerce · Afiliere
-                </span>
-                <h3 className="text-3xl font-display italic mb-3 text-white">azisunt.shop</h3>
-                <p className="text-muted text-sm mb-0 leading-relaxed">
-                  Platformă e-commerce și afiliere optimizată pentru conversii maxime. Sistem de recomandări, tracking avansat și infrastructură scalabilă.
-                </p>
-              </div>
-              <div className="flex items-center gap-2 text-xs font-bold text-[#89AACC] group-hover:diff-4 transition-all uppercase tracking-widest whitespace-nowrap mt-6 md:mt-0 md:ml-10 relative z-10">
-                Vizitează Shop-ul <ArrowUpRight size={14} />
               </div>
             </a>
           </Reveal>
