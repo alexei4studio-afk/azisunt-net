@@ -100,7 +100,7 @@ function Navbar() {
 <nav className="fixed top-0 left-0 right-0 z-50 flex justify-center pt-3 px-4 transition-all duration-500">
   <div 
     className={`inline-flex items-center rounded-full backdrop-blur-xl border border-white/10 bg-surface/90 px-6 h-[45px] transition-all duration-300 ${
-      scrolled ? "shadow-2xl shadow-blue-500/20" : ""
+      scrolled ? "shadow-2xl shadow-blue-500/20 scale-95" : "scale-100"
     }`}
   >
         <div className="flex items-center gap-10">
@@ -487,6 +487,29 @@ function Portofoliu() {
             </a>
           </Reveal>
 
+          {/* 5. AZISUNT.SHOP */}
+          <Reveal className="md:col-span-12" delay={250}>
+            <a href="https://azisunt.shop" target="_blank" rel="noopener noreferrer"
+              className="group relative flex flex-col md:flex-row md:items-center justify-between h-full p-10 bg-surface border border-[#89AACC]/20 rounded-[3rem] hover:border-[#89AACC]/60 hover:-translate-y-1 transition-all duration-300"
+            >
+              <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500 pointer-events-none rounded-[3rem]"
+                style={{ background: "radial-gradient(circle at 80% 50%, rgba(137,170,204,0.06) 0%, transparent 65%)" }} />
+              <div className="max-w-2xl relative z-10">
+                <Globe className="text-[#89AACC] mb-6" size={32} />
+                <span className="inline-flex items-center gap-1.5 w-fit rounded-full px-2.5 py-1 text-[9px] font-body font-bold uppercase tracking-widest text-white/60 border border-white/10 bg-white/5 mb-4">
+                  E-commerce · Afiliere
+                </span>
+                <h3 className="text-3xl font-display italic mb-3 text-white">azisunt.shop</h3>
+                <p className="text-muted text-sm mb-0 leading-relaxed">
+                  Platformă e-commerce și afiliere optimizată pentru conversii maxime. Sistem de recomandări, tracking avansat și infrastructură scalabilă.
+                </p>
+              </div>
+              <div className="flex items-center gap-2 text-xs font-bold text-[#89AACC] group-hover:diff-4 transition-all uppercase tracking-widest whitespace-nowrap mt-6 md:mt-0 md:ml-10 relative z-10">
+                Vizitează Shop-ul <ArrowUpRight size={14} />
+              </div>
+            </a>
+          </Reveal>
+
         </div>
       </div>
     </section>
@@ -675,7 +698,7 @@ function Footer() {
 /* ─── COMPONENTA FINALĂ ─── */
 export default function HomeClient({ latestPosts }) {
   return (
-    <main className="bg-bg min-h-screen text-text-primary" style={{ overflowX: "clip" }}>
+    <main className="bg-bg min-h-screen text-text-primary overflow-x-hidden">
       <Navbar />
       <StickyBar />
       <Hero />
