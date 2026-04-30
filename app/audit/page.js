@@ -34,9 +34,14 @@ function Footer() {
 
         {/* Logo */}
         <div className="flex items-center gap-3">
-          <div className="p-[1px] rounded-full" style={{ background: "linear-gradient(135deg, #89AACC, #4E85BF)" }}>
-            <div className="bg-[hsl(var(--bg))] rounded-full px-2.5 py-1 text-[11px] font-display italic font-bold text-white">CS</div>
-          </div>
+          <a href="/" className="flex items-center hover:scale-105 transition-transform">
+            <img
+              src="/logo.png"
+              alt="CapeSystem"
+              className="h-[44px] w-auto object-contain"
+              style={{ filter: "drop-shadow(0 0 8px rgba(137,170,204,0.3))" }}
+            />
+          </a>
           <div>
             <p className="font-display italic text-sm text-white">CapeSystem</p>
             <p className="text-[9px] text-[hsl(var(--muted))] font-body uppercase tracking-widest">azisunt.net</p>
