@@ -1,0 +1,28 @@
+{
+  "facebook": {
+    "status": "skipped",
+    "platform": "facebook",
+    "reason": "FACEBOOK_PAGE_ID sau FACEBOOK_PAGE_ACCESS_TOKEN lipsesc din .env"
+  },
+  "instagram": {
+    "status": "skipped",
+    "platform": "instagram",
+    "reason": "INSTAGRAM_BUSINESS_ID sau META_ACCESS_TOKEN lipsesc din .env"
+  },
+  "tiktok": {
+    "status": "draft_ready",
+    "platform": "tiktok",
+    "mode": "draft",
+    "caption": "Datele tale te pot ajuta să crești afacerea!",
+    "url": "https://azisunt.net/blog/cum-sa-imbunatatesti-strategia-ta-de-marketing-cu-ajutorul-datelor",
+    "reason": "TikTok direct post cere Content Posting API configurat și access token valid."
+  },
+  "linkedin": {
+    "status": "draft_ready",
+    "platform": "linkedin",
+    "mode": "draft",
+    "text": "Optimizează-ți strategia de marketing cu ajutorul datelor și crește performanța afacerii tale locale. Citește articolul nostru pentru detalii: https://azisunt.net/blog/cum-sa-imbunatatesti-strategia-ta-de-marketing-cu-ajutorul-datelor #azisunt.net #marketingdigital",
+    "url": "https://azisunt.net/blog/cum-sa-imbunatatesti-strategia-ta-de-marketing-cu-ajutorul-datelor",
+    "reason": "LinkedIn auto-post cere acces API aprobat. Default rămâne draft-ready."
+  }
+}
