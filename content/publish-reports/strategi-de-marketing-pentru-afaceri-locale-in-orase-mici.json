@@ -1,0 +1,28 @@
+{
+  "facebook": {
+    "status": "skipped",
+    "platform": "facebook",
+    "reason": "FACEBOOK_PAGE_ID sau FACEBOOK_PAGE_ACCESS_TOKEN lipsesc din .env"
+  },
+  "instagram": {
+    "status": "skipped",
+    "platform": "instagram",
+    "reason": "INSTAGRAM_BUSINESS_ID sau META_ACCESS_TOKEN lipsesc din .env"
+  },
+  "tiktok": {
+    "status": "draft_ready",
+    "platform": "tiktok",
+    "mode": "draft",
+    "caption": "Afacere locală? Crește-o cu noi!",
+    "url": "https://azisunt.net/blog/strategi-de-marketing-pentru-afaceri-locale-in-orase-mici",
+    "reason": "TikTok direct post cere Content Posting API configurat și access token valid."
+  },
+  "linkedin": {
+    "status": "draft_ready",
+    "platform": "linkedin",
+    "mode": "draft",
+    "text": "Strategiile de marketing locale sunt esențiale pentru creșterea afacerilor în orașele mici. Citiți articolul nostru pentru a afla mai multe despre cum puteți dezvolta businessul dvs. https://azisunt.net/blog/strategi-de-marketing-pentru-afaceri-locale-in-orase-mici #azisunt.net #marketinglocal #dezvoltarebusiness",
+    "url": "https://azisunt.net/blog/strategi-de-marketing-pentru-afaceri-locale-in-orase-mici",
+    "reason": "LinkedIn auto-post cere acces API aprobat. Default rămâne draft-ready."
+  }
+}
