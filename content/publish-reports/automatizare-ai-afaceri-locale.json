@@ -24,5 +24,10 @@
     "text": "Automatizarea AI poate fi un factor cheie în creșterea cererilor pentru afacerile locale. Află mai multe despre cum puteți beneficia de această tehnologie pe https://azisunt.net/blog/automatizare-ai-afaceri-locale #azisunt.net #automatizare #business",
     "url": "https://azisunt.net/blog/automatizare-ai-afaceri-locale",
     "reason": "LinkedIn auto-post cere acces API aprobat. Default rămâne draft-ready."
+  },
+  "git": {
+    "status": "pushed",
+    "repo_path": "/home/alexei4studio/azisunt-net",
+    "branch": "main"
   }
 }

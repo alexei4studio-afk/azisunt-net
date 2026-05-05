@@ -24,5 +24,10 @@
     "text": "Doriți să vă perfecționați abilitățile în gestionarea versiunilor cu Git? Cititi articolul nostru pentru a afla cum să verificați cunoștințele și să deveniți un expert: https://azisunt.net/blog/test-final-corect-git #azisunt.net #Git #GestionareVersiuni",
     "url": "https://azisunt.net/blog/test-final-corect-git",
     "reason": "LinkedIn auto-post cere acces API aprobat. Default rămâne draft-ready."
+  },
+  "git": {
+    "status": "pushed",
+    "repo_path": "/home/alexei4studio/azisunt-net",
+    "branch": "main"
   }
 }
