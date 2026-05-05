@@ -1,0 +1,28 @@
+{
+  "facebook": {
+    "status": "skipped",
+    "platform": "facebook",
+    "reason": "FACEBOOK_PAGE_ID sau FACEBOOK_PAGE_ACCESS_TOKEN lipsesc din .env"
+  },
+  "instagram": {
+    "status": "skipped",
+    "platform": "instagram",
+    "reason": "INSTAGRAM_BUSINESS_ID sau META_ACCESS_TOKEN lipsesc din .env"
+  },
+  "tiktok": {
+    "status": "draft_ready",
+    "platform": "tiktok",
+    "mode": "draft",
+    "caption": "Git expert într-o clipă? Nu e imposibil! Află cum!",
+    "url": "https://azisunt.net/blog/test-final-corect-git",
+    "reason": "TikTok direct post cere Content Posting API configurat și access token valid."
+  },
+  "linkedin": {
+    "status": "draft_ready",
+    "platform": "linkedin",
+    "mode": "draft",
+    "text": "Doriți să vă perfecționați abilitățile în gestionarea versiunilor cu Git? Cititi articolul nostru pentru a afla cum să verificați cunoștințele și să deveniți un expert: https://azisunt.net/blog/test-final-corect-git #azisunt.net #Git #GestionareVersiuni",
+    "url": "https://azisunt.net/blog/test-final-corect-git",
+    "reason": "LinkedIn auto-post cere acces API aprobat. Default rămâne draft-ready."
+  }
+}
