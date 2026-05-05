@@ -75,6 +75,15 @@
       "date": "2026-05-05",
       "path": "content/blog/afaceri-mici-si-site-web.md",
       "url": "https://azisunt.net/blog/afaceri-mici-si-site-web"
+    },
+    {
+      "slug": "site-simplu-vinde-mai-bine",
+      "title": "De ce un site simplu poate vinde mai bine decât unul complicat",
+      "excerpt": "Aflați de ce un site simplu poate fi mai eficient în vânzări decât unul plin de funcționalități complicate.",
+      "tag": "AI SEO",
+      "date": "2026-05-05",
+      "path": "content/blog/site-simplu-vinde-mai-bine.md",
+      "url": "https://azisunt.net/blog/site-simplu-vinde-mai-bine"
     }
   ]
 }

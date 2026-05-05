@@ -1,0 +1,28 @@
+{
+  "facebook": {
+    "status": "skipped",
+    "platform": "facebook",
+    "reason": "FACEBOOK_PAGE_ID sau FACEBOOK_PAGE_ACCESS_TOKEN lipsesc din .env"
+  },
+  "instagram": {
+    "status": "skipped",
+    "platform": "instagram",
+    "reason": "INSTAGRAM_BUSINESS_ID sau META_ACCESS_TOKEN lipsesc din .env"
+  },
+  "tiktok": {
+    "status": "draft_ready",
+    "platform": "tiktok",
+    "mode": "draft",
+    "caption": "Site simplu = Vânzări mai mari? Află cum să îți crești afacerea cu un site mai puțin complicat! #azisunt.net",
+    "url": "https://azisunt.net/blog/site-simplu-vinde-mai-bine",
+    "reason": "TikTok direct post cere Content Posting API configurat și access token valid."
+  },
+  "linkedin": {
+    "status": "draft_ready",
+    "platform": "linkedin",
+    "mode": "draft",
+    "text": "Un site simplu și eficient poate fi cheia succesului în vânzări. Află de ce și cum poți aplica această strategie pentru a crește afacerea ta: https://azisunt.net/blog/site-simplu-vinde-mai-bine #azisunt.net #vanzari #marketingdigital",
+    "url": "https://azisunt.net/blog/site-simplu-vinde-mai-bine",
+    "reason": "LinkedIn auto-post cere acces API aprobat. Default rămâne draft-ready."
+  }
+}
