@@ -1,0 +1,28 @@
+{
+  "facebook": {
+    "status": "skipped",
+    "platform": "facebook",
+    "reason": "FACEBOOK_PAGE_ID sau FACEBOOK_PAGE_ACCESS_TOKEN lipsesc din .env"
+  },
+  "instagram": {
+    "status": "skipped",
+    "platform": "instagram",
+    "reason": "INSTAGRAM_BUSINESS_ID sau META_ACCESS_TOKEN lipsesc din .env"
+  },
+  "tiktok": {
+    "status": "draft_ready",
+    "platform": "tiktok",
+    "mode": "draft",
+    "caption": "Tendințe web 2026! #azisunt.net",
+    "url": "https://azisunt.net/blog/tendinte-in-designul-site-urilor-web-pentru-afaceri-locale-in-2026",
+    "reason": "TikTok direct post cere Content Posting API configurat și access token valid."
+  },
+  "linkedin": {
+    "status": "draft_ready",
+    "platform": "linkedin",
+    "mode": "draft",
+    "text": "Îmbunătățiți-vă prezența online cu cele mai recente tendințe în designul site-urilor web pentru afaceri locale. Cititi articolul nostru pentru a afla mai multe: https://azisunt.net/blog/tendinte-in-designul-site-urilor-web-pentru-afaceri-locale-in-2026 #azisunt.net #designweb",
+    "url": "https://azisunt.net/blog/tendinte-in-designul-site-urilor-web-pentru-afaceri-locale-in-2026",
+    "reason": "LinkedIn auto-post cere acces API aprobat. Default rămâne draft-ready."
+  }
+}
