@@ -1,0 +1,28 @@
+{
+  "facebook": {
+    "status": "skipped",
+    "platform": "facebook",
+    "reason": "FACEBOOK_PAGE_ID sau FACEBOOK_PAGE_ACCESS_TOKEN lipsesc din .env"
+  },
+  "instagram": {
+    "status": "skipped",
+    "platform": "instagram",
+    "reason": "INSTAGRAM_BUSINESS_ID sau META_ACCESS_TOKEN lipsesc din .env"
+  },
+  "tiktok": {
+    "status": "draft_ready",
+    "platform": "tiktok",
+    "mode": "draft",
+    "caption": "Omnichannel = mai multe vânzări!",
+    "url": "https://azisunt.net/blog/cum-sa-crezi-o-experienta-de-cumparare-omnichanel-pentru-clienti-tai",
+    "reason": "TikTok direct post cere Content Posting API configurat și access token valid."
+  },
+  "linkedin": {
+    "status": "draft_ready",
+    "platform": "linkedin",
+    "mode": "draft",
+    "text": "Optimizează experiența de cumpărare pentru clienții tăi și crește vânzările. Află mai multe: https://azisunt.net/blog/cum-sa-crezi-o-experienta-de-cumparare-omnichanel-pentru-clienti-tai #azisunt.net #experientaclient",
+    "url": "https://azisunt.net/blog/cum-sa-crezi-o-experienta-de-cumparare-omnichanel-pentru-clienti-tai",
+    "reason": "LinkedIn auto-post cere acces API aprobat. Default rămâne draft-ready."
+  }
+}
