@@ -1,0 +1,28 @@
+{
+  "facebook": {
+    "status": "skipped",
+    "platform": "facebook",
+    "reason": "FACEBOOK_PAGE_ID sau FACEBOOK_PAGE_ACCESS_TOKEN lipsesc din .env"
+  },
+  "instagram": {
+    "status": "skipped",
+    "platform": "instagram",
+    "reason": "INSTAGRAM_BUSINESS_ID sau META_ACCESS_TOKEN lipsesc din .env"
+  },
+  "tiktok": {
+    "status": "draft_ready",
+    "platform": "tiktok",
+    "mode": "draft",
+    "caption": "Influencerii locali = afaceri locale de succes",
+    "url": "https://azisunt.net/blog/cum-sa-folosesti-influenceri-locali-pentru-a-promova-afacerile-tale",
+    "reason": "TikTok direct post cere Content Posting API configurat și access token valid."
+  },
+  "linkedin": {
+    "status": "draft_ready",
+    "platform": "linkedin",
+    "mode": "draft",
+    "text": "Promovarea afacerilor locale prin intermediul influencerilor locali poate fi o strategie de marketing eficientă. Citește articolul nostru pentru a afla mai multe: https://azisunt.net/blog/cum-sa-folosesti-influenceri-locali-pentru-a-promova-afacerile-tale #azisunt.net #marketinglocal",
+    "url": "https://azisunt.net/blog/cum-sa-folosesti-influenceri-locali-pentru-a-promova-afacerile-tale",
+    "reason": "LinkedIn auto-post cere acces API aprobat. Default rămâne draft-ready."
+  }
+}
