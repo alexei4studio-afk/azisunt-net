@@ -1,0 +1,28 @@
+{
+  "facebook": {
+    "status": "skipped",
+    "platform": "facebook",
+    "reason": "FACEBOOK_PAGE_ID sau FACEBOOK_PAGE_ACCESS_TOKEN lipsesc din .env"
+  },
+  "instagram": {
+    "status": "skipped",
+    "platform": "instagram",
+    "reason": "INSTAGRAM_BUSINESS_ID sau META_ACCESS_TOKEN lipsesc din .env"
+  },
+  "tiktok": {
+    "status": "draft_ready",
+    "platform": "tiktok",
+    "mode": "draft",
+    "caption": "Pagină principală = cheia succesului!",
+    "url": "https://azisunt.net/blog/pagina-principala-afaceri-mici",
+    "reason": "TikTok direct post cere Content Posting API configurat și access token valid."
+  },
+  "linkedin": {
+    "status": "draft_ready",
+    "platform": "linkedin",
+    "mode": "draft",
+    "text": "În lumea digitală de azi, o pagină principală bine structurată și clară este esențială pentru afacerile mici. Aflați cum puteți îmbunătăți pagina dvs. principală și creșteți succesul afacerii dvs. https://azisunt.net/blog/pagina-principala-afaceri-mici #azisunt.net #afacerimici #dezvoltareafaceri",
+    "url": "https://azisunt.net/blog/pagina-principala-afaceri-mici",
+    "reason": "LinkedIn auto-post cere acces API aprobat. Default rămâne draft-ready."
+  }
+}
