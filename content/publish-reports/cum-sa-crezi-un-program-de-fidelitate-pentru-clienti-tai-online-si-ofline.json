@@ -1,0 +1,28 @@
+{
+  "facebook": {
+    "status": "skipped",
+    "platform": "facebook",
+    "reason": "FACEBOOK_PAGE_ID sau FACEBOOK_PAGE_ACCESS_TOKEN lipsesc din .env"
+  },
+  "instagram": {
+    "status": "skipped",
+    "platform": "instagram",
+    "reason": "INSTAGRAM_BUSINESS_ID sau META_ACCESS_TOKEN lipsesc din .env"
+  },
+  "tiktok": {
+    "status": "draft_ready",
+    "platform": "tiktok",
+    "mode": "draft",
+    "caption": "Fidelizează-ți clienții în 3 pași!",
+    "url": "https://azisunt.net/blog/cum-sa-crezi-un-program-de-fidelitate-pentru-clienti-tai-online-si-ofline",
+    "reason": "TikTok direct post cere Content Posting API configurat și access token valid."
+  },
+  "linkedin": {
+    "status": "draft_ready",
+    "platform": "linkedin",
+    "mode": "draft",
+    "text": "Îmbunătățiți relațiile cu clienții dvs. prin intermediul unui program de fidelitate bine structurat. Aflați mai multe despre cum puteți face acest lucru, citind articolul nostru: https://azisunt.net/blog/cum-sa-crezi-un-program-de-fidelitate-pentru-clienti-tai-online-si-ofline #azisunt.net #fidelitate #clienti",
+    "url": "https://azisunt.net/blog/cum-sa-crezi-un-program-de-fidelitate-pentru-clienti-tai-online-si-ofline",
+    "reason": "LinkedIn auto-post cere acces API aprobat. Default rămâne draft-ready."
+  }
+}
