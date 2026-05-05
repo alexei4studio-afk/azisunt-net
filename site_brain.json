@@ -39,6 +39,15 @@
       "date": "2026-05-05",
       "path": "content/blog/test-final-corect-git.md",
       "url": "https://azisunt.net/blog/test-final-corect-git"
+    },
+    {
+      "slug": "test-autopilot-fara-raport-modificat",
+      "title": "Test Autopilot fără Report Modificat: Cum să Evitați Problemele",
+      "excerpt": "Aflați cum să testați autopilotul fără a modifica raportul și cum să evitați problemele comune",
+      "tag": "AI SEO",
+      "date": "2026-05-05",
+      "path": "content/blog/test-autopilot-fara-raport-modificat.md",
+      "url": "https://azisunt.net/blog/test-autopilot-fara-raport-modificat"
     }
   ]
 }
