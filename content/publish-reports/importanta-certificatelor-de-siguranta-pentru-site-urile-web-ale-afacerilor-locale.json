@@ -1,0 +1,28 @@
+{
+  "facebook": {
+    "status": "skipped",
+    "platform": "facebook",
+    "reason": "FACEBOOK_PAGE_ID sau FACEBOOK_PAGE_ACCESS_TOKEN lipsesc din .env"
+  },
+  "instagram": {
+    "status": "skipped",
+    "platform": "instagram",
+    "reason": "INSTAGRAM_BUSINESS_ID sau META_ACCESS_TOKEN lipsesc din .env"
+  },
+  "tiktok": {
+    "status": "draft_ready",
+    "platform": "tiktok",
+    "mode": "draft",
+    "caption": "Siguranță online = Reputație intactă #azisunt.net",
+    "url": "https://azisunt.net/blog/importanta-certificatelor-de-siguranta-pentru-site-urile-web-ale-afacerilor-locale",
+    "reason": "TikTok direct post cere Content Posting API configurat și access token valid."
+  },
+  "linkedin": {
+    "status": "draft_ready",
+    "platform": "linkedin",
+    "mode": "draft",
+    "text": "Certificatele de siguranță sunt esențiale pentru protejarea datelor clienților și a reputației afacerii. Citește articolul nostru pe https://azisunt.net/blog/importanta-certificatelor-de-siguranta-pentru-site-urile-web-ale-afacerilor-locale pentru a afla mai multe #azisunt.net #siguranțăonline",
+    "url": "https://azisunt.net/blog/importanta-certificatelor-de-siguranta-pentru-site-urile-web-ale-afacerilor-locale",
+    "reason": "LinkedIn auto-post cere acces API aprobat. Default rămâne draft-ready."
+  }
+}
