@@ -1,0 +1,314 @@
+[
+    {
+        "rezumat_stire": {
+            "titlu": "Scientists Say Adding This Unusual Seafood to Your Diet Could Reverse Signs of Aging",
+            "descriere": "O echipă de cercetători a descoperit că adăugarea unui anumit tip de fructe de mare neobișnuite în dietă poate inversa semnele îmbătrânirii",
+            "link_original": "https://scitechdaily.com/scientists-say-adding-this-unusual-seafood-to-your-diet-could-reverse-signs-of-aging/"
+        },
+        "marketing_video": {
+            "hook": "Ai vrea să arăți mai tânăr și să te simți mai energic? Află secretul!",
+            "scenariu_scurt": [
+                "Prezentarea problemelor legate de îmbătrânire",
+                "Prezentarea soluției: adăugarea de fructe de mare neobișnuite în dietă",
+                "Rezultatele spectaculoase ale cercetării"
+            ],
+            "text_cta": "Cumpără protocolul complet din magazin și începe să te simți mai tânăr azi!"
+        },
+        "categoria_amazon": {
+            "produs": "Supliment de omega-3 pentru păr și piele sănătoasă",
+            "pret": 25,
+            "link": "https://amazon.com"
+        },
+        "categoria_premium": {
+            "brand": "Thorne",
+            "produs": "Supliment de nutriție pentru anti-îmbătrânire",
+            "pret": 55,
+            "link": "https://thorne.com"
+        },
+        "categoria_tech": {
+            "gadget": "Dispozitiv de analiză a pielii pentru monitorizarea îmbătrânirii",
+            "pret": 150,
+            "link": "https://tech.com"
+        }
+    },
+    {
+        "rezumat_stire": {
+            "titlu": "Challenging the Narrative: New Study Shows U.S. Life Expectancy Is Rising Across All States",
+            "descriere": "O nouă studiu arată că speranța de viață în Statele Unite ale Americii este în creștere în toate statele.",
+            "link_original": "https://scitechdaily.com/challenging-the-narrative-new-study-shows-u-s-life-expectancy-is-rising-across-all-states/"
+        },
+        "marketing_video": {
+            "hook": "Speranța de viață în SUA este în creștere! Află cum poți trăi mai mult și mai sănătos!",
+            "scenariu_scurt": [
+                "Prezentarea studiului și a rezultatelor sale",
+                "Explicarea factorilor care contribuie la creșterea speranței de viață",
+                "Sfaturi pentru o viață mai sănătoasă și mai lungă"
+            ],
+            "text_cta": "Cumpără protocolul complet din magazin și începe să trăiești mai sănătos azi!"
+        },
+        "categoria_amazon": {
+            "produs": "Vitamine și suplimente pentru sănătate",
+            "pret": 25,
+            "link": "https://amazon.com"
+        },
+        "categoria_premium": {
+            "brand": "Thorne",
+            "produs": "Suplimente de calitate superioară pentru sănătate",
+            "pret": 55,
+            "link": "https://thorne.com"
+        },
+        "categoria_tech": {
+            "gadget": "Fitness tracker și monitor de sănătate",
+            "pret": 150,
+            "link": "https://tech.com"
+        }
+    },
+    {
+        "rezumat_stire": {
+            "titlu": "This Small Change to Your Exercise Routine Could Be the Secret to Living Longer",
+            "descriere": "O schimbare mică în rutina de exercițiu poate fi secretul pentru a trăi mai mult",
+            "link_original": "https://scitechdaily.com/this-small-change-to-your-exercise-routine-could-be-the-secret-to-living-longer/"
+        },
+        "marketing_video": {
+            "hook": "Descoperă secretul pentru a trăi mai mult cu o schimbare mică în rutina ta de exercițiu!",
+            "scenariu_scurt": "1. Prezentarea beneficiilor exercițiului fizic, 2. Explicarea schimbării mici care poate face o diferență mare, 3. Demonstrații practice și rezultate",
+            "text_cta": "Începe să trăiești mai mult și mai bine, cumpără protocolul nostru de exercițiu complet din magazin!"
+        },
+        "categoria_amazon": {
+            "produs": "Supliment de vitamine și minerale pentru susținerea sănătății",
+            "pret": 25,
+            "link": "https://www.amazon.com/Vitamin-Mineral-Supplement-Health-Support/dp/B076MX9VG9/"
+        },
+        "categoria_premium": {
+            "brand": "Thorne",
+            "produs": "Supliment de vitamine și minerale de înaltă calitate pentru performanță sportivă",
+            "pret": 55,
+            "link": "https://www.thorne.com/products/vitamin-and-mineral-supplement"
+        },
+        "categoria_tech": {
+            "gadget": "Smartwatch pentru urmărirea activității fizice și a sănătății",
+            "pret": 150,
+            "link": "https://www.tech.com/smartwatch-fitness-tracker"
+        }
+    },
+    {
+        "rezumat_stire": {
+            "titlu": "Researchers Have Found a Dietary Compound That Increases Longevity",
+            "descriere": "Cercetatorii au descoperit un compus din dieta care creste longevitatea",
+            "link_original": "https://scitechdaily.com/researchers-have-found-a-dietary-compound-that-increases-longevity/"
+        },
+        "marketing_video": {
+            "hook": "Descopera secretul unei vieți mai lungi și mai sănătoase!",
+            "scenariu_scurt": [
+                "Prezentarea compusului din dietă descoperit de cercetători",
+                "Explicarea modului în care acest compus crește longevitatea",
+                "Beneficiile practice ale integrării acestui compus în viața de zi cu zi"
+            ],
+            "text_cta": "Află mai multe despre cum poți îmbunătăți sănătatea și longevitatea ta!"
+        },
+        "categoria_amazon": {
+            "produs": "Supliment de vitamine și minerale",
+            "pret": 25,
+            "link": "https://amazon.com/supliment-vitamine-minerale"
+        },
+        "categoria_premium": {
+            "brand": "Thorne",
+            "produs": "Supliment de nutriție avansat",
+            "pret": 55,
+            "link": "https://thorne.com/supliment-nutritie-avansat"
+        },
+        "categoria_tech": {
+            "gadget": "Dispozitiv de monitorizare a sănătății",
+            "pret": 150,
+            "link": "https://tech.com/dispozitiv-monitorizare-sanatate"
+        }
+    },
+    {
+        "rezumat_stire": {
+            "titlu": "Why Some People Reach 100: New Study Reveals Key Biological Differences",
+            "descriere": "O nouă studiu descoperă diferențe biologice cheie care ajută unii oameni să atingă vârsta de 100 de ani.",
+            "link_original": "https://scitechdaily.com/why-some-people-reach-100-new-study-reveals-key-biological-differences/"
+        },
+        "marketing_video": {
+            "hook": "Vrei să trăiești până la 100 de ani? Află secretul!",
+            "scenariu_scurt": [
+                "Prezentarea studiului și a rezultatelor sale",
+                "Explicarea diferențelor biologice cheie",
+                "Prezentarea unor sfaturi practice pentru a trăi o viață lungă și sănătoasă"
+            ],
+            "text_cta": "Cumpără protocolul complet din magazin și începe să construiești o viață lungă și sănătoasă!"
+        },
+        "categoria_amazon": {
+            "produs": "Suplimente de vitamine și minerale",
+            "pret": 25,
+            "link": "https://amazon.com"
+        },
+        "categoria_premium": {
+            "brand": "Thorne",
+            "produs": "Suplimente de nutriție avansate",
+            "pret": 55,
+            "link": "https://thorne.com"
+        },
+        "categoria_tech": {
+            "gadget": "Dispozitiv de monitorizare a sănătății",
+            "pret": 150,
+            "link": "https://tech.com"
+        }
+    },
+    {
+        "rezumat_stire": {
+            "titlu": "Longevity Isn’t Equal: Why Life-Extending Treatments May Be a “Biological Lottery”",
+            "descriere": "Tratamentele care prelungesc viața pot fi un joc biologic de noroc, deoarece eficacitatea lor poate varia foarte mult de la o persoană la alta.",
+            "link_original": "https://scitechdaily.com/longevity-isnt-equal-why-life-extending-treatments-may-be-a-biological-lottery/"
+        },
+        "marketing_video": {
+            "hook": "Vrei să trăiești mai mult? Află despre tratamentele care pot prelungi viața, dar și despre riscurile unui joc biologic de noroc!",
+            "scenariu_scurt": [
+                "Prezentarea conceptului de longevitate și a tratamentelor care o pot prelungi",
+                "Discutarea riscurilor și incertitudinilor asociate cu aceste tratamente",
+                "Prezentarea unor exemple de persoane care au beneficiat de aceste tratamente sau au suferit consecințe negative"
+            ],
+            "text_cta": "Cumpără protocolul complet din magazin pentru a afla mai multe despre cum poți prelungi viața în siguranță!"
+        },
+        "categoria_amazon": {
+            "produs": "Supliment de vitamine pentru longevitate",
+            "pret": 25,
+            "link": "https://amazon.com"
+        },
+        "categoria_premium": {
+            "brand": "Thorne",
+            "produs": "Supliment de vitamine și minerale de înaltă calitate pentru longevitate",
+            "pret": 55,
+            "link": "https://thorne.com"
+        },
+        "categoria_tech": {
+            "gadget": "Dispozitiv de monitorizare a sănătății și a stilului de viață",
+            "pret": 150,
+            "link": "https://tech.com"
+        }
+    },
+    {
+        "rezumat_stire": {
+            "titlu": "This Popular Supplement May Actually Slow Biological Aging, Scientists Reveal",
+            "descriere": "Cercetătorii au descoperit că un supliment popular poate încetini îmbătrânirea biologică",
+            "link_original": "https://scitechdaily.com/this-popular-supplement-may-actually-slow-biological-aging-scientists-reveal/"
+        },
+        "marketing_video": {
+            "hook": "Îmbătrânești mai încet cu un singur supliment!",
+            "scenariu_scurt": "Idei principale: prezentarea suplimentului, beneficiile îmbătrânirii încetinite, mărturii ale clienților",
+            "text_cta": "Cumpără protocolul complet din magazin și începe să îmbătrânești mai sănătos!"
+        },
+        "categoria_amazon": {
+            "produs": "Vitamina D3",
+            "pret": 25,
+            "link": "https://amazon.com/vitaminad3"
+        },
+        "categoria_premium": {
+            "brand": "Thorne",
+            "produs": "Supliment de îmbătrânire încetinită",
+            "pret": 55,
+            "link": "https://thorne.com/suplimente"
+        },
+        "categoria_tech": {
+            "gadget": "Dispozitiv de măsurare a îmbătrânirii biologice",
+            "pret": 150,
+            "link": "https://tech.com/dispozitive"
+        }
+    },
+    {
+        "rezumat_stire": {
+            "titlu": "This New Test Can Tell if Your Body Is Older Than You Are",
+            "descriere": "Un test nou poate determina dacă corpul tău este mai bătrân decât vârsta ta reală",
+            "link_original": "https://scitechdaily.com/this-new-test-can-tell-if-your-body-is-older-than-you-are/"
+        },
+        "marketing_video": {
+            "hook": "Află cum poți descoperi secretul vârstei tale biologice!",
+            "scenariu_scurt": [
+                "Prezentarea problemelor legate de îmbătrânire",
+                "Explicarea modului în care funcționează noul test",
+                "Beneficiile utilizării testului pentru îmbunătățirea sănătății"
+            ],
+            "text_cta": "Cumpără protocolul complet din magazin și află adevărata ta vârstă biologică!"
+        },
+        "categoria_amazon": {
+            "produs": "Suplimente anti-îmbătrânire",
+            "pret": 25,
+            "link": "https://amazon.com"
+        },
+        "categoria_premium": {
+            "brand": "Thorne",
+            "produs": "Test de vârstă biologică avansat",
+            "pret": 55,
+            "link": "https://thorne.com"
+        },
+        "categoria_tech": {
+            "gadget": "Dispozitiv de măsurare a stresului oxidativ",
+            "pret": 150,
+            "link": "https://tech.com"
+        }
+    },
+    {
+        "rezumat_stire": {
+            "titlu": "Scientists Identify Protein That Slows Key Effects of Aging",
+            "descriere": "O echipă de oameni de știință a descoperit o proteină care încetinește efectele cheie ale îmbătrânirii",
+            "link_original": "https://scitechdaily.com/scientists-identify-protein-that-slows-key-effects-of-aging/"
+        },
+        "marketing_video": {
+            "hook": "Știai că poți încetini îmbătrânirea cu o proteină miraculoasă?",
+            "scenariu_scurt": [
+                "Prezentarea proteinei și a efectelor sale",
+                "Exemple de persoane care au beneficiat de această proteină",
+                "Modalități de a integra această proteină în viața ta de zi cu zi"
+            ],
+            "text_cta": "Află cum poți încetini îmbătrânirea și îmbunătăți sănătatea ta cu protocolul nostru complet!"
+        },
+        "categoria_amazon": {
+            "produs": "Supliment de vitamine și minerale pentru îmbunătățirea sănătății",
+            "pret": 25,
+            "link": "https://amazon.com/suplimente-sanatate"
+        },
+        "categoria_premium": {
+            "brand": "Thorne",
+            "produs": "Produs premium de îmbunătățire a sănătății și a frumuseții",
+            "pret": 55,
+            "link": "https://thorne.com/produse-premium"
+        },
+        "categoria_tech": {
+            "gadget": "Dispozitiv de monitorizare a sănătății și a activității fizice",
+            "pret": 150,
+            "link": "https://tech.com/dispozitive-sanatate"
+        }
+    },
+    {
+        "rezumat_stire": {
+            "titlu": "This Overlooked Brain Region May Hold the Key to Strength in Aging",
+            "descriere": "Cercetătorii au descoperit o regiune a creierului care ar putea fi cheia pentru menținerea forței fizice pe măsură ce îmbătrânim.",
+            "link_original": "https://scitechdaily.com/this-overlooked-brain-region-may-hold-the-key-to-strength-in-aging/"
+        },
+        "marketing_video": {
+            "hook": "Îmbătrânești, dar nu vrei să-ți pierzi forța? Află secretul!",
+            "scenariu_scurt": [
+                "Prezentarea regiunii creierului descoperite",
+                "Explicarea importanței forței fizice la bătrânețe",
+                "Prezentarea unui produs care te poate ajuta"
+            ],
+            "text_cta": "Cumpără protocolul complet din magazin pentru a menține forța fizică pe măsură ce îmbătrânești!"
+        },
+        "categoria_amazon": {
+            "produs": "Supliment de vitamine pentru adulți",
+            "pret": 25,
+            "link": "https://amazon.com/supliment-vitamine"
+        },
+        "categoria_premium": {
+            "brand": "Thorne",
+            "produs": "Supliment de proteine de înaltă calitate",
+            "pret": 55,
+            "link": "https://thorne.com/supliment-proteine"
+        },
+        "categoria_tech": {
+            "gadget": "Braț de fitness inteligent",
+            "pret": 150,
+            "link": "https://tech.com/brat-fitness"
+        }
+    }
+]
