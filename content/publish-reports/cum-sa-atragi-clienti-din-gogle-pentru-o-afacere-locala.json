@@ -1,0 +1,28 @@
+{
+  "facebook": {
+    "status": "skipped",
+    "platform": "facebook",
+    "reason": "FACEBOOK_PAGE_ID sau FACEBOOK_PAGE_ACCESS_TOKEN lipsesc din .env"
+  },
+  "instagram": {
+    "status": "skipped",
+    "platform": "instagram",
+    "reason": "INSTAGRAM_BUSINESS_ID sau META_ACCESS_TOKEN lipsesc din .env"
+  },
+  "tiktok": {
+    "status": "draft_ready",
+    "platform": "tiktok",
+    "mode": "draft",
+    "caption": "Vrei să atragi clienți din Google? #azisunt.net",
+    "url": "https://azisunt.net/blog/cum-sa-atragi-clienti-din-gogle-pentru-o-afacere-locala",
+    "reason": "TikTok direct post cere Content Posting API configurat și access token valid."
+  },
+  "linkedin": {
+    "status": "draft_ready",
+    "platform": "linkedin",
+    "mode": "draft",
+    "text": "Optimizează-ți afacerea locală pentru a atrage clienți din Google. Citeste articolul nostru pentru a afla cum să crești vizibilitatea online: https://azisunt.net/blog/cum-sa-atragi-clienti-din-gogle-pentru-o-afacere-locala #azisunt.net #marketingdigital #afaceri",
+    "url": "https://azisunt.net/blog/cum-sa-atragi-clienti-din-gogle-pentru-o-afacere-locala",
+    "reason": "LinkedIn auto-post cere acces API aprobat. Default rămâne draft-ready."
+  }
+}
