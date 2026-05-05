@@ -1,0 +1,28 @@
+{
+  "facebook": {
+    "status": "skipped",
+    "platform": "facebook",
+    "reason": "FACEBOOK_PAGE_ID sau FACEBOOK_PAGE_ACCESS_TOKEN lipsesc din .env"
+  },
+  "instagram": {
+    "status": "skipped",
+    "platform": "instagram",
+    "reason": "INSTAGRAM_BUSINESS_ID sau META_ACCESS_TOKEN lipsesc din .env"
+  },
+  "tiktok": {
+    "status": "draft_ready",
+    "platform": "tiktok",
+    "mode": "draft",
+    "caption": "Vrei să crești vânzările locale? Începe cu publicitatea online! #azisunt.net",
+    "url": "https://azisunt.net/blog/cum-sa-utilizezi-platformele-de-publicitate-online-pentru-a-ti-creste-vanzarile-in-randul-clientilor-locali",
+    "reason": "TikTok direct post cere Content Posting API configurat și access token valid."
+  },
+  "linkedin": {
+    "status": "draft_ready",
+    "platform": "linkedin",
+    "mode": "draft",
+    "text": "Îmbunătățiți strategia de publicitate online pentru a atrage clienți locali și crește vânzările. Citiți articolul nostru: https://azisunt.net/blog/cum-sa-utilizezi-platformele-de-publicitate-online-pentru-a-ti-creste-vanzarile-in-randul-clientilor-locali #azisunt.net #marketingdigital",
+    "url": "https://azisunt.net/blog/cum-sa-utilizezi-platformele-de-publicitate-online-pentru-a-ti-creste-vanzarile-in-randul-clientilor-locali",
+    "reason": "LinkedIn auto-post cere acces API aprobat. Default rămâne draft-ready."
+  }
+}
