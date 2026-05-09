@@ -465,6 +465,7 @@ export default function AuditClient() {
   const [overallScore, setOverallScore] = useState(null);
   const [lead, setLead]               = useState(null);
   const [contactErrors, setContactErrors] = useState({});
+  const [leadStatus, setLeadStatus]   = useState(null); // null | "saved" | "failed"
   const reportRef                     = useRef(null);
 
   const domainData = DOMAINS.find((d) => d.id === domain);
@@ -517,6 +518,27 @@ export default function AuditClient() {
       timestamp: new Date().toISOString(),
     };
     setLead(newLead);
+    setLeadStatus(null);
+
+    // Fire-and-forget — does not block results
+    fetch("/api/audit-lead", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        businessName,
+        websiteUrl,
+        city,
+        industry: industry || domainData?.label,
+        mainGoal,
+        email,
+        score: overall,
+        scores: s,
+        recommendations: generatePriorityRecs(s),
+        source: "audit",
+      }),
+    })
+      .then((r) => setLeadStatus(r.ok ? "saved" : "failed"))
+      .catch(() => setLeadStatus("failed"));
 
     setStep(6);
     setLoading(true);
@@ -537,7 +559,7 @@ export default function AuditClient() {
     setIndustry(""); setMainGoal(""); setEmail("");
     setReport(""); setCurrentQ(0);
     setScores(null); setOverallScore(null); setLead(null);
-    setContactErrors({});
+    setContactErrors({}); setLeadStatus(null);
   };
 
   const webagencyHref = `/webagency?source=audit&score=${overallScore ?? ""}&city=${encodeURIComponent(city)}&industry=${encodeURIComponent(industry || domainData?.label || "")}`;
@@ -887,6 +909,16 @@ export default function AuditClient() {
                         className="w-full py-3 rounded-2xl text-xs font-body text-[hsl(var(--muted))] hover:text-white transition-colors border border-white/8 hover:border-white/20 uppercase tracking-widest">
                         Fă un audit nou
                       </button>
+                      {leadStatus === "saved" && (
+                        <p className="text-center text-[10px] font-body" style={{ color: "#4CAF82" }}>
+                          ✓ Raport salvat — te vom contacta în curând
+                        </p>
+                      )}
+                      {leadStatus === "failed" && (
+                        <p className="text-center text-[10px] font-body text-white/25">
+                          · Raport generat local (contact direct pe WhatsApp)
+                        </p>
+                      )}
                     </div>
                   </div>
                 )}
