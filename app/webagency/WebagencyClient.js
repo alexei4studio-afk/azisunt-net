@@ -745,6 +745,24 @@ function FAQ() {
             WhatsApp <ArrowRight size={13} />
           </a>
         </Reveal>
+
+        <Reveal delay={150} className="mt-10">
+          <div className="border-t border-[hsl(var(--stroke))]/20 pt-8">
+            <p className="text-[hsl(var(--muted))] font-body text-[10px] uppercase tracking-widest mb-4 text-center">Citește și</p>
+            <div className="flex flex-col sm:flex-row gap-3 justify-center">
+              <a href="/blog/structura-site-afacere-locala"
+                className="inline-flex items-center gap-2 text-xs text-[hsl(var(--muted))] hover:text-white transition-colors border border-[hsl(var(--stroke))]/40 hover:border-[#89AACC]/30 rounded-full px-4 py-2.5">
+                <ArrowRight size={11} style={{ color: "#89AACC" }} />
+                Structura corectă a unui site pentru afacere locală
+              </a>
+              <a href="/blog/cum-sa-atragi-clienti-din-google-pentru-o-afacere-locala"
+                className="inline-flex items-center gap-2 text-xs text-[hsl(var(--muted))] hover:text-white transition-colors border border-[hsl(var(--stroke))]/40 hover:border-[#89AACC]/30 rounded-full px-4 py-2.5">
+                <ArrowRight size={11} style={{ color: "#89AACC" }} />
+                Cum să atragi clienți din Google pentru o afacere locală
+              </a>
+            </div>
+          </div>
+        </Reveal>
       </div>
     </section>
   );
