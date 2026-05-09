@@ -1,3 +1,4 @@
+import { graphSchema, serviceSchema, organizationSchema } from "../../lib/schema";
 import WebagencyClient from "./WebagencyClient";
 
 export const metadata = {
@@ -20,47 +21,42 @@ export const metadata = {
   },
 };
 
-const jsonLd = {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "ProfessionalService",
-      "@id": "https://azisunt.net/webagency",
-      name: "CapeSystem Plan Pro — Webagency AI-First",
-      url: "https://azisunt.net/webagency",
-      description:
-        "Webagency AI-first pentru afaceri locale din România. Site performant Next.js, SEO local, Google Business Profile, AEO. Plan Pro — maxim 2 clienți pe lună.",
-      provider: {
-        "@type": "Organization",
-        name: "CapeSystem",
-        url: "https://azisunt.net",
-        telephone: "+40733874143",
-        email: "harapalb923@gmail.com",
-        areaServed: "RO",
-        sameAs: [
-          "https://www.facebook.com/CSLEGION",
-          "https://instagram.com/capesystemdesign",
-          "https://www.tiktok.com/@capesystempower",
-        ],
-      },
-      serviceType: [
-        "Web Design",
-        "SEO Local",
-        "Answer Engine Optimization",
-        "Google Business Profile",
-        "Digital Marketing",
+const jsonLd = graphSchema(
+  serviceSchema({
+    type: "ProfessionalService",
+    id: "https://azisunt.net/webagency",
+    name: "CapeSystem Plan Pro — Webagency AI-First",
+    url: "https://azisunt.net/webagency",
+    description:
+      "Webagency AI-first pentru afaceri locale din România. Site performant Next.js, SEO local, Google Business Profile, AEO. Plan Pro — maxim 2 clienți pe lună.",
+    provider: organizationSchema({
+      telephone: "+40733874143",
+      email: "harapalb923@gmail.com",
+      areaServed: "RO",
+      sameAs: [
+        "https://www.facebook.com/CSLEGION",
+        "https://instagram.com/capesystemdesign",
+        "https://www.tiktok.com/@capesystempower",
       ],
-      areaServed: { "@type": "Country", name: "România" },
-      offers: {
-        "@type": "Offer",
-        name: "Plan Pro",
-        description:
-          "Site complet Next.js + SEO local + Google Maps + AEO + tracking. Preț personalizat. Maxim 2 clienți pe lună.",
-        url: "https://azisunt.net/webagency",
-      },
+    }),
+    serviceType: [
+      "Web Design",
+      "SEO Local",
+      "Answer Engine Optimization",
+      "Google Business Profile",
+      "Digital Marketing",
+    ],
+    areaServed: { "@type": "Country", name: "România" },
+    offers: {
+      "@type": "Offer",
+      name: "Plan Pro",
+      description:
+        "Site complet Next.js + SEO local + Google Maps + AEO + tracking. Preț personalizat. Maxim 2 clienți pe lună.",
+      url: "https://azisunt.net/webagency",
     },
-    {
-      "@type": "FAQPage",
+  }),
+  {
+    "@type": "FAQPage",
       mainEntity: [
         {
           "@type": "Question",
@@ -112,8 +108,7 @@ const jsonLd = {
         },
       ],
     },
-  ],
-};
+);
 
 export default function Page() {
   return (

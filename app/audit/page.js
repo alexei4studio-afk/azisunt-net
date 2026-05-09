@@ -1,3 +1,4 @@
+import { webpageSchema, serviceSchema, breadcrumbSchema, organizationSchema } from "../../lib/schema";
 import AuditClient from "./AuditClient";
 
 export const metadata = {
@@ -17,34 +18,29 @@ export const metadata = {
 
 const jsonLd = {
   "@context": "https://schema.org",
-  "@type": "WebPage",
-  name: "AI Audit Digital — CapeSystem",
-  description: "Audit digital AI gratuit pentru afaceri din România. Diagnosticul complet în 60 de secunde.",
-  url: "https://azisunt.net/audit",
-  breadcrumb: {
-    "@type": "BreadcrumbList",
-    itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Acasă", item: "https://azisunt.net" },
-      { "@type": "ListItem", position: 2, name: "AI Audit", item: "https://azisunt.net/audit" },
-    ],
-  },
-  mainEntity: {
-    "@type": "Service",
-    name: "AI Audit Digital Gratuit",
-    description: "Audit digital complet generat de AI pentru afacerea ta în 60 de secunde",
-    provider: {
-      "@type": "LocalBusiness",
-      name: "CapeSystem",
-      url: "https://azisunt.net",
-      sameAs: "https://azisunt.net/webagency",
-    },
-    offers: {
-      "@type": "Offer",
-      price: "0",
-      priceCurrency: "RON",
-      url: "https://azisunt.net/audit",
-    },
-  },
+  ...webpageSchema({
+    name: "AI Audit Digital — CapeSystem",
+    description: "Audit digital AI gratuit pentru afaceri din România. Diagnosticul complet în 60 de secunde.",
+    url: "https://azisunt.net/audit",
+    breadcrumb: breadcrumbSchema([
+      { name: "Acasă", item: "https://azisunt.net" },
+      { name: "AI Audit", item: "https://azisunt.net/audit" },
+    ]),
+    mainEntity: serviceSchema({
+      name: "AI Audit Digital Gratuit",
+      description: "Audit digital complet generat de AI pentru afacerea ta în 60 de secunde",
+      provider: organizationSchema({
+        "@type": "LocalBusiness",
+        sameAs: "https://azisunt.net/webagency",
+      }),
+      offers: {
+        "@type": "Offer",
+        price: "0",
+        priceCurrency: "RON",
+        url: "https://azisunt.net/audit",
+      },
+    }),
+  }),
 };
 
 export default function AuditPage() {

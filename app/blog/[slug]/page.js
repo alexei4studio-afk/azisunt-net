@@ -1,4 +1,5 @@
 import { getPostData, getSortedPostsData } from "../../../lib/posts";
+import { graphSchema, articleSchema, breadcrumbSchema, organizationSchema } from "../../../lib/schema";
 import Link from "next/link";
 import { ArrowLeft, Clock } from "lucide-react";
 import { notFound } from "next/navigation";
@@ -119,28 +120,22 @@ export default async function PostPage({ params }) {
     notFound();
   }
 
-  const jsonLd = {
-    "@context": "https://schema.org",
-    "@graph": [
-      {
-        "@type": "Article",
-        headline: post.title,
-        description: post.excerpt || post.title,
-        url: `${BASE}/blog/${post.slug}`,
-        ...(post.date ? { datePublished: post.date } : {}),
-        author: { "@type": "Organization", name: "CapeSystem", url: BASE },
-        publisher: { "@type": "Organization", name: "CapeSystem", url: BASE },
-      },
-      {
-        "@type": "BreadcrumbList",
-        itemListElement: [
-          { "@type": "ListItem", position: 1, name: "Acasă", item: BASE },
-          { "@type": "ListItem", position: 2, name: "Blog", item: `${BASE}/blog` },
-          { "@type": "ListItem", position: 3, name: post.title, item: `${BASE}/blog/${post.slug}` },
-        ],
-      },
-    ],
-  };
+  const org = organizationSchema();
+  const jsonLd = graphSchema(
+    articleSchema({
+      headline: post.title,
+      description: post.excerpt || post.title,
+      url: `${BASE}/blog/${post.slug}`,
+      ...(post.date ? { datePublished: post.date } : {}),
+      author: org,
+      publisher: org,
+    }),
+    breadcrumbSchema([
+      { name: "Acasă", item: BASE },
+      { name: "Blog", item: `${BASE}/blog` },
+      { name: post.title, item: `${BASE}/blog/${post.slug}` },
+    ])
+  );
 
   return (
     <>
