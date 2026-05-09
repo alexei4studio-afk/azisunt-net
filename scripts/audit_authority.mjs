@@ -81,10 +81,14 @@ const redirectCount = redirectMatches.length;
 
 // ── 8. robots.txt / sitemap ──────────────────────────────────────────────────
 
-const robotsPresent =
-  fs.existsSync(path.join(ROOT, "public", "robots.txt")) ||
-  fs.existsSync(path.join(ROOT, "app", "robots.js")) ||
-  fs.existsSync(path.join(ROOT, "app", "robots.ts"));
+const robotsFilePath =
+  fs.existsSync(path.join(ROOT, "public", "robots.txt")) ? path.join(ROOT, "public", "robots.txt") :
+  fs.existsSync(path.join(ROOT, "app", "robots.js")) ? path.join(ROOT, "app", "robots.js") :
+  fs.existsSync(path.join(ROOT, "app", "robots.ts")) ? path.join(ROOT, "app", "robots.ts") : null;
+
+const robotsPresent = robotsFilePath !== null;
+const robotsContent = robotsFilePath ? (readFile(robotsFilePath) ?? "") : "";
+const sitemapInRobots = /Sitemap:\s*https?:\/\//i.test(robotsContent);
 
 const sitemapPresent =
   fs.existsSync(path.join(ROOT, "public", "sitemap.xml")) ||
@@ -148,9 +152,11 @@ ${pageTable()}
 |------|---------|
 | robots.txt | ${tick(robotsPresent)} |
 | sitemap.xml / sitemap.js | ${tick(sitemapPresent)} |
+| Sitemap URL in robots.txt | ${tick(sitemapInRobots)} |
 
 ${!robotsPresent ? "**Warning:** No robots.txt found. Add \`public/robots.txt\` or \`app/robots.js\`." : ""}
 ${!sitemapPresent ? "**Warning:** No sitemap found. Add \`public/sitemap.xml\` or \`app/sitemap.js\`." : ""}
+${robotsPresent && !sitemapInRobots ? "**Warning:** robots.txt found but missing \`Sitemap:\` directive. Add \`Sitemap: https://azisunt.net/sitemap.xml\`." : ""}
 
 ---
 
@@ -191,6 +197,7 @@ ${
 | Redirects in next.config.js | ${redirectCount} |
 | robots.txt present | ${robotsPresent ? "Yes" : "No"} |
 | sitemap present | ${sitemapPresent ? "Yes" : "No"} |
+| Sitemap URL in robots.txt | ${sitemapInRobots ? "Yes" : "No"} |
 | Blog canonical articles | ${blogArticles.length} |
 | Pages with weak signals (≥3 missing) | ${weakPages.length} |
 `;
@@ -202,3 +209,4 @@ console.log(`[audit] Routes found: ${pages.length}`);
 console.log(`[audit] Blog articles: ${blogArticles.length}`);
 console.log(`[audit] Redirects: ${redirectCount}`);
 console.log(`[audit] Weak pages: ${weakPages.length}`);
+console.log(`[audit] Sitemap URL in robots.txt: ${sitemapInRobots}`);

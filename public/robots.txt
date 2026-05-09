@@ -1,0 +1,8 @@
+User-agent: *
+Allow: /
+
+Disallow: /api/
+Disallow: /archive/
+Disallow: /merged-content/
+
+Sitemap: https://azisunt.net/sitemap.xml

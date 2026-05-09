@@ -38,11 +38,13 @@ Generated: 2026-05-09
 
 | File | Present |
 |------|---------|
-| robots.txt | ✗ |
-| sitemap.xml / sitemap.js | ✗ |
+| robots.txt | ✓ |
+| sitemap.xml / sitemap.js | ✓ |
+| Sitemap URL in robots.txt | ✓ |
 
-**Warning:** No robots.txt found. Add `public/robots.txt` or `app/robots.js`.
-**Warning:** No sitemap found. Add `public/sitemap.xml` or `app/sitemap.js`.
+
+
+
 
 ---
 
@@ -79,7 +81,8 @@ Articles:
 | Pages linking /webagency | 3 / 5 |
 | Pages with CTA | 4 / 5 |
 | Redirects in next.config.js | 33 |
-| robots.txt present | No |
-| sitemap present | No |
+| robots.txt present | Yes |
+| sitemap present | Yes |
+| Sitemap URL in robots.txt | Yes |
 | Blog canonical articles | 6 |
 | Pages with weak signals (≥3 missing) | 1 |
