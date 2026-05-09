@@ -101,7 +101,8 @@ function Navbar() {
         {/* Desktop */}
         <div className="hidden md:flex items-center gap-5">
           <a href="/#work" className="text-[10px] uppercase tracking-widest text-[hsl(var(--muted))] hover:text-white transition-colors">Work</a>
-          <a href="/blog"  className="text-[10px] uppercase tracking-widest text-[hsl(var(--muted))] hover:text-white transition-colors">Blog</a>
+          <a href="/blog"      className="text-[10px] uppercase tracking-widest text-[hsl(var(--muted))] hover:text-white transition-colors">Blog</a>
+          <a href="/webagency" className="text-[10px] uppercase tracking-widest text-[hsl(var(--muted))] hover:text-white transition-colors">Plan Pro</a>
           <a href="/audit" className="inline-flex items-center gap-1.5 text-[10px] uppercase tracking-widest font-black" style={{ color: "#89AACC" }}>
             <Sparkles size={11} /> AI Audit
           </a>
@@ -140,6 +141,10 @@ function Navbar() {
           <a href="/blog" onClick={() => setOpen(false)}
             className="text-base text-white/80 hover:text-white font-display italic border-b border-white/5 pb-3">
             Blog
+          </a>
+          <a href="/webagency" onClick={() => setOpen(false)}
+            className="text-base text-white/80 hover:text-white font-display italic border-b border-white/5 pb-3">
+            Plan Pro
           </a>
           <a href="/audit" onClick={() => setOpen(false)}
             className="flex items-center gap-2 text-base font-black uppercase tracking-widest pb-3 border-b border-white/5"

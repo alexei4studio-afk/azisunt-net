@@ -128,6 +128,9 @@ function Navbar() {
             <a href="/blog" className="text-[11px] font-bold uppercase tracking-[0.15em] text-muted hover:text-white transition-colors">
               Blog
             </a>
+            <a href="/webagency" className="text-[11px] font-bold uppercase tracking-[0.15em] text-muted hover:text-white transition-colors">
+              Plan Pro
+            </a>
             {/* AI Audit Rapid — accent, always visible */}
             <a
               href="/audit"
@@ -188,6 +191,13 @@ function Navbar() {
             className="text-lg text-white/90 hover:text-white font-display italic border-b border-white/5 pb-3"
           >
             Blog
+          </a>
+          <a
+            href="/webagency"
+            onClick={() => setOpen(false)}
+            className="text-lg text-white/90 hover:text-white font-display italic border-b border-white/5 pb-3"
+          >
+            Plan Pro
           </a>
           {/* AI Audit — always visible on mobile, accent color */}
           <a
