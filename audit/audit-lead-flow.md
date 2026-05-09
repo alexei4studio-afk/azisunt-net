@@ -25,6 +25,19 @@ Set `AZISUNT_AUDIT_WEBHOOK_URL` in the Vercel environment or `.env.local`. When 
 
 Suitable targets: Make / n8n HTTP webhook, Slack incoming webhook, internal CRM endpoint.
 
+## App backend forwarding
+
+After local validation, `route.js` forwards the enriched lead to the `app.azisunt.net` backend:
+
+- **Endpoint**: `process.env.AZISUNT_APP_INBOUND_URL` (default: `https://app.azisunt.net/api/inbound/audit-lead`)
+- **Auth header**: `X-AZISUNT-INBOUND-SECRET` — value from `process.env.AZISUNT_INBOUND_SECRET`
+- **Required Vercel env var**: `AZISUNT_INBOUND_SECRET` (must match the value in `.env` on `app.azisunt.net`)
+- **Behavior when secret is missing**: forwarding is skipped; API still returns `{ ok: true, forwarded: false }` — user request never fails
+- **Behavior on network/HTTP error**: same as above — `forwarded: false`, no user impact
+- **Behavior on success**: API returns `{ ok: true, forwarded: true }`
+
+The forwarded payload is the full enriched lead object (including `leadTemperature`, `painPoints`, `suggestedOffer`, `nextAction`).
+
 ## JSON storage limitation on Vercel
 
 Vercel's serverless runtime mounts the project on a read-only filesystem. `fs.writeFileSync` to `data/audit-leads.json` **will silently fail** in production. The route wraps the write in a try/catch so the API still returns 201.

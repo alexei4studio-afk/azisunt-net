@@ -165,7 +165,30 @@ export async function POST(request) {
     }
   }
 
-  const response = { ok: true, id: lead.id };
+  // forward to app backend — skipped silently if AZISUNT_INBOUND_SECRET is not set
+  let forwarded = false;
+  const inboundSecret = process.env.AZISUNT_INBOUND_SECRET;
+  if (inboundSecret) {
+    const inboundUrl =
+      process.env.AZISUNT_APP_INBOUND_URL ||
+      "https://app.azisunt.net/api/inbound/audit-lead";
+    try {
+      const fwd = await fetch(inboundUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "X-AZISUNT-INBOUND-SECRET": inboundSecret,
+        },
+        body: JSON.stringify(lead),
+        signal: AbortSignal.timeout(8000),
+      });
+      forwarded = fwd.ok;
+    } catch {
+      forwarded = false;
+    }
+  }
+
+  const response = { ok: true, id: lead.id, forwarded };
   if (notificationOk !== null) response.notificationOk = notificationOk;
   return NextResponse.json(response, { status: 201 });
 }
