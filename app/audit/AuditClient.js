@@ -11,6 +11,121 @@ import {
 /* ─── CONSTANTS ─── */
 const WA_LINK = "https://wa.me/40733874143";
 
+const SCORE_CATEGORIES = [
+  { key: "trust",        label: "Website Trust" },
+  { key: "localSeo",     label: "SEO / GEO Local" },
+  { key: "aiVisibility", label: "AI Visibility / AEO" },
+  { key: "conversion",   label: "Conversie" },
+  { key: "technical",    label: "Fundație Tehnică" },
+];
+
+/* ─── SCORE ENGINE ─── */
+function scoreColor(s) {
+  return s >= 70 ? "#4CAF82" : s >= 45 ? "#D4AF37" : "#E05252";
+}
+
+function scoreGradient(s) {
+  return s >= 70
+    ? "linear-gradient(90deg,#4CAF82,#3D9E6F)"
+    : s >= 45
+    ? "linear-gradient(90deg,#D4AF37,#B8962F)"
+    : "linear-gradient(90deg,#E05252,#C04040)";
+}
+
+function computeAuditScores(domain, answers, websiteUrl) {
+  let trust = 45, localSeo = 35, aiVisibility = 25, conversion = 40, technical = 45;
+  if (websiteUrl) { trust += 10; technical += 10; }
+
+  if (domain === "ecommerce") {
+    const pMap = { Shopify: 20, WooCommerce: 12, Magento: 15, "Custom / Alta": 10, "Nu am încă": -20 };
+    const tp = pMap[answers.platform] ?? 0;
+    trust += tp; technical += Math.round(tp * 0.5);
+    const tMap = { "Peste 50.000": 25, "5.000 – 50.000": 15, "500 – 5.000": 5, "Sub 500": -10 };
+    const tt = tMap[answers.traffic] ?? 0;
+    localSeo += tt; aiVisibility += Math.round(tt * 0.8);
+    const cMap = { "Peste 3%": 30, "1% – 3%": 15, "Sub 1%": -5, "Nu știu": -15 };
+    conversion += cMap[answers.conv] ?? 0;
+    if (answers.problem === "Vizibilitate SEO slabă") { localSeo -= 15; aiVisibility -= 10; }
+    else if (answers.problem === "Site lent") { technical -= 20; trust -= 10; }
+    else if (answers.problem === "Coș abandonat") conversion -= 15;
+    else if (answers.problem === "Reclame fără ROI") conversion -= 10;
+  }
+
+  if (domain === "b2b") {
+    const sMap = { "Freelancer / Solo": 0, "2–10": 5, "10–50": 15, "Peste 50": 25 };
+    trust += sMap[answers.size] ?? 0;
+    const lMap = { "SEO organic": 20, "LinkedIn / Social": 10, "Google Ads": 5, "Referral / Word of mouth": 5, "Nu generez activ": -20 };
+    const ll = lMap[answers.leads] ?? 0;
+    localSeo += ll; aiVisibility += Math.round(ll * 0.7); conversion += Math.round(ll * 0.5);
+    if (answers.problem === "Site neconvingător") { trust -= 15; conversion -= 15; }
+    else if (answers.problem === "Fără autoritate online") { trust -= 15; aiVisibility -= 15; }
+    else if (answers.problem === "Prea puțini lead-uri") { localSeo -= 10; conversion -= 10; }
+    else if (answers.problem === "Lead-uri necalificate") conversion -= 10;
+  }
+
+  if (domain === "imobiliare") {
+    const srcMap = { "Google organic": 25, "Referral": 15, "Social Media": 10, "OLX / Storia / imobiliare.ro": 0, "Altele": 0 };
+    const sv = srcMap[answers.source] ?? 0;
+    localSeo += sv; aiVisibility += Math.round(sv * 0.6);
+    if (answers.problem === "Vizibilitate slabă") { localSeo -= 15; aiVisibility -= 10; }
+    else if (answers.problem === "Site vechi / lent") { technical -= 20; trust -= 10; }
+    else if (answers.problem === "Lipsa lead-uri calificate") conversion -= 15;
+    else if (answers.problem === "Fără diferențiere față de concurență") { trust -= 10; aiVisibility -= 10; }
+  }
+
+  if (domain === "altele") {
+    const onMap = { "Sistem digital complet": 20, "Site + social media": 10, "Doar social media": -5, "Deloc": -25 };
+    const ob = onMap[answers.online] ?? 0;
+    trust += ob; localSeo += Math.round(ob * 0.8); technical += ob;
+    if (answers.problem === "Site inexistent sau depășit") { trust -= 20; technical -= 20; }
+    else if (answers.problem === "Reclame care nu aduc rezultate") conversion -= 15;
+    else if (answers.problem === "Concurența mă depășește") { localSeo -= 10; aiVisibility -= 10; }
+  }
+
+  const clamp = (v) => Math.min(100, Math.max(0, Math.round(v)));
+  return {
+    trust: clamp(trust),
+    localSeo: clamp(localSeo),
+    aiVisibility: clamp(aiVisibility),
+    conversion: clamp(conversion),
+    technical: clamp(technical),
+  };
+}
+
+function computeOverallScore(scores) {
+  return Math.round(
+    scores.trust * 0.25 +
+    scores.localSeo * 0.25 +
+    scores.aiVisibility * 0.15 +
+    scores.conversion * 0.25 +
+    scores.technical * 0.10
+  );
+}
+
+function generatePriorityRecs(scores) {
+  const defs = [
+    { key: "trust",        label: "Website Trust",       rec: "Construiește un site profesional cu SSL, testimoniale și pagini de servicii clare." },
+    { key: "localSeo",     label: "SEO / GEO Local",     rec: "Optimizează Google Business Profile și generează conținut local relevant." },
+    { key: "aiVisibility", label: "AI Visibility / AEO", rec: "Creează conținut structurat care răspunde la întrebările frecvente din domeniul tău." },
+    { key: "conversion",   label: "Conversie",           rec: "Adaugă CTA-uri clare, formulare simple și social proof pe paginile cheie." },
+    { key: "technical",    label: "Fundație Tehnică",    rec: "Îmbunătățește viteza paginii, Core Web Vitals și structura URL-urilor." },
+  ];
+  return [...defs]
+    .sort((a, b) => scores[a.key] - scores[b.key])
+    .slice(0, 3)
+    .map(({ label, rec, key }) => ({ label, rec, score: scores[key] }));
+}
+
+function validateContact({ businessName, websiteUrl, city, industry }) {
+  const errors = {};
+  if (!businessName.trim()) errors.businessName = "Câmpul este obligatoriu";
+  if (!city.trim()) errors.city = "Câmpul este obligatoriu";
+  if (!industry.trim()) errors.industry = "Câmpul este obligatoriu";
+  if (websiteUrl.trim() && !/^https?:\/\/.+\..+/.test(websiteUrl.trim()))
+    errors.websiteUrl = "URL invalid (ex: https://afacereata.ro)";
+  return errors;
+}
+
 /* ─── SOCIAL LINK ─── */
 function SocialLink({ href, label, children }) {
   return (
@@ -219,16 +334,17 @@ const DOMAINS = [
 ];
 
 /* ─── AI AUDIT GENERATOR ─── */
-async function generateAuditReport(domain, answers, businessName) {
+async function generateAuditReport(domain, answers, businessName, city, industry) {
   const domainData = DOMAINS.find((d) => d.id === domain);
   const qaText = domainData.questions
-    .map((q, i) => `Q: ${q.q}\nA: ${answers[q.id] || "Nespecificat"}`)
+    .map((q) => `Q: ${q.q}\nA: ${answers[q.id] || "Nespecificat"}`)
     .join("\n\n");
 
   const prompt = `Ești un expert senior în digital marketing și web systems pentru piața din România. Analizează următoarea afacere și generează un raport de audit digital CONCIS și ACȚIONABIL.
 
 **Afacere:** ${businessName || "Nespecificat"}
-**Domeniu:** ${domainData.label}
+**Domeniu:** ${domainData.label}${industry && industry !== domainData.label ? ` — ${industry}` : ""}
+**Oraș:** ${city || "Nespecificat"}
 
 **Răspunsuri audit:**
 ${qaText}
@@ -319,16 +435,36 @@ function ProgressBar({ step, total }) {
   );
 }
 
+/* ─── FIELD WRAPPER ─── */
+function Field({ error, children }) {
+  return (
+    <div>
+      {children}
+      {error && (
+        <p className="text-red-400/80 text-[11px] mt-1.5 ml-1 font-body">{error}</p>
+      )}
+    </div>
+  );
+}
+
 /* ─── MAIN CLIENT COMPONENT ─── */
 export default function AuditClient() {
   const [step, setStep]               = useState(0); // 0=domain, 1-4=questions, 5=contact, 6=result
   const [domain, setDomain]           = useState(null);
   const [answers, setAnswers]         = useState({});
   const [businessName, setBusinessName] = useState("");
+  const [websiteUrl, setWebsiteUrl]   = useState("");
+  const [city, setCity]               = useState("");
+  const [industry, setIndustry]       = useState("");
+  const [mainGoal, setMainGoal]       = useState("");
   const [email, setEmail]             = useState("");
   const [loading, setLoading]         = useState(false);
   const [report, setReport]           = useState("");
   const [currentQ, setCurrentQ]       = useState(0);
+  const [scores, setScores]           = useState(null);
+  const [overallScore, setOverallScore] = useState(null);
+  const [lead, setLead]               = useState(null);
+  const [contactErrors, setContactErrors] = useState({});
   const reportRef                     = useRef(null);
 
   const domainData = DOMAINS.find((d) => d.id === domain);
@@ -336,10 +472,12 @@ export default function AuditClient() {
 
   /* ── step helpers ── */
   const selectDomain = (id) => {
+    const d = DOMAINS.find((x) => x.id === id);
     setDomain(id);
     setCurrentQ(0);
     setAnswers({});
     setStep(1);
+    if (d && !industry) setIndustry(d.label);
   };
 
   const answerQuestion = (qId, value) => {
@@ -354,10 +492,36 @@ export default function AuditClient() {
   };
 
   const submitAndGenerate = async () => {
+    const errors = validateContact({ businessName, websiteUrl, city, industry });
+    if (Object.keys(errors).length > 0) {
+      setContactErrors(errors);
+      return;
+    }
+    setContactErrors({});
+
+    const s = computeAuditScores(domain, answers, websiteUrl);
+    const overall = computeOverallScore(s);
+    setScores(s);
+    setOverallScore(overall);
+
+    const newLead = {
+      businessName,
+      websiteUrl,
+      city,
+      industry: industry || domainData?.label,
+      mainGoal,
+      domain,
+      answers,
+      scores: s,
+      overallScore: overall,
+      timestamp: new Date().toISOString(),
+    };
+    setLead(newLead);
+
     setStep(6);
     setLoading(true);
     try {
-      const result = await generateAuditReport(domain, answers, businessName);
+      const result = await generateAuditReport(domain, answers, businessName, city, industry);
       setReport(result);
     } catch (err) {
       setReport("## ⚠️ Eroare temporară\n\nNu am putut genera raportul acum. Te rugăm să ne contactezi direct pe WhatsApp.");
@@ -369,8 +533,14 @@ export default function AuditClient() {
 
   const reset = () => {
     setStep(0); setDomain(null); setAnswers({});
-    setBusinessName(""); setEmail(""); setReport(""); setCurrentQ(0);
+    setBusinessName(""); setWebsiteUrl(""); setCity("");
+    setIndustry(""); setMainGoal(""); setEmail("");
+    setReport(""); setCurrentQ(0);
+    setScores(null); setOverallScore(null); setLead(null);
+    setContactErrors({});
   };
+
+  const webagencyHref = `/webagency?source=audit&score=${overallScore ?? ""}&city=${encodeURIComponent(city)}&industry=${encodeURIComponent(industry || domainData?.label || "")}`;
 
   return (
     <main className="bg-[hsl(var(--bg))] min-h-screen text-[hsl(var(--text))] overflow-x-hidden">
@@ -511,17 +681,58 @@ export default function AuditClient() {
                   Aproape gata.
                 </p>
                 <p className="text-[hsl(var(--muted))] font-body text-sm mb-8">
-                  Spune-ne cum te cheamă ca să personalizăm raportul.
+                  Câteva detalii pentru a personaliza raportul și a calcula scorul.
                 </p>
 
                 <div className="space-y-4">
+                  <Field error={contactErrors.businessName}>
+                    <input
+                      type="text"
+                      placeholder="Numele afacerii tale *"
+                      value={businessName}
+                      onChange={(e) => setBusinessName(e.target.value)}
+                      className={`w-full bg-[hsl(var(--surface))] border rounded-2xl px-6 py-4 text-white text-sm placeholder:text-white/25 focus:border-[#89AACC]/40 outline-none transition-colors ${contactErrors.businessName ? "border-red-400/50" : "border-white/10"}`}
+                    />
+                  </Field>
+
+                  <Field error={contactErrors.websiteUrl}>
+                    <input
+                      type="url"
+                      placeholder="Site-ul afacerii (opțional — ex: https://afacereata.ro)"
+                      value={websiteUrl}
+                      onChange={(e) => setWebsiteUrl(e.target.value)}
+                      className={`w-full bg-[hsl(var(--surface))] border rounded-2xl px-6 py-4 text-white text-sm placeholder:text-white/25 focus:border-[#89AACC]/40 outline-none transition-colors ${contactErrors.websiteUrl ? "border-red-400/50" : "border-white/10"}`}
+                    />
+                  </Field>
+
+                  <Field error={contactErrors.city}>
+                    <input
+                      type="text"
+                      placeholder="Orașul tău *"
+                      value={city}
+                      onChange={(e) => setCity(e.target.value)}
+                      className={`w-full bg-[hsl(var(--surface))] border rounded-2xl px-6 py-4 text-white text-sm placeholder:text-white/25 focus:border-[#89AACC]/40 outline-none transition-colors ${contactErrors.city ? "border-red-400/50" : "border-white/10"}`}
+                    />
+                  </Field>
+
+                  <Field error={contactErrors.industry}>
+                    <input
+                      type="text"
+                      placeholder="Domeniu / industrie *"
+                      value={industry}
+                      onChange={(e) => setIndustry(e.target.value)}
+                      className={`w-full bg-[hsl(var(--surface))] border rounded-2xl px-6 py-4 text-white text-sm placeholder:text-white/25 focus:border-[#89AACC]/40 outline-none transition-colors ${contactErrors.industry ? "border-red-400/50" : "border-white/10"}`}
+                    />
+                  </Field>
+
                   <input
                     type="text"
-                    placeholder="Numele afacerii tale"
-                    value={businessName}
-                    onChange={(e) => setBusinessName(e.target.value)}
+                    placeholder="Obiectivul principal (opțional)"
+                    value={mainGoal}
+                    onChange={(e) => setMainGoal(e.target.value)}
                     className="w-full bg-[hsl(var(--surface))] border border-white/10 rounded-2xl px-6 py-4 text-white text-sm placeholder:text-white/25 focus:border-[#89AACC]/40 outline-none transition-colors"
                   />
+
                   <input
                     type="email"
                     placeholder="Email (opțional — pentru copia raportului)"
@@ -580,7 +791,7 @@ export default function AuditClient() {
                 ) : (
                   <div>
                     {/* Report header */}
-                    <div className="flex items-center gap-3 mb-8 p-5 bg-[hsl(var(--surface))] border border-[#89AACC]/25 rounded-2xl">
+                    <div className="flex items-center gap-3 mb-6 p-5 bg-[hsl(var(--surface))] border border-[#89AACC]/25 rounded-2xl">
                       <div className="w-10 h-10 rounded-xl flex items-center justify-center flex-shrink-0"
                         style={{ background: "linear-gradient(135deg, #89AACC, #4E85BF)" }}>
                         <Sparkles size={16} className="text-white" />
@@ -590,11 +801,66 @@ export default function AuditClient() {
                           Raport AI — {businessName || domainData?.label}
                         </p>
                         <p className="text-[hsl(var(--muted))] text-[10px] font-body uppercase tracking-widest">
-                          {domainData?.label} · Generat de CapeSystem AI
+                          {city ? `${city} · ` : ""}{domainData?.label} · Generat de CapeSystem AI
                         </p>
                       </div>
                       <CheckCircle size={16} style={{ color: "#89AACC" }} />
                     </div>
+
+                    {/* Score dashboard */}
+                    {scores && (
+                      <div className="mb-8 space-y-4">
+                        {/* Overall score */}
+                        <div className="p-6 bg-[hsl(var(--surface))] border border-[#89AACC]/25 rounded-[2rem] text-center">
+                          <p className="text-[10px] uppercase tracking-widest text-[hsl(var(--muted))] mb-2 font-body">Scor general de sănătate digitală</p>
+                          <p className="font-display italic leading-none mb-1" style={{ fontSize: "5rem", color: scoreColor(overallScore) }}>
+                            {overallScore}
+                          </p>
+                          <p className="text-xs text-[hsl(var(--muted))]/60 font-body">/100</p>
+                        </div>
+
+                        {/* Category bars */}
+                        <div className="p-6 bg-[hsl(var(--surface))] border border-[hsl(var(--stroke))] rounded-[2rem] space-y-4">
+                          {SCORE_CATEGORIES.map(({ key, label }, idx) => (
+                            <div key={key}>
+                              <div className="flex justify-between items-center mb-2">
+                                <span className="text-xs text-[hsl(var(--muted))] font-body">{label}</span>
+                                <span className="text-xs font-bold tabular-nums" style={{ color: scoreColor(scores[key]) }}>
+                                  {scores[key]}/100
+                                </span>
+                              </div>
+                              <div className="h-1.5 bg-white/8 rounded-full overflow-hidden">
+                                <motion.div
+                                  className="h-full rounded-full"
+                                  style={{ background: scoreGradient(scores[key]) }}
+                                  initial={{ width: 0 }}
+                                  animate={{ width: `${scores[key]}%` }}
+                                  transition={{ duration: 0.7, delay: idx * 0.1 }}
+                                />
+                              </div>
+                            </div>
+                          ))}
+                        </div>
+
+                        {/* Priority recommendations */}
+                        <div>
+                          <p className="text-[10px] uppercase tracking-widest text-[hsl(var(--muted))] mb-3 font-body">Priorități imediate</p>
+                          <div className="space-y-2">
+                            {generatePriorityRecs(scores).map((r, i) => (
+                              <div key={i} className="flex gap-3 p-4 bg-[hsl(var(--surface))] border border-white/8 rounded-2xl">
+                                <span className="text-[11px] font-black mt-0.5 flex-shrink-0" style={{ color: "#89AACC" }}>#{i + 1}</span>
+                                <div>
+                                  <p className="text-xs font-bold text-white mb-0.5">
+                                    {r.label} — <span style={{ color: scoreColor(r.score) }}>{r.score}/100</span>
+                                  </p>
+                                  <p className="text-xs text-[hsl(var(--muted))] leading-relaxed font-body">{r.rec}</p>
+                                </div>
+                              </div>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
+                    )}
 
                     {/* Report body */}
                     <div className="p-8 bg-[hsl(var(--surface))] border border-[hsl(var(--stroke))] rounded-[2rem] mb-8">
@@ -613,7 +879,7 @@ export default function AuditClient() {
                         Discutăm implementarea pe WhatsApp
                         <ArrowRight size={15} />
                       </a>
-                      <a href="/webagency"
+                      <a href={webagencyHref}
                         className="flex items-center justify-center gap-2 w-full py-3 rounded-2xl text-xs font-body font-bold text-[hsl(var(--muted))] hover:text-white transition-colors border border-white/8 hover:border-[#89AACC]/40 uppercase tracking-widest">
                         Descoperă Plan Pro — Web Agency <ArrowRight size={12} />
                       </a>
