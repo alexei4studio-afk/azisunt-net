@@ -38,6 +38,14 @@ After local validation, `route.js` forwards the enriched lead to the `app.azisun
 
 The forwarded payload is the full enriched lead object (including `leadTemperature`, `painPoints`, `suggestedOffer`, `nextAction`).
 
+To verify the full chain end-to-end:
+
+```bash
+AZISUNT_INBOUND_SECRET=<secret> npm run test:audit-forwarding
+```
+
+This tests (1) a direct POST to the app backend with the auth header, and (2) a POST to the public audit API (default `http://localhost:3000/api/audit-lead`), reporting both statuses and the `forwarded` flag from the public API response. Override the public URL with `AZISUNT_PUBLIC_AUDIT_API_URL=https://azisunt.net/api/audit-lead`.
+
 ## JSON storage limitation on Vercel
 
 Vercel's serverless runtime mounts the project on a read-only filesystem. `fs.writeFileSync` to `data/audit-leads.json` **will silently fail** in production. The route wraps the write in a try/catch so the API still returns 201.

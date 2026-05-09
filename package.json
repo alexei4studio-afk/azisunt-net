@@ -9,7 +9,8 @@
     "lint": "next lint",
     "audit:authority": "node scripts/audit_authority.mjs",
     "audit:links": "node scripts/audit_internal_links.mjs",
-    "leads:summary": "node scripts/audit_leads_summary.mjs"
+    "leads:summary": "node scripts/audit_leads_summary.mjs",
+    "test:audit-forwarding": "node scripts/test_audit_forwarding.mjs"
   },
   "dependencies": {
     "clsx": "^2.1.1",
