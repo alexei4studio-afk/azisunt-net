@@ -15,6 +15,19 @@ function readFile(filePath) {
   }
 }
 
+// Also scan co-located *Client.{js,ts,tsx} files in the same directory as the page
+function getColocatedClientContent(pageFile) {
+  const dir = path.dirname(pageFile);
+  try {
+    return fs.readdirSync(dir, { withFileTypes: true })
+      .filter((e) => !e.isDirectory() && /Client\.(js|ts|tsx)$/.test(e.name))
+      .map((e) => readFile(path.join(dir, e.name)) ?? "")
+      .join("\n");
+  } catch {
+    return "";
+  }
+}
+
 function findFiles(dir, predicate) {
   const results = [];
   if (!fs.existsSync(dir)) return results;
@@ -36,7 +49,7 @@ const pageFiles = findFiles(
 const pages = pageFiles.map((f) => ({
   file: path.relative(ROOT, f),
   route: "/" + path.relative(path.join(ROOT, "app"), path.dirname(f)),
-  content: readFile(f) ?? "",
+  content: (readFile(f) ?? "") + "\n" + getColocatedClientContent(f),
 }));
 
 // ── 2–6. Per-page signals ────────────────────────────────────────────────────

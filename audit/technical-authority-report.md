@@ -20,11 +20,11 @@ Generated: 2026-05-09
 
 | Route | Metadata | JSON-LD | /webagency link | CTA | Warnings |
 |-------|----------|---------|-----------------|-----|----------|
-| `/audit` | ✗ | ✗ | ✓ | ✓ | no metadata export, no JSON-LD |
+| `/audit` | ✓ | ✓ | ✓ | ✓ | — |
 | `/blog/[slug]` | ✗ | ✗ | ✗ | ✓ | no metadata export, no JSON-LD, no /webagency link |
 | `/blog` | ✓ | ✓ | ✗ | ✗ | no /webagency link, no CTA link |
-| `/` | ✗ | ✗ | ✗ | ✗ | no metadata export, no JSON-LD, no /webagency link, no CTA link |
-| `/webagency` | ✓ | ✓ | ✗ | ✗ | no /webagency link, no CTA link |
+| `/` | ✓ | ✓ | ✓ | ✓ | — |
+| `/webagency` | ✓ | ✓ | ✓ | ✓ | — |
 
 ---
 
@@ -67,10 +67,6 @@ Articles:
 - File: `app/blog/[slug]/page.js`
 - Missing: no metadata export, no JSON-LD, no /webagency link
 
-### `/`
-- File: `app/page.js`
-- Missing: no metadata export, no JSON-LD, no /webagency link, no CTA link
-
 ---
 
 ## Summary
@@ -78,12 +74,12 @@ Articles:
 | Check | Result |
 |-------|--------|
 | Total routes | 5 |
-| Pages with metadata | 2 / 5 |
-| Pages with JSON-LD | 2 / 5 |
-| Pages linking /webagency | 1 / 5 |
-| Pages with CTA | 2 / 5 |
+| Pages with metadata | 4 / 5 |
+| Pages with JSON-LD | 4 / 5 |
+| Pages linking /webagency | 3 / 5 |
+| Pages with CTA | 4 / 5 |
 | Redirects in next.config.js | 33 |
 | robots.txt present | No |
 | sitemap present | No |
 | Blog canonical articles | 6 |
-| Pages with weak signals (≥3 missing) | 2 |
+| Pages with weak signals (≥3 missing) | 1 |
