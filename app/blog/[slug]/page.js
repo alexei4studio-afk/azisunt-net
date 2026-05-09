@@ -72,6 +72,27 @@ function Footer() {
   );
 }
 
+const BASE = "https://azisunt.net";
+
+export async function generateMetadata({ params }) {
+  const post = await getPostData(params.slug);
+  if (!post) return {};
+  return {
+    title: `${post.title} | CapeSystem`,
+    description: post.excerpt || post.title,
+    alternates: { canonical: `${BASE}/blog/${post.slug}` },
+    openGraph: {
+      title: post.title,
+      description: post.excerpt || post.title,
+      url: `${BASE}/blog/${post.slug}`,
+      siteName: "CapeSystem",
+      locale: "ro_RO",
+      type: "article",
+    },
+    robots: { index: true, follow: true },
+  };
+}
+
 export async function generateStaticParams() {
   const posts = getSortedPostsData();
   console.log("[generateStaticParams] Sluguri generate:", posts.map((p) => p.slug));
@@ -98,8 +119,35 @@ export default async function PostPage({ params }) {
     notFound();
   }
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Article",
+        headline: post.title,
+        description: post.excerpt || post.title,
+        url: `${BASE}/blog/${post.slug}`,
+        ...(post.date ? { datePublished: post.date } : {}),
+        author: { "@type": "Organization", name: "CapeSystem", url: BASE },
+        publisher: { "@type": "Organization", name: "CapeSystem", url: BASE },
+      },
+      {
+        "@type": "BreadcrumbList",
+        itemListElement: [
+          { "@type": "ListItem", position: 1, name: "Acasă", item: BASE },
+          { "@type": "ListItem", position: 2, name: "Blog", item: `${BASE}/blog` },
+          { "@type": "ListItem", position: 3, name: post.title, item: `${BASE}/blog/${post.slug}` },
+        ],
+      },
+    ],
+  };
+
   return (
     <>
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+    />
     <main className="bg-[#030303] min-h-screen pt-32 pb-20 px-6">
       <article className="max-w-3xl mx-auto">
 
@@ -152,7 +200,7 @@ export default async function PostPage({ params }) {
               Vrei un sistem de autoritate similar?
             </h3>
             <Link
-              href="/#contact"
+              href="/webagency"
               className="inline-block bg-white text-black px-8 py-4 rounded-full text-[10px] font-bold uppercase tracking-widest hover:scale-105 transition-transform relative z-10"
             >
               Hai să vorbim ↗

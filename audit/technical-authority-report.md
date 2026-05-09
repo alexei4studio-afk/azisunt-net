@@ -21,7 +21,7 @@ Generated: 2026-05-09
 | Route | Metadata | JSON-LD | /webagency link | CTA | Warnings |
 |-------|----------|---------|-----------------|-----|----------|
 | `/audit` | ✓ | ✓ | ✓ | ✓ | — |
-| `/blog/[slug]` | ✗ | ✗ | ✗ | ✓ | no metadata export, no JSON-LD, no /webagency link |
+| `/blog/[slug]` | ✓ | ✓ | ✓ | ✓ | — |
 | `/blog` | ✓ | ✓ | ✗ | ✗ | no /webagency link, no CTA link |
 | `/` | ✓ | ✓ | ✓ | ✓ | — |
 | `/webagency` | ✓ | ✓ | ✓ | ✓ | — |
@@ -65,9 +65,7 @@ Articles:
 
 ## 9. Warnings — Pages with Weak Authority/Funnel Signals
 
-### `/blog/[slug]`
-- File: `app/blog/[slug]/page.js`
-- Missing: no metadata export, no JSON-LD, no /webagency link
+No pages flagged.
 
 ---
 
@@ -76,13 +74,13 @@ Articles:
 | Check | Result |
 |-------|--------|
 | Total routes | 5 |
-| Pages with metadata | 4 / 5 |
-| Pages with JSON-LD | 4 / 5 |
-| Pages linking /webagency | 3 / 5 |
+| Pages with metadata | 5 / 5 |
+| Pages with JSON-LD | 5 / 5 |
+| Pages linking /webagency | 4 / 5 |
 | Pages with CTA | 4 / 5 |
 | Redirects in next.config.js | 33 |
 | robots.txt present | Yes |
 | sitemap present | Yes |
 | Sitemap URL in robots.txt | Yes |
 | Blog canonical articles | 6 |
-| Pages with weak signals (≥3 missing) | 1 |
+| Pages with weak signals (≥3 missing) | 0 |
