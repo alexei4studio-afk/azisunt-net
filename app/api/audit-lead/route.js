@@ -14,6 +14,59 @@ function isValidUrl(v) {
   return /^https?:\/\/.+\..+/.test(v.trim());
 }
 
+const SCORE_LABELS = {
+  trust:        "Website Trust",
+  localSeo:     "SEO / GEO Local",
+  aiVisibility: "AI Visibility / AEO",
+  conversion:   "Conversie",
+  technical:    "Fundație Tehnică",
+};
+
+function qualifyLead(numScore, scores, email) {
+  const hasEmail = !!(email && String(email).trim());
+
+  let leadTemperature;
+  if (numScore !== null && numScore <= 50 && hasEmail) {
+    leadTemperature = "hot";
+  } else if (
+    (numScore !== null && numScore <= 70 && hasEmail) ||
+    (numScore !== null && numScore <= 50 && !hasEmail)
+  ) {
+    leadTemperature = "warm";
+  } else {
+    leadTemperature = "cold";
+  }
+
+  let painPoints = [];
+  if (scores && typeof scores === "object") {
+    painPoints = Object.entries(scores)
+      .filter(([, v]) => Number(v) < 50)
+      .sort(([, a], [, b]) => Number(a) - Number(b))
+      .slice(0, 3)
+      .map(([k]) => SCORE_LABELS[k] || k);
+  }
+
+  let suggestedOffer;
+  if (numScore === null) {
+    suggestedOffer = "audit call";
+  } else if (numScore < 40) {
+    suggestedOffer = "website rebuild";
+  } else if (numScore < 60) {
+    suggestedOffer = "Plan Pro";
+  } else if (numScore < 75) {
+    suggestedOffer = "audit call";
+  } else {
+    suggestedOffer = "SEO-GEO package";
+  }
+
+  const nextAction =
+    leadTemperature === "hot"  ? "Contactează în 24h — lead calificat cu email" :
+    leadTemperature === "warm" ? "Follow-up în 48h" :
+                                  "Adaugă în nurturing";
+
+  return { leadTemperature, painPoints, suggestedOffer, nextAction };
+}
+
 export async function POST(request) {
   const contentLength = request.headers.get("content-length");
   if (contentLength && parseInt(contentLength, 10) > MAX_BODY_BYTES) {
@@ -58,6 +111,9 @@ export async function POST(request) {
     return NextResponse.json({ error: "Validation failed", details: errors }, { status: 422 });
   }
 
+  const numScore = score !== null && score !== undefined ? Number(score) : null;
+  const { leadTemperature, painPoints, suggestedOffer, nextAction } = qualifyLead(numScore, scores, email);
+
   const lead = {
     id: crypto.randomUUID(),
     createdAt: new Date().toISOString(),
@@ -67,27 +123,49 @@ export async function POST(request) {
     industry: String(industry).trim(),
     mainGoal: mainGoal ? String(mainGoal).trim() : "",
     email: email ? String(email).trim() : "",
-    score: score !== undefined && score !== null ? Number(score) : null,
+    score: numScore,
     scores: scores || null,
     recommendations: recommendations || null,
     source: source ? String(source).trim() : "audit",
     userAgent: request.headers.get("user-agent") || "",
     referer: request.headers.get("referer") || "",
+    leadTemperature,
+    painPoints,
+    suggestedOffer,
+    nextAction,
   };
 
-  const dataDir = path.join(process.cwd(), "data");
-  if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir, { recursive: true });
-
-  let leads = [];
+  // best-effort JSON storage — silently skipped on Vercel read-only fs
   try {
-    leads = JSON.parse(fs.readFileSync(DATA_FILE, "utf8"));
-    if (!Array.isArray(leads)) leads = [];
-  } catch {
-    leads = [];
+    const dataDir = path.join(process.cwd(), "data");
+    if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir, { recursive: true });
+    let leads = [];
+    try {
+      leads = JSON.parse(fs.readFileSync(DATA_FILE, "utf8"));
+      if (!Array.isArray(leads)) leads = [];
+    } catch { leads = []; }
+    leads.push(lead);
+    fs.writeFileSync(DATA_FILE, JSON.stringify(leads, null, 2), "utf8");
+  } catch { /* read-only fs — skip */ }
+
+  // optional webhook — fires only when AZISUNT_AUDIT_WEBHOOK_URL is set
+  let notificationOk = null;
+  const webhookUrl = process.env.AZISUNT_AUDIT_WEBHOOK_URL;
+  if (webhookUrl) {
+    try {
+      const res = await fetch(webhookUrl, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(lead),
+        signal: AbortSignal.timeout(5000),
+      });
+      notificationOk = res.ok;
+    } catch {
+      notificationOk = false;
+    }
   }
 
-  leads.push(lead);
-  fs.writeFileSync(DATA_FILE, JSON.stringify(leads, null, 2), "utf8");
-
-  return NextResponse.json({ ok: true, id: lead.id }, { status: 201 });
+  const response = { ok: true, id: lead.id };
+  if (notificationOk !== null) response.notificationOk = notificationOk;
+  return NextResponse.json(response, { status: 201 });
 }

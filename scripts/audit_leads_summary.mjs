@@ -30,6 +30,13 @@ const avgScore = withScore.length > 0
   ? Math.round(withScore.reduce((sum, l) => sum + Number(l.score), 0) / withScore.length)
   : null;
 
+// temperature counts
+const tempCounts = { hot: 0, warm: 0, cold: 0 };
+for (const l of leads) {
+  const t = l.leadTemperature;
+  if (t === "hot" || t === "warm" || t === "cold") tempCounts[t]++;
+}
+
 const cityCounts = {};
 for (const l of leads) {
   const c = (l.city || "Unknown").trim();
@@ -42,6 +49,23 @@ for (const l of leads) {
   industryCounts[ind] = (industryCounts[ind] || 0) + 1;
 }
 
+// top pain points across all leads
+const painPointCounts = {};
+for (const l of leads) {
+  if (Array.isArray(l.painPoints)) {
+    for (const p of l.painPoints) {
+      painPointCounts[p] = (painPointCounts[p] || 0) + 1;
+    }
+  }
+}
+
+// suggested offer breakdown
+const offerCounts = {};
+for (const l of leads) {
+  const o = l.suggestedOffer || "unknown";
+  offerCounts[o] = (offerCounts[o] || 0) + 1;
+}
+
 const latest5 = [...leads]
   .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
   .slice(0, 5);
@@ -49,6 +73,11 @@ const latest5 = [...leads]
 console.log("\n[leads:summary] ─── Audit Leads Summary ───\n");
 console.log(`Total leads:   ${total}`);
 console.log(`Avg score:     ${avgScore !== null ? `${avgScore}/100` : "N/A"}`);
+
+console.log("\nTemperature:");
+console.log(`  hot:  ${tempCounts.hot}`);
+console.log(`  warm: ${tempCounts.warm}`);
+console.log(`  cold: ${tempCounts.cold}`);
 
 console.log("\nCities:");
 for (const [city, count] of Object.entries(cityCounts).sort((a, b) => b[1] - a[1])) {
@@ -60,10 +89,25 @@ for (const [ind, count] of Object.entries(industryCounts).sort((a, b) => b[1] - 
   console.log(`  ${ind}: ${count}`);
 }
 
+console.log("\nTop pain points:");
+if (Object.keys(painPointCounts).length === 0) {
+  console.log("  (none recorded)");
+} else {
+  for (const [p, count] of Object.entries(painPointCounts).sort((a, b) => b[1] - a[1])) {
+    console.log(`  ${p}: ${count}`);
+  }
+}
+
+console.log("\nSuggested offers:");
+for (const [offer, count] of Object.entries(offerCounts).sort((a, b) => b[1] - a[1])) {
+  console.log(`  ${offer}: ${count}`);
+}
+
 console.log("\nLatest 5 leads:");
 for (const l of latest5) {
   const date = l.createdAt ? l.createdAt.slice(0, 10) : "?";
   const score = l.score !== null && l.score !== undefined ? `${l.score}/100` : "N/A";
-  console.log(`  [${date}] ${l.businessName || "?"} — ${l.city || "?"} — ${l.industry || "?"} — score: ${score}`);
+  const temp = l.leadTemperature || "?";
+  console.log(`  [${date}] ${l.businessName || "?"} — ${l.city || "?"} — ${l.industry || "?"} — score: ${score} — ${temp}`);
 }
 console.log("");

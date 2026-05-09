@@ -1,0 +1,46 @@
+# Audit Lead Flow
+
+## Current flow
+
+1. User completes the `/audit` funnel (5 steps: domain → identity → answers → contact → results).
+2. On step 5, `AuditClient.js` calls `computeAuditScores()` client-side to produce per-category scores and an overall score (0–100).
+3. After rendering results, a fire-and-forget `fetch("POST /api/audit-lead")` sends the full lead payload to the server. The UI is never blocked by this call.
+4. `app/api/audit-lead/route.js` validates the payload, runs `qualifyLead()`, and:
+   - Appends the enriched lead to `data/audit-leads.json` (best-effort, see below).
+   - Optionally POSTs to `AZISUNT_AUDIT_WEBHOOK_URL` (see Notification hook).
+5. The API returns `{ ok: true, id }` (plus `notificationOk` when a webhook is configured). `AuditClient.js` shows a subtle status line: green for saved, dimmed for failure.
+
+## Lead qualification fields
+
+| Field              | Logic                                                                                  |
+|--------------------|----------------------------------------------------------------------------------------|
+| `leadTemperature`  | `hot` = score ≤ 50 AND email present; `warm` = score ≤ 70 + email OR score ≤ 50 + no email; `cold` = otherwise |
+| `painPoints`       | Up to 3 category labels with score < 50, sorted lowest-first                          |
+| `suggestedOffer`   | score < 40 → website rebuild; < 60 → Plan Pro; < 75 → audit call; ≥ 75 → SEO-GEO package |
+| `nextAction`       | Romanian sales action string keyed to temperature                                     |
+
+## Notification hook
+
+Set `AZISUNT_AUDIT_WEBHOOK_URL` in the Vercel environment or `.env.local`. When present, the route POSTs the full lead JSON to that URL with a 5-second timeout. Failure does not affect the 201 response — it only sets `notificationOk: false` in the response body. The webhook URL is never exposed to the client.
+
+Suitable targets: Make / n8n HTTP webhook, Slack incoming webhook, internal CRM endpoint.
+
+## JSON storage limitation on Vercel
+
+Vercel's serverless runtime mounts the project on a read-only filesystem. `fs.writeFileSync` to `data/audit-leads.json` **will silently fail** in production. The route wraps the write in a try/catch so the API still returns 201.
+
+This means `data/audit-leads.json` and `npm run leads:summary` are only useful in local development or on a self-hosted Node.js server (e.g., a VPS, Railway, Render).
+
+## Future DB / CRM upgrade path
+
+To persist leads in production, replace the `fs.writeFileSync` block in `route.js` with one of the following — no other changes needed:
+
+| Option              | How                                                                     |
+|---------------------|-------------------------------------------------------------------------|
+| **Vercel Postgres** | `@vercel/postgres` — `INSERT INTO leads VALUES (...)` in the same route |
+| **PlanetScale / Neon** | Standard MySQL / Postgres client — same pattern                      |
+| **Airtable API**    | `fetch("https://api.airtable.com/v0/...")` — no SDK needed              |
+| **Notion API**      | `fetch` to Notion databases endpoint                                    |
+| **n8n / Make**      | Already covered by the webhook hook — point it at a CRM trigger         |
+
+The `qualifyLead()` function and all enriched fields travel with the lead regardless of storage backend, so qualification logic does not need to change.
