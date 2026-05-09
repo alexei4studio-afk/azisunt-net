@@ -216,17 +216,17 @@ function Hero() {
           </a>
         </motion.div>
 
-        {/* Stats bar */}
+        {/* Principles bar */}
         <motion.div
-          className="grid grid-cols-3 gap-4 max-w-lg"
+          className="grid grid-cols-1 sm:grid-cols-3 gap-4 max-w-2xl"
           initial={{ opacity: 0 }} animate={{ opacity: 1 }} transition={{ delay: 0.6 }}
         >
           {[
-            { value: "+312%", label: "Trafic organic · napoletano.ro" },
-            { value: "2/lună", label: "Clienți noi maxim" },
-            { value: "100/100", label: "PageSpeed score" },
+            { value: "Site", label: "structură clară pentru servicii și locații" },
+            { value: "SEO/GEO", label: "vizibilitate locală în Google și Maps" },
+            { value: "AEO", label: "conținut pregătit pentru răspunsuri AI" },
           ].map((s) => (
-            <div key={s.label} className="text-center">
+            <div key={s.label} className="text-center sm:text-left">
               <p className="font-display italic text-2xl text-white mb-0.5">{s.value}</p>
               <p className="text-[hsl(var(--muted))] font-body text-[9px] uppercase tracking-wider leading-tight">{s.label}</p>
             </div>
