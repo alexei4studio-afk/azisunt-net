@@ -1,0 +1,28 @@
+{
+  "facebook": {
+    "status": "skipped",
+    "platform": "facebook",
+    "reason": "FACEBOOK_PAGE_ID sau FACEBOOK_PAGE_ACCESS_TOKEN lipsesc din .env"
+  },
+  "instagram": {
+    "status": "skipped",
+    "platform": "instagram",
+    "reason": "INSTAGRAM_BUSINESS_ID sau META_ACCESS_TOKEN lipsesc din .env"
+  },
+  "tiktok": {
+    "status": "draft_ready",
+    "platform": "tiktok",
+    "mode": "draft",
+    "caption": "Vrei să fii pe primul loc în căutările de pe Google? #azisunt.net",
+    "url": "https://azisunt.net/blog/servici-seo-local-pentru-afaceri-din-bucuresti",
+    "reason": "TikTok direct post cere Content Posting API configurat și access token valid."
+  },
+  "linkedin": {
+    "status": "draft_ready",
+    "platform": "linkedin",
+    "mode": "draft",
+    "text": "Îmbunătățiți performanța afacerii dvs. locale din București cu servicii SEO specializate. Aflați mai multe despre cum putem ajuta la creșterea vizibilității și a vânzărilor. https://azisunt.net/blog/servici-seo-local-pentru-afaceri-din-bucuresti #azisunt.net #SEOlocal",
+    "url": "https://azisunt.net/blog/servici-seo-local-pentru-afaceri-din-bucuresti",
+    "reason": "LinkedIn auto-post cere acces API aprobat. Default rămâne draft-ready."
+  }
+}
