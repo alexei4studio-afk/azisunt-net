@@ -5,7 +5,7 @@ export const metadata = {
   description: "Tratamente dentare moderne în Cluj-Napoca. Programări rapide pe WhatsApp.",
 };
 
-export const demoConfig = {
+const demoConfig = {
   businessName: "EgyDent",
   hero: {
     tagline: "Clinică Dentară · Cluj-Napoca",
