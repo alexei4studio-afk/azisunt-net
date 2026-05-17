@@ -5,17 +5,25 @@ export const metadata = {
   description: "Tratamente dentare moderne în Cluj-Napoca. Programări rapide pe WhatsApp.",
 };
 
-const config = {
-  name: "EgyDent",
-  tagline: "Clinică Dentară · Cluj-Napoca",
-  headline: "Zâmbetul tău,\nîn mâini sigure.",
-  subheadline: "Tratamente moderne, fără durere. Programare în mai puțin de 2 minute.",
-  phone: "+40 700 000 001",
-  whatsapp: "40700000001",
-  address: "Str. Clinicilor 14, Cluj-Napoca",
-  primaryColor: "#2563eb",
-  accentColor: "#1d4ed8",
+export const demoConfig = {
+  businessName: "EgyDent",
+  hero: {
+    tagline: "Clinică Dentară · Cluj-Napoca",
+    headline: "Zâmbetul tău,\nîn mâini sigure.",
+    subheadline: "Tratamente moderne, fără durere. Programare în mai puțin de 2 minute.",
+    badge: null,
+  },
+  colors: {
+    primary: "#2563eb",
+    accent: "#1d4ed8",
+  },
   cta: "Programează-te",
+  contact: {
+    phone: "+40 700 000 001",
+    whatsapp: "40700000001",
+    address: "Str. Clinicilor 14, Cluj-Napoca",
+    mapUrl: null,
+  },
   services: [
     { icon: "🦷", name: "Detartraj & Igienizare", price: "de la 200 RON" },
     { icon: "✨", name: "Albire Profesională", price: "de la 800 RON" },
@@ -42,8 +50,9 @@ const config = {
       stars: 5,
     },
   ],
+  sections: ["services", "gallery", "reviews", "contact"],
 };
 
 export default function EgyDentPage() {
-  return <DemoPage config={config} />;
+  return <DemoPage config={demoConfig} />;
 }
